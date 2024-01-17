@@ -1,0 +1,19 @@
+.working_area{
+	-fx-backgound-color:red;
+}
+
+.logo_area{
+		-fx-background-color:linear-gradient(to top left,#ffffff,#2a6994);
+
+}
+
+.textfields{
+    -fx-background-color: transparent;
+    -fx-border-color:#4993a9;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-padding: 5px 5px 5px 25px;
+    
+}
+.textfields:focused{
+    -fx-border-width: 0px 0px 2px 0px;
+}
