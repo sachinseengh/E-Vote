@@ -5,42 +5,36 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="87.0" layoutY="50.0" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="215.0" layoutY="68.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="logo_area" prefHeight="500.0" prefWidth="494.0" styleClass="logo_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="logo_area" layoutX="-2.0" layoutY="-5.0" prefHeight="559.0" prefWidth="479.0" styleClass="logo_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button layoutY="474.0" mnemonicParsing="false" text="Admin " AnchorPane.bottomAnchor="0.3999999999999986" AnchorPane.leftAnchor="0.0" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="138.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../OneDrive%20-%20Kathmandu%20BernHardt%20College/Desktop/coding.jpg" />
-                     </image>
-                  </ImageView>
+                  <Button layoutX="195.0" layoutY="497.0" mnemonicParsing="false" text="Admin" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="working_area" layoutX="494.0" layoutY="1.0" prefHeight="600.0" prefWidth="306.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="494.0" AnchorPane.rightAnchor="-0.7999999999999545" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="working_area" layoutX="479.0" layoutY="-6.0" prefHeight="550.0" prefWidth="323.0" AnchorPane.bottomAnchor="5.2000000000000455" AnchorPane.leftAnchor="479.0" AnchorPane.rightAnchor="-2.3999999999999773" AnchorPane.topAnchor="-6.0">
                <children>
-                  <FontAwesomeIcon glyphName="USERS" layoutX="114.0" layoutY="117.0" size="6em" />
-                  <TextField layoutX="61.0" layoutY="201.0" prefHeight="30.0" prefWidth="180.0" promptText="UserName" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="65.59999999999997" />
-                  <PasswordField layoutX="62.0" layoutY="253.0" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="64.00000000000003" />
-                  <Button layoutX="110.0" layoutY="311.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="66.0" text="Login" AnchorPane.leftAnchor="110.0" />
-                  <FontAwesomeIcon glyphName="USER" layoutX="66.0" layoutY="223.0" size="1.8em" />
-                  <FontAwesomeIcon glyphName="LOCK" layoutX="68.0" layoutY="276.0" size="1.8em" />
-                  <Label layoutX="86.0" layoutY="134.0" text="Voter Login" textFill="#4993a9" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="84.79999999999998">
+                  <FontAwesomeIcon glyphName="USERS" layoutX="123.0" layoutY="127.0" size="6em" />
+                  <Label layoutX="94.4" layoutY="156.0" text="Voter Login" AnchorPane.leftAnchor="94.4">
                      <font>
                         <Font name="Times New Roman Bold" size="26.0" />
                      </font>
                   </Label>
-                  <Label layoutX="61.0" layoutY="361.0" text="Not Registered?" AnchorPane.leftAnchor="61.0" />
-                  <Button layoutX="147.0" layoutY="357.0" mnemonicParsing="false" text="Register Now" AnchorPane.leftAnchor="147.0" />
-                  <Button layoutX="63.0" layoutY="401.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" text="Registration Status" AnchorPane.leftAnchor="63.0" />
-                  <Button layoutX="65.0" layoutY="446.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" text="View Result" AnchorPane.leftAnchor="63.2" />
+                  <TextField layoutX="72.0" layoutY="224.0" prefHeight="30.0" prefWidth="180.0" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="71.19999999999999" />
+                  <PasswordField layoutX="72.0" layoutY="275.0" prefHeight="30.0" prefWidth="180.0" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="71.19999999999999" />
+                  <Button layoutX="136.0" layoutY="330.0" mnemonicParsing="false" text="Login" AnchorPane.leftAnchor="136.0" />
+                  <Label layoutX="73.0" layoutY="383.0" text="Not Registered ?" AnchorPane.leftAnchor="73.0" />
+                  <Button layoutX="167.0" layoutY="379.0" mnemonicParsing="false" text="Register Now" AnchorPane.leftAnchor="167.0" />
+                  <Button layoutX="69.0" layoutY="427.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" text="Registration Status" AnchorPane.leftAnchor="69.0" />
+                  <Button layoutX="69.0" layoutY="470.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" text="View Result" AnchorPane.leftAnchor="69.0" />
+                  <FontAwesomeIcon glyphName="USER" layoutX="77.0" layoutY="246.0" size="1.8em" />
+                  <FontAwesomeIcon glyphName="LOCK" layoutX="78.0" layoutY="298.0" size="1.8em" />
                </children>
             </AnchorPane>
          </children>
