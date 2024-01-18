@@ -1,9 +1,9 @@
 .working_area{
-	-fx-backgound-color:red;
+	-fx-background-color:rgba(142, 194, 197, 0.307);
 }
 
 .logo_area{
-		-fx-background-color:linear-gradient(to top left,#ffffff,#2a6994);
+		-fx-background-color:linear-gradient(to top left,#2a6994,#154e59);
 
 }
 
@@ -12,8 +12,64 @@
     -fx-border-color:#4993a9;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-padding: 5px 5px 5px 25px;
+   -fx-prompt-text-fill:#000;
     
 }
 .textfields:focused{
     -fx-border-width: 0px 0px 2px 0px;
+}
+
+.drop-shadow {
+    -fx-effect: dropshadow(gaussian, #98b0b4, 40, 0, 0, 0);
+}
+
+.minimize{
+	-fx-background-color:transparent;
+}
+.minimize:hover{
+	-fx-background-color:#154e59;
+}
+.close{
+	-fx-background-color:transparent;
+}
+.close:hover{
+	
+	-fx-background-color:red;
+}
+.fullscreen{
+	-fx-background-color:transparent;
+}
+.fullscreen:hover{
+	
+	-fx-background-color:#59866e;
+}
+.loginbtn{
+	-fx-background-radius:5px;
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+}
+.loginbtn:hover{
+	-fx-background-color:rgb(52, 116, 52);
+}
+.registerbtn{
+-fx-background-color:transparent;
+-fx-underline: true;
+}
+.registrationstatusbtn{
+	-fx-background-radius:5px;
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+}
+.registrationstatusbtn:hover{
+	-fx-background-color:#366f7a;
+}
+.viewResultbtn{
+	-fx-background-radius:5px;
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+}
+.adminbtn{
+	-fx-background-radius:5px;
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
 }
