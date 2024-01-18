@@ -83,8 +83,6 @@ public class MainController implements Initializable {
         stage.setIconified(true);
     }
 //    toggle fullscreen
-    
-    //toggle function to switch between admin and voter
     public void togglefullscreen() {
     	Stage stage = (Stage)fullscreen.getScene().getWindow();
     	
@@ -97,7 +95,7 @@ public class MainController implements Initializable {
     	System.exit(0);
     }
     
-  //switch scene
+  //toggle function to switch between admin and voter
     public void switchUser(ActionEvent e) {
     	if(e.getSource()==admin_btn) {
     		admin_working_area.setVisible(true);
