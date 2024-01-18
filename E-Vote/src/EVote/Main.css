@@ -73,3 +73,34 @@
 	-fx-background-color:rgb(15, 120, 149);
 	-fx-text-fill:white;
 }
+
+
+/* Register Form */
+
+
+.evote{
+	-fx-text-fill:black;
+	-fx-effect: dropshadow(gaussian, #fffdfd, 10, 0.7, 0, 0);
+	
+}
+.evote:hover{
+	-fx-text-fill:rgb(255, 255, 255);
+	-fx-effect: dropshadow(gaussian, #030303, 10, 0.7, 0, 0);
+}
+
+.register-registerbtn{
+	-fx-background-color:rgba(54, 102, 134, 0.662);
+	-fx-font-size:17px;
+	-fx-text-fill:white;
+}
+.register-voter-login{
+	-fx-background-color:transparent;
+	-fx-font-size:17px;
+	-fx-text-fill:white;
+}
+
+
+.register-voter-login:hover{
+	-fx-font-size:19px;
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+}

@@ -1,19 +1,26 @@
 package EVote;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController implements Initializable {
 
@@ -96,13 +103,57 @@ public class MainController implements Initializable {
     }
     
   //toggle function to switch between admin and voter
-    public void switchUser(ActionEvent e) {
+    private double x =0;
+	 private double y=0; 
+	 
+    public void switchUser(ActionEvent e) throws IOException {
     	if(e.getSource()==admin_btn) {
     		admin_working_area.setVisible(true);
     		voter_working_area.setVisible(false);
     	}else if(e.getSource()== admin_voter_login) {
     		admin_working_area.setVisible(false);
     		voter_working_area.setVisible(true);
+    	}else if(e.getSource()==voter_registernow) {
+    		voter_registernow.getScene().getWindow().hide();
+    		
+    		Parent root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
+            
+            Stage stage = new Stage();
+            
+            root.setOnMousePressed(new EventHandler<MouseEvent>(){
+		           @Override
+		           public void handle(MouseEvent event) {
+		               x= event.getSceneX();
+		               y= event.getSceneY();
+		           }
+
+		         });
+
+		         root.setOnMouseDragged(new EventHandler<MouseEvent>(){
+		           @Override
+		           public void handle(MouseEvent event) {
+		              stage.setX(event.getScreenX()-x);
+		              stage.setY(event.getScreenY()-y);
+		              
+		              stage.setOpacity(0.9);
+		           }
+
+		         });
+		         
+		         root.setOnMouseReleased(new EventHandler<MouseEvent>(){
+		           @Override
+		           public void handle(MouseEvent event) {
+		              stage.setOpacity(1);
+		           }
+
+		         });
+		         
+				
+            stage.initStyle(StageStyle.TRANSPARENT);
+            Scene scene = new Scene(root);
+            
+           stage.setScene(scene);
+            stage.show();
     	}
     }
     
