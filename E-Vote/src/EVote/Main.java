@@ -53,7 +53,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
-			primaryStage.setFullScreen(true);
+			
 			
 			primaryStage.show();
 		} catch(Exception e) {
