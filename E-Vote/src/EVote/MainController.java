@@ -84,6 +84,17 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane voter_working_area;
     
+    @FXML
+    private AnchorPane published_result_form;
+    
+    @FXML
+    private AnchorPane voter_checkstatus_form; 
+    
+    @FXML
+    private AnchorPane no_result_form;
+
+   
+ 
     //to minimize screen
     public void minimize(){
         Stage stage = (Stage)minimize_btn.getScene().getWindow();
@@ -106,13 +117,21 @@ public class MainController implements Initializable {
     private double x =0;
 	 private double y=0; 
 	 
+	 
+	 //switch user
     public void switchUser(ActionEvent e) throws IOException {
     	if(e.getSource()==admin_btn) {
     		admin_working_area.setVisible(true);
     		voter_working_area.setVisible(false);
+    		voter_checkstatus_form.setVisible(false);
+    		published_result_form.setVisible(false);
+    		
+    		
     	}else if(e.getSource()== admin_voter_login) {
     		admin_working_area.setVisible(false);
     		voter_working_area.setVisible(true);
+    		
+    		
     	}else if(e.getSource()==voter_registernow) {
     		voter_registernow.getScene().getWindow().hide();
     		
@@ -154,6 +173,18 @@ public class MainController implements Initializable {
             
            stage.setScene(scene);
             stage.show();
+    	}else if(e.getSource()==voter_registrationstatus) {
+    		voter_working_area.setVisible(false);
+    		voter_checkstatus_form.setVisible(true);
+    		
+    		
+    	}else if(e.getSource()==voter_viewresult) {
+    		
+//    		i will call a function which is there is result then the result 
+    		//and if there is result then result 
+    		
+    		published_result_form.setVisible(true);
+    		voter_working_area.setVisible(false);
     	}
     }
     

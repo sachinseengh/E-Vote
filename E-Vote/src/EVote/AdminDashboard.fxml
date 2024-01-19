@@ -168,7 +168,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="0.8" layoutY="36.0" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="0.8" layoutY="36.0" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="388.0" layoutY="7.0" text="Voting">
                                  <font>
@@ -228,7 +228,7 @@
                               </ImageView>
                               <Button fx:id="start_election_btn" layoutX="521.0" layoutY="433.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="146.0" styleClass="start" stylesheets="@Main.css" text="Start Election" />
                            </children></AnchorPane>
-                        <AnchorPane fx:id="admin_result_form" layoutX="-1.0" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.7999999999999545" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_result_form" layoutX="-1.0" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.7999999999999545" AnchorPane.topAnchor="36.0">
                            <children>
                               <AnchorPane fx:id="admin_voter_result_form" layoutX="199.0" layoutY="47.0" prefHeight="351.0" prefWidth="401.0" visible="false">
                                  <children>

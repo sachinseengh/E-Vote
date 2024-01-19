@@ -2,12 +2,14 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.MainController">
@@ -47,8 +49,8 @@
                   <Button fx:id="voter_loginbtn" layoutX="113.0" layoutY="296.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" styleClass="loginbtn" stylesheets="@Main.css" text="Login" AnchorPane.leftAnchor="113.0" />
                   <Label layoutX="72.0" layoutY="347.0" text="Not Registered ?" AnchorPane.leftAnchor="72.0" />
                   <Button fx:id="voter_registernow" layoutX="154.2" layoutY="343.0" mnemonicParsing="false" onAction="#switchUser" styleClass="registerbtn" stylesheets="@Main.css" text="Register Now" AnchorPane.leftAnchor="154.2" />
-                  <Button fx:id="voter_registrationstatus" layoutX="68.0" layoutY="391.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" styleClass="registrationstatusbtn" stylesheets="@Main.css" text="Registration Status" AnchorPane.leftAnchor="68.0" />
-                  <Button fx:id="voter_viewresult" layoutX="68.0" layoutY="434.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="View Result" AnchorPane.leftAnchor="68.0" />
+                  <Button fx:id="voter_registrationstatus" layoutX="68.0" layoutY="391.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="registrationstatusbtn" stylesheets="@Main.css" text="Registration Status" AnchorPane.leftAnchor="68.0" />
+                  <Button fx:id="voter_viewresult" layoutX="68.0" layoutY="434.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="View Result" AnchorPane.leftAnchor="68.0" />
                   <FontAwesomeIcon glyphName="USER" layoutX="76.0" layoutY="210.0" size="1.8em" />
                   <FontAwesomeIcon glyphName="LOCK" layoutX="77.0" layoutY="262.0" size="1.8em" />
                </children>
@@ -72,7 +74,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="admin_working_area" layoutX="479.0" layoutY="40.0" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+            <AnchorPane fx:id="admin_working_area" layoutX="479.0" layoutY="40.0" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="-1.6000000000000227" AnchorPane.leftAnchor="479.2" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.8">
                <children>
                   <FontAwesomeIcon glyphName="USER" layoutX="133.0" layoutY="96.0" size="6em" />
                   <Label layoutX="87.0" layoutY="120.0" text="Admin Login" textFill="#59866e" AnchorPane.leftAnchor="87.0">
@@ -87,6 +89,125 @@
                   <FontAwesomeIcon glyphName="USER" layoutX="76.0" layoutY="210.0" size="1.8em" />
                   <FontAwesomeIcon glyphName="LOCK" layoutX="77.0" layoutY="262.0" size="1.8em" />
                   <Button fx:id="admin_voter_login" layoutX="68.0" layoutY="399.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="Voter Login" AnchorPane.leftAnchor="68.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="voter_checkstatus_form" layoutY="39.2" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="477.6" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+               <children>
+                  <Label layoutX="21.0" layoutY="118.0" text="Citizenship no :">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="136.0" layoutY="115.0" prefHeight="26.0" prefWidth="151.0" />
+                  <Label layoutX="94.0" layoutY="157.0" text="Dob :">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <DatePicker layoutX="136.0" layoutY="155.0" prefHeight="26.0" prefWidth="151.0" />
+                  <Button layoutX="75.0" layoutY="220.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="180.0" text="Check" />
+                  <Label layoutX="29.0" layoutY="324.0" text="Remarks :">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="113.0" layoutY="298.0" prefHeight="82.0" prefWidth="190.0" text="rejected due to incorrect database" wrapText="true">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="105.0" layoutY="32.0" text="Check Status">
+                     <font>
+                        <Font name="Times New Roman" size="23.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="84.0" layoutY="406.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="151.0" text="Login Page" />
+                  <Button layoutX="83.0" layoutY="446.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="151.0" text="Voter Registration" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="published_result_form" layoutX="478.4" layoutY="39.2" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="478.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+               <children>
+                  <Label layoutX="117.0" layoutY="14.0" text="Result ">
+                     <font>
+                        <Font name="Times New Roman" size="26.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="315.0" layoutX="40.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" width="242.0" />
+                  <Label layoutX="95.0" layoutY="65.0" text="Position :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="161.0" layoutY="65.0" text="Manager">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="144.0" fitWidth="160.0" layoutX="89.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Desktop/OIG%20(1).jpg" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="73.0" layoutY="271.0" text="Total Vote :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="161.0" layoutY="243.0" text="Manager">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="96.0" layoutY="297.0" text="Win by :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="161.0" layoutY="271.0" text="Manager">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="102.0" layoutY="243.0" text="Name :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="161.0" layoutY="297.0" text="Manager">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="329.0" text="Election Date :">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="161.0" layoutY="329.0" text="Manager">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="81.0" layoutY="406.0" prefHeight="24.0" prefWidth="158.0" text="Congratulations !!!">
+                     <font>
+                        <Font name="Times New Roman" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="61.0" layoutY="444.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="190.0" text="Login page" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="no_result_form" layoutX="479.0" layoutY="40.0" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="-1.1999999999999886" AnchorPane.leftAnchor="479.0" AnchorPane.rightAnchor="-1.599999999999966" AnchorPane.topAnchor="40.0">
+               <children>
+                  <Label layoutX="63.0" layoutY="193.0" text="No Result Available">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="130.0" layoutY="19.0" text="Result">
+                     <font>
+                        <Font name="Times New Roman" size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
