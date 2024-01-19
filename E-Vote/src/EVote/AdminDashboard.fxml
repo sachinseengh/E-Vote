@@ -168,7 +168,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="0.8" layoutY="36.0" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="0.8" layoutY="36.0" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="388.0" layoutY="7.0" text="Voting">
                                  <font>
@@ -305,7 +305,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <GridPane layoutX="119.0" layoutY="107.0" prefHeight="128.0" prefWidth="312.0">
                                 <columnConstraints>
@@ -345,7 +345,7 @@
                               </CheckBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutY="36.0" prefHeight="517.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css">
+                        <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="517.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
                            <children>
                               <TableView fx:id="voter_tableview" layoutX="13.0" layoutY="8.0" prefHeight="278.0" prefWidth="814.0">
                                  <columns>
