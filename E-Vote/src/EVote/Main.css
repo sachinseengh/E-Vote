@@ -104,3 +104,146 @@
 	-fx-font-size:19px;
 	-fx-background-color:rgba(25, 82, 106, 0.848);
 }
+
+/* VOTER DASHBOARD */
+
+.votebtn{
+	-fx-background-radius:5px;
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+}
+.votebtn:hover{
+	-fx-background-color:rgb(52, 116, 52);
+}
+
+.voter-nav-vote{
+	-fx-background-color:rgba(44, 132, 156, 0.493);
+}
+
+.voter-nav-details{
+	-fx-background-color:transparent;
+}
+.voter-nav-cpassword{
+	-fx-background-color:transparent;
+}
+.voter-nav-button{
+	-fx-font-size:15px;
+	-fx-text-fill:white;
+}
+.voter-nav-button:hover{
+	-fx-font-size:17px;
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+}
+
+.voter-nav-logout{
+	-fx-background-color:transparent;
+	-fx-text-fill:white;
+	-fx-font-size:15px;
+}
+.voter-nav-logout:hover{
+	-fx-font-size:16px;
+}
+
+.changepasswordbtn{
+	-fx-background-radius:5px;
+	
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+
+}
+.changepasswordbtn:hover{
+	-fx-background-color:rgb(52, 116, 52);
+}
+
+
+
+/* admin dashboard */
+
+.admin_strvot_btn{
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+	-fx-font-size:15px;
+}
+.admin_strvot_btn:hover{
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+	
+	-fx-font-size:15px;
+}
+.admin_verifyvoter_btn{
+	-fx-background-color:transparent;
+	-fx-text-fill:white;
+	-fx-font-size:15px;
+}
+.admin_verifyvoter_btn:hover{
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+	
+	-fx-font-size:15px;
+}
+.admin_publishres_btn{
+	-fx-background-color:transparent;
+	-fx-text-fill:white;
+	-fx-font-size:15px;
+}
+.admin_publishres_btn:hover{
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+	
+	-fx-font-size:15px;
+}
+.admin_voter_btn{
+	-fx-background-color:transparent;
+	-fx-text-fill:white;
+	-fx-font-size:15px;
+}
+.admin_voter_btn:hover{
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+	
+	-fx-font-size:15px;
+}
+.admin_changepass_btn{
+	-fx-background-color:transparent;
+	-fx-text-fill:white;
+	-fx-font-size:15px;
+}
+.admin_changepass_btn:hover{
+	-fx-background-color:rgba(25, 82, 106, 0.848);
+	
+	-fx-font-size:15px;
+}
+
+.start{
+	-fx-background-radius:5px;
+	
+	-fx-background-color:rgb(15, 120, 149);
+	-fx-text-fill:white;
+
+}
+.start:hover{
+	-fx-background-color:rgb(52, 116, 52);
+}
+
+
+/* publish result */
+.end{
+	-fx-background-radius:5px;
+	
+	-fx-background-color:rgba(202, 43, 15, 0.863);
+	-fx-text-fill:white;
+
+}
+.end:hover{
+	-fx-background-color:rgba(247, 39, 2, 0.863);
+}
+
+
+/* voter */
+.delete{
+	-fx-background-radius:5px;
+	
+	-fx-background-color:rgb(218, 55, 27);
+	-fx-text-fill:white;
+
+}
+.delete:hover{
+	
+	-fx-background-color:rgba(252, 1, 1, 0.863);
+}
