@@ -191,6 +191,12 @@ public class MainController implements Initializable {
     			admin_loginbtn.getScene().getWindow().hide();
     			 root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
     			 MouseMovableScene() ;
+    		}else {
+    			Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle(" Login Failed");
+                alert.setHeaderText(null);
+                alert.setContentText("Incorrect username or password");
+                alert.show();
     		}
     		
     	}catch(Exception e){
