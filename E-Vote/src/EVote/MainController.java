@@ -2,6 +2,7 @@ package EVote;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -93,7 +94,8 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane no_result_form;
 
-   
+    
+    Parent root;
  
     //to minimize screen
     public void minimize(){
@@ -134,12 +136,57 @@ public class MainController implements Initializable {
     		
     	}else if(e.getSource()==voter_registernow) {
     		voter_registernow.getScene().getWindow().hide();
+    		registrationOpen();
     		
-    		Parent root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
-            
-            Stage stage = new Stage();
-            
-            root.setOnMousePressed(new EventHandler<MouseEvent>(){
+    	}else if(e.getSource()==voter_registrationstatus) {
+    		voter_working_area.setVisible(false);
+    		voter_checkstatus_form.setVisible(true);
+    		
+    		
+    	}else if(e.getSource()==voter_viewresult) {
+    		
+//    		i will call a function which is there is result then the result 
+    		//and if there is result then result 
+    		
+    		published_result_form.setVisible(true);
+    		voter_working_area.setVisible(false);
+    	}
+    }
+    
+    
+    public void registrationOpen() throws IOException {
+    	root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
+        
+    	MouseMovableScene();
+    }
+    
+    public void adminLogin() {
+    	
+    	
+    	try {
+    		Conn c = new Conn();
+    		
+    		String sql ="select * from admin where username='"+admin_username.getText()+"'"
+    				+ " and password='"+admin_password.getText()+"'";
+    		
+    		ResultSet rs=c.s.executeQuery(sql);
+    		
+    		if(rs.next()) {
+    			
+    			admin_loginbtn.getScene().getWindow().hide();
+    			 root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
+    			 MouseMovableScene() ;
+    		}
+    		
+    	}catch(Exception e){
+    		e.printStackTrace();
+    		}
+    }
+	
+    public void MouseMovableScene() {
+    	 Stage stage = new Stage();
+         
+         root.setOnMousePressed(new EventHandler<MouseEvent>(){
 		           @Override
 		           public void handle(MouseEvent event) {
 		               x= event.getSceneX();
@@ -168,27 +215,13 @@ public class MainController implements Initializable {
 		         });
 		         
 				
-            stage.initStyle(StageStyle.TRANSPARENT);
-            Scene scene = new Scene(root);
-            
-           stage.setScene(scene);
-            stage.show();
-    	}else if(e.getSource()==voter_registrationstatus) {
-    		voter_working_area.setVisible(false);
-    		voter_checkstatus_form.setVisible(true);
-    		
-    		
-    	}else if(e.getSource()==voter_viewresult) {
-    		
-//    		i will call a function which is there is result then the result 
-    		//and if there is result then result 
-    		
-    		published_result_form.setVisible(true);
-    		voter_working_area.setVisible(false);
-    	}
+         stage.initStyle(StageStyle.TRANSPARENT);
+         Scene scene = new Scene(root);
+         
+        stage.setScene(scene);
+         stage.show();
     }
-    
-	@Override
+    @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		
