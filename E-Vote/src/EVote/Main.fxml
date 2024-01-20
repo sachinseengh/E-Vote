@@ -44,8 +44,8 @@
                         <Font name="Times New Roman Bold" size="26.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="voter_username" layoutX="71.0" layoutY="188.0" opacity="0.54" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
-                  <PasswordField fx:id="voter_password" layoutX="71.0" layoutY="239.0" opacity="0.54" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
+                  <TextField fx:id="voter_username" layoutX="71.0" layoutY="188.0" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
+                  <PasswordField fx:id="voter_password" layoutX="71.0" layoutY="239.0" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
                   <Button fx:id="voter_loginbtn" layoutX="113.0" layoutY="296.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" styleClass="loginbtn" stylesheets="@Main.css" text="Login" AnchorPane.leftAnchor="113.0" />
                   <Label layoutX="72.0" layoutY="347.0" text="Not Registered ?" AnchorPane.leftAnchor="72.0" />
                   <Button fx:id="voter_registernow" layoutX="154.2" layoutY="343.0" mnemonicParsing="false" onAction="#switchUser" styleClass="registerbtn" stylesheets="@Main.css" text="Register Now" AnchorPane.leftAnchor="154.2" />
@@ -82,8 +82,8 @@
                         <Font name="Times New Roman Bold" size="26.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="admin_username" layoutX="71.0" layoutY="188.0" opacity="0.54" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
-                  <PasswordField fx:id="admin_password" layoutX="71.0" layoutY="239.0" opacity="0.54" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
+                  <TextField fx:id="admin_username" layoutX="71.0" layoutY="188.0" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
+                  <PasswordField fx:id="admin_password" layoutX="71.0" layoutY="239.0" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
                   <Button fx:id="admin_loginbtn" layoutX="113.0" layoutY="296.0" mnemonicParsing="false" onAction="#adminLogin" prefHeight="26.0" prefWidth="89.0" styleClass="loginbtn" stylesheets="@Main.css" text="Login" AnchorPane.leftAnchor="113.0" />
                   <Button fx:id="admin_viewresult" layoutX="68.0" layoutY="354.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="View Result" AnchorPane.leftAnchor="68.0" />
                   <FontAwesomeIcon glyphName="USER" layoutX="76.0" layoutY="210.0" size="1.8em" />

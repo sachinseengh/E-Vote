@@ -12,10 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -163,7 +165,20 @@ public class MainController implements Initializable {
     public void adminLogin() {
     	
     	
-    	try {
+    	if(admin_username.getText().isEmpty()|| admin_password.getText().isEmpty()
+    			|| admin_username.getText().equals("") || admin_password.getText().equals("")
+    		     || admin_username.getText().trim().isEmpty()|| admin_password.getText().trim().isEmpty()) {
+    	
+    		Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Login ");
+            alert.setHeaderText(null);
+            alert.setContentText("Fill the Blanks Fields");
+            alert.showAndWait(); 
+    		
+    	}else{
+    	
+    	
+    		try {
     		Conn c = new Conn();
     		
     		String sql ="select * from admin where username='"+admin_username.getText()+"'"
@@ -181,6 +196,7 @@ public class MainController implements Initializable {
     	}catch(Exception e){
     		e.printStackTrace();
     		}
+    	}
     }
 	
     public void MouseMovableScene() {
