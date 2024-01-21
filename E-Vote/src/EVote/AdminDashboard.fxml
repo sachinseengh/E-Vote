@@ -88,7 +88,7 @@
                               </Button>
                            </children></AnchorPane>
                         <Line endX="450.79998779296875" endY="-90.99999237060547" layoutX="182.0" layoutY="127.0" startX="-181.99996948242188" startY="-90.99999237060547" stroke="#e7e4e4" />
-                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" prefHeight="518.0" prefWidth="821.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="821.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="388.0" layoutY="7.0" text="Voting">
                                  <font>
@@ -118,14 +118,14 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="admin_candidate_one_name" layoutX="233.0" layoutY="199.0" prefHeight="26.0" prefWidth="150.0" />
+                              <TextField fx:id="admin_candidate_one_name" layoutX="233.0" layoutY="199.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="26.0" prefWidth="150.0" />
                               <Label layoutX="461.0" layoutY="197.0" text="Name :">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="position_name" layoutX="377.0" layoutY="73.0" prefHeight="26.0" prefWidth="174.0" styleClass="textfields" stylesheets="@Main.css" />
-                              <TextField fx:id="admin_candidate_two_name" layoutX="512.0" layoutY="198.0" prefHeight="26.0" prefWidth="150.0" />
+                              <TextField fx:id="position_name" layoutX="377.0" layoutY="73.0" onAction="#removeerrorwhiletyping" onMouseClicked="#removeerrorwhiletyping" prefHeight="26.0" prefWidth="174.0" styleClass="textfields" stylesheets="@Main.css" />
+                              <TextField fx:id="admin_candidate_two_name" layoutX="512.0" layoutY="198.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="26.0" prefWidth="150.0" />
                               <Label layoutX="182.0" layoutY="316.0" text="Image  :">
                                  <font>
                                     <Font name="Times New Roman" size="15.0" />
@@ -133,7 +133,7 @@
                               </Label>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="142.0" layoutX="235.0" layoutY="248.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
                               <ImageView fx:id="candidate_one_image" fitHeight="142.0" fitWidth="140.0" layoutX="235.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="candidateone_imgbtn" layoutX="236.0" layoutY="249.0" mnemonicParsing="false" onAction="#insertImageone" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
+                              <Button fx:id="candidateone_imgbtn" layoutX="236.0" layoutY="249.0" mnemonicParsing="false" onAction="#insertImageone" onMouseClicked="#removeerrorwhiletyping" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
                               <Label layoutX="459.0" layoutY="306.0" text="Image  :">
                                  <font>
                                     <Font name="Times New Roman" size="15.0" />
@@ -141,17 +141,17 @@
                               </Label>
                               <Button fx:id="start_election_btn" layoutX="529.0" layoutY="457.0" mnemonicParsing="false" onAction="#startElection" prefHeight="40.0" prefWidth="146.0" styleClass="start" stylesheets="@Main.css" text="Start Election" />
                               <Label fx:id="position_error" layoutX="376.0" layoutY="107.0" prefHeight="18.0" prefWidth="177.0" textFill="RED" />
-                              <Label fx:id="candidateone_error" layoutX="214.0" layoutY="217.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
-                              <Label fx:id="candidatetwo_error" layoutX="497.0" layoutY="217.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
+                              <Label fx:id="candidateone_error" layoutX="214.0" layoutY="228.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
+                              <Label fx:id="candidatetwo_error" layoutX="497.0" layoutY="227.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
                               <Label fx:id="candidateone_img_error" layoutX="214.0" layoutY="418.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
                               <Label fx:id="candidatetwo_img_error" layoutX="487.0" layoutY="419.0" prefHeight="18.0" prefWidth="170.0" textFill="RED" />
-                              <Label layoutX="173.0" layoutY="401.0" text="img :" />
-                              <Label fx:id="imageone_name" layoutX="203.0" layoutY="402.0" prefHeight="18.0" prefWidth="179.0" text="No image Selected" />
-                              <Label layoutX="454.0" layoutY="401.0" text="img :" />
-                              <Label fx:id="imagetwo_name" layoutX="481.0" layoutY="402.0" prefHeight="18.0" prefWidth="184.0" text="No image Selected" />
+                              <Label layoutX="185.0" layoutY="401.0" text="img :" />
+                              <Label fx:id="imageone_name" layoutX="215.0" layoutY="402.0" prefHeight="18.0" prefWidth="179.0" text="No image Selected" />
+                              <Label layoutX="471.0" layoutY="401.0" text="img :" />
+                              <Label fx:id="imagetwo_name" layoutX="498.0" layoutY="402.0" prefHeight="18.0" prefWidth="184.0" text="No image Selected" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="142.0" layoutX="512.0" layoutY="249.0" stroke="BLACK" strokeType="INSIDE" width="140.0" />
                               <ImageView fx:id="candidate_two_image" fitHeight="141.0" fitWidth="140.0" layoutX="512.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button fx:id="candidatetwo_imgbtn" layoutX="513.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertImagetwo" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
+                              <Button fx:id="candidatetwo_imgbtn" layoutX="513.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertImagetwo" onMouseClicked="#removeerrorwhiletyping" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
                          
                            </children></AnchorPane>
                         <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" prefHeight="514.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.20000000000004547" AnchorPane.topAnchor="36.0">
