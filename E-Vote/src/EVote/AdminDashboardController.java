@@ -1,9 +1,17 @@
 package EVote;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,8 +25,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
@@ -66,7 +76,7 @@ public class AdminDashboardController implements Initializable{
     private ImageView candidate_one_image;
 
     @FXML
-    private ImageView candidate_two_img;
+    private ImageView candidate_two_image;
 
     @FXML
     private Button close_btn;
@@ -269,6 +279,8 @@ public class AdminDashboardController implements Initializable{
     @FXML 
     private Label imagetwo_name;
     
+
+
     
     public void errorset() {
     	position_error.setText("");
@@ -299,6 +311,88 @@ public class AdminDashboardController implements Initializable{
 	    	System.exit(0);
 	    }
 	    
+
+	    
+	    
+
+	  
+	   
+	    
+	    File selectedFile_one;
+	    File selectedFile_two;
+	    public void insertImageone(){
+	    	FileChooser can1chooser = new FileChooser();
+	    	Stage stage =(Stage)admin_strtvoting_form.getScene().getWindow();
+	        
+	        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg", "*.png");
+	        can1chooser.getExtensionFilters().add(extFilter);
+	        
+	        selectedFile_one= can1chooser.showOpenDialog(stage);
+	        
+	       candidateimgadd(selectedFile_one,candidate_one_image,imageone_name);
+	        }
+	    	
+	    public void insertImagetwo(){
+	    	FileChooser can2chooser = new FileChooser();
+	    	Stage stage =(Stage)admin_strtvoting_form.getScene().getWindow();
+	        
+	        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg", "*.png");
+	        can2chooser.getExtensionFilters().add(extFilter);
+	        
+	        selectedFile_two= can2chooser.showOpenDialog(stage);
+	    	candidateimgadd(selectedFile_two,candidate_two_image,imagetwo_name);
+	        }
+	    
+	    
+	    public void candidateimgadd(File selectedFile,ImageView imageview,Label label) {
+	         
+	        if (selectedFile != null) {
+	            try {
+	            	
+	            	
+	                // Set the image to the ImageView
+	                Image image = new Image(selectedFile.toURI().toString(),140,142,false,true);
+	                imageview.setImage(image);
+
+	                // Update the label with the image name
+	                label.setText(selectedFile.getName());
+	            	}catch(Exception e) {
+	            		e.printStackTrace();
+	            		}
+	            }
+    }
+    
+	    
+	    public void candidateimgmoveintofolder(File file) throws IOException {
+	    	Path imagePath = Paths.get("candidateimage");
+            if (!Files.exists(imagePath)) {
+                Files.createDirectories(imagePath);
+//            	System.out.println("no");
+            }
+           	
+            // Copy the selected file to the "image" folder
+            Path destinationPath = Paths.get("candidateimage",file.getName());
+                      
+            
+            Files.copy( file.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+	    }
+	    
+
+	    
+	    
+	
+	    
+	    
+	    
+	    public Matcher letteronlyregex(String txt) {
+	    	String regex ="^[a-zA-Z\\s]+$";
+	    	Pattern pattern= Pattern.compile(regex);
+	    	Matcher matcher = pattern.matcher(txt);	 	
+	    	return matcher;
+	    }
+	    
+	    
 	    public void startElection() {
 	    	if(position_name.getText().equals("") 		
 	    			|| position_name.getText().trim().isEmpty()|| 
@@ -316,13 +410,13 @@ public class AdminDashboardController implements Initializable{
 	    		}
 	    	}
 	    		
-	    		if(admin_candidate_one_name.getText().equals("") 		
+	    	if(admin_candidate_one_name.getText().equals("") 		
 		    			|| admin_candidate_one_name.getText().trim().isEmpty()|| 
 		    			admin_candidate_one_name.getText()== null){
 	    			
 	    			candidateone_error.setText("Fill candidate Name ");
 	    			
-		    		}else {
+		    }else{
 		    			String candidate_one =admin_candidate_one_name.getText();
 			    		Matcher candidate1 = letteronlyregex(candidate_one);
 			    		
@@ -332,28 +426,19 @@ public class AdminDashboardController implements Initializable{
 			    			
 		    		      }
 	    		
-	    	}	
+	    	     }
+	    	try {
+	    	candidateimgmoveintofolder(selectedFile_one);
+	    	candidateimgmoveintofolder(selectedFile_two);
+	    	}catch(Exception e) {
+	    		e.printStackTrace();
+	    	}
+	    	
 	    		
 	    	
 	    	}
 	    
 	    
-	    
-
-	  
-	   
-	    	
-	    public Matcher letteronlyregex(String txt) {
-	    	
-	    	String regex ="^[a-zA-Z\\s]+$";
-	    	Pattern pattern= Pattern.compile(regex);
-	    	Matcher matcher = pattern.matcher(txt);
-	    	
-	    	
-	    	
-	    	return matcher;
-	    }
-	
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

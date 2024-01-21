@@ -223,6 +223,15 @@
 	-fx-background-color:rgb(52, 116, 52);
 }
 
+.insert-image{
+	-fx-background-color:transparent;
+	-fx-cursor:hand;
+	-fx-text-size:14px;
+}
+.insert-image:hover{
+	-fx-background-color:rgb(66, 126, 156);
+}
+
 
 /* publish result */
 .end{
