@@ -46,10 +46,10 @@
                            </font>
                         </Label>
                         <Line endX="85.19998168945312" endY="1.52587890625E-5" layoutX="66.0" layoutY="186.0" startX="-50.899986267089844" startY="1.52587890625E-5" />
-                        <Button fx:id="nav_startvoting_btn" layoutX="9.0" layoutY="224.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" styleClass="admin_strvot_btn" stylesheets="@Main.css" text="Start Voting" />
-                        <Button fx:id="nav_verifyvoter_btn" layoutX="9.0" layoutY="265.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="151.0" styleClass="admin_verifyvoter_btn" stylesheets="@Main.css" text="Verify Voter" />
-                        <Button fx:id="nav_changepassword_btn" layoutX="10.0" layoutY="375.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="147.0" styleClass="admin_changepass_btn" stylesheets="@Main.css" text="Change Password" />
-                        <Button fx:id="nav_logout_btn" layoutX="-12.0" layoutY="516.6" mnemonicParsing="false" prefHeight="34.0" prefWidth="115.0" styleClass="voter-nav-logout" stylesheets="@Main.css" text="Log out" AnchorPane.bottomAnchor="2.6000000000000227" AnchorPane.leftAnchor="-12.0">
+                        <Button fx:id="nav_startvoting_btn" layoutX="9.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_strvot_btn" stylesheets="@Main.css" text="Start Voting" />
+                        <Button fx:id="nav_verifyvoter_btn" layoutX="9.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="151.0" styleClass="admin_verifyvoter_btn" stylesheets="@Main.css" text="Verify Voter" />
+                        <Button fx:id="nav_changepassword_btn" layoutX="10.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="147.0" styleClass="admin_changepass_btn" stylesheets="@Main.css" text="Change Password" />
+                        <Button fx:id="nav_logout_btn" layoutX="-12.0" layoutY="516.6" mnemonicParsing="false" onAction="#logout" prefHeight="34.0" prefWidth="115.0" styleClass="voter-nav-logout" stylesheets="@Main.css" text="Log out" AnchorPane.bottomAnchor="2.6000000000000227" AnchorPane.leftAnchor="-12.0">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
                            </graphic>
@@ -57,19 +57,19 @@
                               <Font size="10.0" />
                            </font>
                         </Button>
-                        <Button fx:id="nav_publishresult_btn" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="150.0" styleClass="admin_publishres_btn" stylesheets="@Main.css" text="Publish Result" />
+                        <Button fx:id="nav_publishresult_btn" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_publishres_btn" stylesheets="@Main.css" text="Publish Result" />
                         <ImageView fitHeight="89.0" fitWidth="142.0" layoutX="38.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@image/Evote-logo.png" />
+                              <Image url="@../../../../../../Desktop/Evote-logo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="nav_voter_btn" layoutX="9.0" layoutY="341.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="147.0" styleClass="admin_voter_btn" stylesheets="@Main.css" text="Voters" />
+                        <Button fx:id="nav_voter_btn" layoutX="9.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="147.0" styleClass="admin_voter_btn" stylesheets="@Main.css" text="Voters" />
                      </children></AnchorPane>
                </left>
                <center>
                   <AnchorPane prefHeight="429.0" prefWidth="608.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="1.0" prefHeight="35.0" prefWidth="819.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutY="1.0" prefHeight="35.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button fx:id="close_btn" layoutX="601.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@Main.css" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                  <graphic>
@@ -88,7 +88,7 @@
                               </Button>
                            </children></AnchorPane>
                         <Line endX="450.79998779296875" endY="-90.99999237060547" layoutX="182.0" layoutY="127.0" startX="-181.99996948242188" startY="-90.99999237060547" stroke="#e7e4e4" />
-                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="821.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="388.0" layoutY="7.0" text="Voting">
                                  <font>
@@ -356,28 +356,8 @@
                                  </font>
                               </Label>
                               <TextField fx:id="voter_id_txt" layoutX="53.0" layoutY="304.0" prefHeight="26.0" prefWidth="37.0" styleClass="textfields" stylesheets="@Main.css" />
-                              <ImageView fx:id="voter_citizenshipfront_img" fitHeight="99.0" fitWidth="77.0" layoutX="414.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/Evote-logo.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="voter_employeeid_img" fitHeight="102.0" fitWidth="98.0" layoutX="228.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/Evote-logo.png" />
-                                 </image>
-                              </ImageView>
                               <Label layoutX="27.0" layoutY="459.0" text="Photo :" />
                               <Label layoutX="162.0" layoutY="459.0" text="Employee id:" />
-                              <ImageView fx:id="voter_photo_img" fitHeight="93.0" fitWidth="85.0" layoutX="71.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/Evote-logo.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="voter_citizenshipback_img" fitHeight="85.0" fitWidth="81.0" layoutX="586.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@image/Evote-logo.png" />
-                                 </image>
-                              </ImageView>
                               <Label layoutX="321.0" layoutY="459.0" text="Citizenship front :" />
                               <Label layoutX="492.0" layoutY="449.0" prefHeight="22.0" prefWidth="92.0" text="Citizenship back :" />
                               <Button fx:id="voter_delete_btn" layoutX="702.0" layoutY="428.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" styleClass="delete" stylesheets="@Main.css" text="Delete" />

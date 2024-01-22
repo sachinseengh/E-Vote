@@ -7,16 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -27,9 +33,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.fxml.Initializable;
 
 public class AdminDashboardController implements Initializable {
@@ -278,12 +286,52 @@ public class AdminDashboardController implements Initializable {
 	private Label imageone_name;
 	@FXML
 	private Label imagetwo_name;
-	
-	
-	
-	/*------------------Start voting of admin dashboard----------------------------*/               
 
-	//---------------------error null at first--------------------------------------
+	/*----------------------switch user-----------------------------------------*/
+	public void switchscene(ActionEvent e) {
+		if (e.getSource() == nav_startvoting_btn) {
+			admin_strtvoting_form.setVisible(true);
+			admin_changepassword_form.setVisible(false);
+			voter_form.setVisible(false);
+			admin_result_form.setVisible(false);
+			verifyvoter_form.setVisible(false);
+
+		} else if (e.getSource() == nav_verifyvoter_btn) {
+			admin_strtvoting_form.setVisible(false);
+			admin_changepassword_form.setVisible(false);
+			voter_form.setVisible(false);
+			admin_result_form.setVisible(false);
+			verifyvoter_form.setVisible(true);
+
+		} else if (e.getSource() == nav_publishresult_btn) {
+			admin_strtvoting_form.setVisible(false);
+			admin_changepassword_form.setVisible(false);
+			voter_form.setVisible(false);
+			admin_result_form.setVisible(true);
+			verifyvoter_form.setVisible(false);
+
+		} else if (e.getSource() == nav_voter_btn) {
+			admin_strtvoting_form.setVisible(false);
+			admin_changepassword_form.setVisible(false);
+			voter_form.setVisible(true);
+			admin_result_form.setVisible(false);
+			verifyvoter_form.setVisible(false);
+
+		} else if (e.getSource() == nav_changepassword_btn) {
+			admin_strtvoting_form.setVisible(false);
+			admin_changepassword_form.setVisible(true);
+			voter_form.setVisible(false);
+			admin_result_form.setVisible(false);
+			verifyvoter_form.setVisible(false);
+
+		}
+
+	}
+
+	/*------------------Start voting of admin dashboard----------------------------*/
+
+	// ---------------------error null at
+	// first--------------------------------------
 	public void errorset() {
 		position_error.setText("");
 		candidateone_error.setText("");
@@ -292,29 +340,85 @@ public class AdminDashboardController implements Initializable {
 		candidatetwo_img_error.setText("");
 	}
 
-	//----------------------minimize screen------------------------------------------
+	// ----------------------minimize
+	// screen------------------------------------------
 	public void minimize() {
 		Stage stage = (Stage) minimize_btn.getScene().getWindow();
 		stage.setIconified(true);
 	}
 
-   //--------------------toggle fullscreen---------------------------------------------
-	
+	// --------------------toggle
+	// fullscreen---------------------------------------------
+
 	public void togglefullscreen() {
 		Stage stage = (Stage) fullscreen_btn.getScene().getWindow();
 
 		stage.setFullScreen(!stage.isFullScreen());
 	}
 
-	//------------------ close the program----------------------------------------------
+	// ------------------ close the
+	// program----------------------------------------------
 	public void close() {
 		System.exit(0);
+	}
+private double x=0;
+private double y=0;
+	public void logout() {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirm logout");
+		alert.setHeaderText(null);
+		alert.setContentText("Do you want to logout?");
+
+		Optional<ButtonType> option = alert.showAndWait();
+
+		if (option.get().equals(ButtonType.OK)) {
+			try {
+				Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+				Stage stage= new Stage();
+				Scene scene = new Scene(root);
+			
+				root.setOnMousePressed(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						x = event.getSceneX();
+						y = event.getSceneY();
+					}
+
+				});
+
+				root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						stage.setX(event.getScreenX() - x);
+						stage.setY(event.getScreenY() - y);
+
+						stage.setOpacity(0.9);
+					}
+
+				});
+
+				root.setOnMouseReleased(new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent event) {
+						stage.setOpacity(1);
+					}
+
+				});
+				nav_logout_btn.getScene().getWindow().hide();
+				stage.setScene(scene);
+				stage.initStyle(StageStyle.TRANSPARENT);
+				stage.show();
+			} catch (Exception e) {
+
+			}
+		}
 	}
 
 	File selectedFile_one;
 	File selectedFile_two;
 
-	//-----------------------------insert candidate one image-----------------------------
+	// -----------------------------insert candidate one
+	// image-----------------------------
 	public void insertImageone() {
 		FileChooser can1chooser = new FileChooser();
 		Stage stage = (Stage) admin_strtvoting_form.getScene().getWindow();
@@ -327,7 +431,9 @@ public class AdminDashboardController implements Initializable {
 
 		candidateimgadd(selectedFile_one, candidate_one_image, imageone_name);
 	}
-	//-----------------------------insert candidate one image-----------------------------
+
+	// -----------------------------insert candidate one
+	// image-----------------------------
 	public void insertImagetwo() {
 		FileChooser can2chooser = new FileChooser();
 		Stage stage = (Stage) admin_strtvoting_form.getScene().getWindow();
@@ -339,16 +445,17 @@ public class AdminDashboardController implements Initializable {
 		selectedFile_two = can2chooser.showOpenDialog(stage);
 		candidateimgadd(selectedFile_two, candidate_two_image, imagetwo_name);
 	}
-    
-	//------save the image to the imageview and set label with image name--------------
+
+	// ------save the image to the imageview and set label with image
+	// name--------------
 	public void candidateimgadd(File selectedFile, ImageView imageview, Label label) {
 
 		if (selectedFile != null) {
-			try {	
+			try {
 				Image image = new Image(selectedFile.toURI().toString(), 140, 142, false, true);
 				imageview.setImage(image);
 				label.setText(selectedFile.getName());
-				
+
 				// make all error null
 				position_error.setText("");
 				candidateone_error.setText("");
@@ -360,9 +467,8 @@ public class AdminDashboardController implements Initializable {
 		}
 	}
 
-	
-	
-	//-------------save candidates image into folder on submit-------------------------
+	// -------------save candidates image into folder on
+	// submit-------------------------
 	public void candidateimgmoveintofolder(File file) throws IOException {
 		Path imagePath = Paths.get("candidateimage");
 		if (!Files.exists(imagePath)) {
@@ -370,24 +476,14 @@ public class AdminDashboardController implements Initializable {
 
 		}
 
-		 // Copy the selected file to the "image" folder
+		// Copy the selected file to the "image" folder
 		Path destinationPath = Paths.get("candidateimage", file.getName());
 
 		Files.copy(file.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
 	}
 
-	
-
-	//----------------pattern to check letter only-----------------------------
-	public Matcher letteronlyregex(String txt) {
-		String regex = "^[a-zA-Z\\s]+$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(txt);
-		return matcher;
-	}
-
-	//----------------remove all error when key is typed----------------------
+	// ----------------remove all error when key is typed----------------------
 	public void removeerrorwhiletyping() {
 		position_error.setText("");
 		candidateone_error.setText("");
@@ -395,12 +491,11 @@ public class AdminDashboardController implements Initializable {
 		candidateone_img_error.setText("");
 		candidatetwo_img_error.setText("");
 	}
-	
-	
-	//-----------------startelectionbuttonfunction-----------------------------
+
+	// -----------------startelectionbuttonfunction-----------------------------
 	public void startElection() {
-		
-		 						//checkposition
+
+		// checkposition
 		if (position_name.getText().equals("") || position_name.getText().trim().isEmpty()
 				|| position_name.getText() == null) {
 			position_error.setText("Fill the position ");
@@ -408,11 +503,11 @@ public class AdminDashboardController implements Initializable {
 			String position = position_name.getText();
 			Matcher result = letteronlyregex(position);
 
-			if (!result.matches()) {		
+			if (!result.matches()) {
 				position_error.setText("Position can only contains letters");
 			}
 		}
-								//candidate name
+		// candidate name
 		if (admin_candidate_one_name.getText().equals("") || admin_candidate_one_name.getText().trim().isEmpty()
 				|| admin_candidate_one_name.getText() == null) {
 
@@ -423,12 +518,12 @@ public class AdminDashboardController implements Initializable {
 			Matcher candidate1 = letteronlyregex(candidate_one);
 
 			if (!candidate1.matches()) {
-		    			
+
 				candidateone_error.setText("Candidate can only contains letters ");
 			}
 
 		}
-								//candidate two name
+		// candidate two name
 		if (admin_candidate_two_name.getText().equals("") || admin_candidate_two_name.getText().trim().isEmpty()
 				|| admin_candidate_two_name.getText() == null) {
 
@@ -438,33 +533,60 @@ public class AdminDashboardController implements Initializable {
 			String candidate_one = admin_candidate_two_name.getText();
 			Matcher candidate1 = letteronlyregex(candidate_one);
 
-			if (!candidate1.matches()) {	    			
+			if (!candidate1.matches()) {
 				candidatetwo_error.setText("Candidates can only contains letters ");
 			}
 
 		}
-								//candidate one image
-		if(imageone_name.getText().equals("No image Selected")) {
+		// candidate one image
+		if (imageone_name.getText().equals("No image Selected")) {
 			candidateone_img_error.setText("candidate image not selected");
 		}
-								//candidate two image
-		if(imagetwo_name.getText().equals("No image Selected")) {
+		// candidate two image
+		if (imagetwo_name.getText().equals("No image Selected")) {
 			candidatetwo_img_error.setText("candidate image not selected");
 		}
+
+		// save function to save into folder
 		
-		
-		                    //save function to save into folder
+		if(position_error.getText().equals("")&& candidateone_error.getText().equals("")
+				&&candidatetwo_error.getText().equals("")&& candidateone_img_error.getText().equals("")
+				&& candidatetwo_img_error.getText().equals("")) {
 		try {
 			candidateimgmoveintofolder(selectedFile_one);
 			candidateimgmoveintofolder(selectedFile_two);
 		} catch (Exception e) {
-			
+
 		}
+	
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Start Election Confirmation");
+		alert.setHeaderText(null);
+		alert.setContentText("Do you Want to Start Election?");
+		
+		Optional<ButtonType> option = alert.showAndWait();
+		
+		if(option.get().equals(ButtonType.OK)){
+		Adminsql election = new Adminsql();
+		election.startElection(position_name.getText(), admin_candidate_one_name.getText(),
+				imageone_name.getText(),admin_candidate_two_name.getText(), imagetwo_name.getText());
+		
+		}
+		
 
 	}
+		}
 
+	// ----------------pattern to check letter only-----------------------------
+	public Matcher letteronlyregex(String txt) {
+		String regex = "^[a-zA-Z\\s]+$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(txt);
+		return matcher;
+	}
 	
 	
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
