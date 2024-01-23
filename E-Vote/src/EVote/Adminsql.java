@@ -13,7 +13,7 @@ class Adminsql{
 		try {
 		Conn c = new Conn();
 		
-		String sql = "insert into election values('"+position+"','"+candidate_one_name+"','"+candidate_one_img+"',"
+		String sql = "insert into election values(1,'"+position+"','"+candidate_one_name+"','"+candidate_one_img+"',"
 				+ "'"+candidate_two_name+"','"+candidate_two_img+"','"+votingdate+"')";
 	  
 		c.s.executeUpdate(sql);

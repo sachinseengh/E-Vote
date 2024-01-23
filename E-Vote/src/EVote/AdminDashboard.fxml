@@ -31,7 +31,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="31.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@image/Evote-logo.png" />
+                              <Image url="@../../../../../../Desktop/Evote-logo.png" />
                            </image>
                         </ImageView>
                         <Label layoutX="65.0" layoutY="18.0" styleClass="evote" stylesheets="@Main.css" text="E Vote">
@@ -46,9 +46,18 @@
                            </font>
                         </Label>
                         <Line endX="85.19998168945312" endY="1.52587890625E-5" layoutX="66.0" layoutY="186.0" startX="-50.899986267089844" startY="1.52587890625E-5" />
-                        <Button fx:id="nav_startvoting_btn" layoutX="9.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_strvot_btn" stylesheets="@Main.css" text="Start Voting" />
-                        <Button fx:id="nav_verifyvoter_btn" layoutX="9.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="151.0" styleClass="admin_verifyvoter_btn" stylesheets="@Main.css" text="Verify Voter" />
-                        <Button fx:id="nav_changepassword_btn" layoutX="10.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="147.0" styleClass="admin_changepass_btn" stylesheets="@Main.css" text="Change Password" />
+                        <Button fx:id="nav_startvoting_btn" alignment="BASELINE_LEFT" layoutX="9.0" layoutY="224.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_strvot_btn" stylesheets="@Main.css" text="Start Voting">
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.5em" />
+                           </graphic></Button>
+                        <Button fx:id="nav_verifyvoter_btn" alignment="BASELINE_LEFT" layoutX="9.0" layoutY="265.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="151.0" styleClass="admin_verifyvoter_btn" stylesheets="@Main.css" text="Verify Voter">
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" glyphName="CHECK" size="1.5em" />
+                           </graphic></Button>
+                        <Button fx:id="nav_changepassword_btn" alignment="BASELINE_LEFT" layoutX="8.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="174.0" styleClass="admin_changepass_btn" stylesheets="@Main.css" text="Change Password">
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" glyphName="REFRESH" size="1.5em" />
+                           </graphic></Button>
                         <Button fx:id="nav_logout_btn" layoutX="-12.0" layoutY="516.6" mnemonicParsing="false" onAction="#logout" prefHeight="34.0" prefWidth="115.0" styleClass="voter-nav-logout" stylesheets="@Main.css" text="Log out" AnchorPane.bottomAnchor="2.6000000000000227" AnchorPane.leftAnchor="-12.0">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
@@ -57,13 +66,19 @@
                               <Font size="10.0" />
                            </font>
                         </Button>
-                        <Button fx:id="nav_publishresult_btn" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_publishres_btn" stylesheets="@Main.css" text="Publish Result" />
+                        <Button fx:id="nav_publishresult_btn" alignment="BASELINE_LEFT" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_publishres_btn" stylesheets="@Main.css" text="Publish Result">
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" glyphName="TROPHY" size="1.5em" />
+                           </graphic></Button>
                         <ImageView fitHeight="89.0" fitWidth="142.0" layoutX="38.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../Desktop/Evote-logo.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="nav_voter_btn" layoutX="9.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="147.0" styleClass="admin_voter_btn" stylesheets="@Main.css" text="Voters" />
+                        <Button fx:id="nav_voter_btn" alignment="BASELINE_LEFT" layoutX="9.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="147.0" styleClass="admin_voter_btn" stylesheets="@Main.css" text="Voters">
+                           <graphic>
+                              <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.5em" />
+                           </graphic></Button>
                      </children></AnchorPane>
                </left>
                <center>
@@ -88,7 +103,7 @@
                               </Button>
                            </children></AnchorPane>
                         <Line endX="450.79998779296875" endY="-90.99999237060547" layoutX="182.0" layoutY="127.0" startX="-181.99996948242188" startY="-90.99999237060547" stroke="#e7e4e4" />
-                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="388.0" layoutY="7.0" text="Voting">
                                  <font>
@@ -291,24 +306,6 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="admin_endresult_form" layoutX="159.0" layoutY="116.0" prefHeight="178.0" prefWidth="513.0" visible="false">
-                                 <children>
-                                    <Label fx:id="publishres_totalvoter" layoutX="424.0" layoutY="42.0" text="52" />
-                                    <Label layoutX="7.0" layoutY="43.0" text="No of people voted :">
-                                       <font>
-                                          <Font name="Times New Roman" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="publishres_numbervoted" layoutX="130.0" layoutY="42.0" text="5" />
-                                    <Label layoutX="345.0" layoutY="42.0" text="Total Voter :" />
-                                    <Button fx:id="publishres_refresh_btn" layoutX="150.0" layoutY="38.0" mnemonicParsing="false" text="Refresh">
-                                       <graphic>
-                                          <FontAwesomeIcon glyphName="REFRESH" />
-                                       </graphic>
-                                    </Button>
-                                    <Button fx:id="publishres_endvoting_btn" layoutX="86.0" layoutY="102.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="324.0" styleClass="end" stylesheets="@Main.css" text="End Voting and Publish Result" />
-                                 </children>
-                              </AnchorPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="517.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
@@ -368,6 +365,29 @@
                               </Label>
                               <Label fx:id="voter_total_txt" layoutX="789.0" layoutY="346.0" text="7" />
                               <Line endX="-10.199951171875" endY="140.20004272460938" layoutX="696.0" layoutY="333.0" startX="-10.199951171875" startY="-8.599945068359375" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="514.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css">
+                           <children>
+                              <Label fx:id="publishres_totalvoter" layoutX="612.0" layoutY="162.0" text="52" />
+                              <Label layoutX="81.0" layoutY="163.0" text="No of people voted :">
+                                 <font>
+                                    <Font name="Times New Roman" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="publishres_numbervoted" layoutX="204.0" layoutY="162.0" text="5" />
+                              <Label layoutX="533.0" layoutY="162.0" text="Total Voter :" />
+                              <Button fx:id="publishres_refresh_btn" layoutX="224.0" layoutY="158.0" mnemonicParsing="false" text="Refresh">
+                                 <graphic>
+                                    <FontAwesomeIcon glyphName="REFRESH" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="publishres_endvoting_btn" layoutX="248.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="324.0" styleClass="end" stylesheets="@Main.css" text="End Voting and Publish Result" />
+                              <Label layoutX="232.0" layoutY="61.0" text="There's a live election in progress">
+                                 <font>
+                                    <Font name="Times New Roman" size="28.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">

@@ -12,9 +12,9 @@
     -fx-border-color:#4993a9;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-padding: 5px 5px 5px 25px;
-   -fx-prompt-text-fill:#000;
-   -fx-font-size:15px;
-   -fx-prompt-text-fill: rgba(0, 0, 0, 0.5);
+    -fx-prompt-text-fill:#000;
+    -fx-font-size:15px;
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.5);
     
 }
 .textfields:focused{
@@ -167,9 +167,9 @@
 	-fx-font-size:15px;
 }
 .admin_strvot_btn:hover{
-	-fx-background-color:rgba(25, 82, 106, 0.848);
 	
-	-fx-font-size:15px;
+	
+	-fx-font-size:16px;
 }
 .admin_verifyvoter_btn{
 	-fx-background-color:transparent;
@@ -177,9 +177,8 @@
 	-fx-font-size:15px;
 }
 .admin_verifyvoter_btn:hover{
-	-fx-background-color:rgba(25, 82, 106, 0.848);
 	
-	-fx-font-size:15px;
+	-fx-font-size:16px;
 }
 .admin_publishres_btn{
 	-fx-background-color:transparent;
@@ -187,9 +186,9 @@
 	-fx-font-size:15px;
 }
 .admin_publishres_btn:hover{
-	-fx-background-color:rgba(25, 82, 106, 0.848);
+
 	
-	-fx-font-size:15px;
+	-fx-font-size:16px;
 }
 .admin_voter_btn{
 	-fx-background-color:transparent;
@@ -197,9 +196,9 @@
 	-fx-font-size:15px;
 }
 .admin_voter_btn:hover{
-	-fx-background-color:rgba(25, 82, 106, 0.848);
 	
-	-fx-font-size:15px;
+	
+	-fx-font-size:16px;
 }
 .admin_changepass_btn{
 	-fx-background-color:transparent;
@@ -207,9 +206,8 @@
 	-fx-font-size:15px;
 }
 .admin_changepass_btn:hover{
-	-fx-background-color:rgba(25, 82, 106, 0.848);
-	
-	-fx-font-size:15px;
+
+	-fx-font-size:16px;
 }
 
 .start{

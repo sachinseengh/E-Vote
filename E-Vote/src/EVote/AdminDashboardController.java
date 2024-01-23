@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -286,15 +287,27 @@ public class AdminDashboardController implements Initializable {
 	private Label imageone_name;
 	@FXML
 	private Label imagetwo_name;
+	
+	@FXML
+    private AnchorPane admin_election_details_form;
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
 		if (e.getSource() == nav_startvoting_btn) {
-			admin_strtvoting_form.setVisible(true);
+			
+			
+			startelectionorshowdetails();
+		
 			admin_changepassword_form.setVisible(false);
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(false);
+			
+			nav_startvoting_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
+			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
+			nav_publishresult_btn.setStyle("-fx-background-color:transparent;");
+			nav_voter_btn.setStyle("-fx-background-color:transparent;");
+			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
 
 		} else if (e.getSource() == nav_verifyvoter_btn) {
 			admin_strtvoting_form.setVisible(false);
@@ -302,6 +315,13 @@ public class AdminDashboardController implements Initializable {
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(true);
+			admin_election_details_form.setVisible(false);
+			
+			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
+			nav_verifyvoter_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
+			nav_publishresult_btn.setStyle("-fx-background-color:transparent;");
+			nav_voter_btn.setStyle("-fx-background-color:transparent;");
+			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
 
 		} else if (e.getSource() == nav_publishresult_btn) {
 			admin_strtvoting_form.setVisible(false);
@@ -309,6 +329,15 @@ public class AdminDashboardController implements Initializable {
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(true);
 			verifyvoter_form.setVisible(false);
+			admin_election_details_form.setVisible(false);
+			
+			
+			
+			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
+			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
+			nav_publishresult_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
+			nav_voter_btn.setStyle("-fx-background-color:transparent;");
+			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
 
 		} else if (e.getSource() == nav_voter_btn) {
 			admin_strtvoting_form.setVisible(false);
@@ -316,6 +345,14 @@ public class AdminDashboardController implements Initializable {
 			voter_form.setVisible(true);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(false);
+			admin_election_details_form.setVisible(false);
+			
+			
+			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
+			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
+			nav_publishresult_btn.setStyle("-fx-background-color:tranparent;");
+			nav_voter_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
+			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
 
 		} else if (e.getSource() == nav_changepassword_btn) {
 			admin_strtvoting_form.setVisible(false);
@@ -323,7 +360,13 @@ public class AdminDashboardController implements Initializable {
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(false);
-
+			admin_election_details_form.setVisible(false);
+			
+			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
+			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
+			nav_publishresult_btn.setStyle("-fx-background-color:tranparent;");
+			nav_voter_btn.setStyle("-fx-background-color:transparent;");
+			nav_changepassword_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
 		}
 
 	}
@@ -585,13 +628,36 @@ private double y=0;
 		return matcher;
 	}
 	
-	
-
+	// it is used to check whether a election is going on or not
+    public void startelectionorshowdetails() {
+    	try {
+			Conn c = new Conn();
+			String sql ="select count(*) as row_count from election";
+			
+			ResultSet rs = c.s.executeQuery(sql);
+			Integer row=null;
+			while(rs.next()) {
+				row = rs.getInt("row_count");
+			}
+			
+			
+			if(row == 0) {
+				admin_strtvoting_form.setVisible(true);
+				
+				
+			}else {
+				admin_election_details_form.setVisible(true);
+			}
+			
+		}catch(Exception ae) {
+			ae.printStackTrace();
+		}
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		errorset();
-
+		startelectionorshowdetails();
 	}
 
 }
