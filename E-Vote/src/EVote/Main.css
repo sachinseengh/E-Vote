@@ -230,6 +230,10 @@
 	-fx-background-color:rgb(66, 126, 156);
 }
 
+.checkbox-prompttext{
+	 -fx-prompt-text-fill:#000;
+}
+
 
 /* publish result */
 .end{

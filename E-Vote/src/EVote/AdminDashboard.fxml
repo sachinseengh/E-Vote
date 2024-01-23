@@ -84,7 +84,7 @@
                <center>
                   <AnchorPane prefHeight="429.0" prefWidth="608.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="1.0" prefHeight="35.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutY="1.0" prefHeight="35.0" prefWidth="818.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button fx:id="close_btn" layoutX="601.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@Main.css" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                  <graphic>
@@ -249,65 +249,6 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_result_form" layoutX="-1.0" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.7999999999999545" AnchorPane.topAnchor="36.0">
-                           <children>
-                              <AnchorPane fx:id="admin_voter_result_form" layoutX="199.0" layoutY="47.0" prefHeight="351.0" prefWidth="401.0" visible="false">
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0f0f000" height="303.0" layoutX="85.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
-                                    <Label layoutX="142.0" layoutY="14.0" text="Position :">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="published_result_post" layoutX="209.0" layoutY="12.0" text="Manager">
-                                       <font>
-                                          <Font name="Times New Roman" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fx:id="published_result_img" fitHeight="120.0" fitWidth="161.0" layoutX="146.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../../../Desktop/OIG%20(1).jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <Label layoutX="124.0" layoutY="223.0" text="Total Vote :">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="published_result_vote" layoutX="213.0" layoutY="222.0" text="5200">
-                                       <font>
-                                          <Font name="Times New Roman" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="138.0" layoutY="191.0" text="Name :">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="published_result_name" layoutX="197.0" layoutY="190.0" text="Manager">
-                                       <font>
-                                          <Font name="Times New Roman" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="144.0" layoutY="252.0" text="Win by :">
-                                       <font>
-                                          <Font size="15.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="published_result_wonby" layoutX="218.0" layoutY="251.0" text="482">
-                                       <font>
-                                          <Font name="Times New Roman" size="20.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="125.0" layoutY="319.0" text="Congratulations !!!">
-                                       <font>
-                                          <Font name="Times New Roman" size="21.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
                         <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="517.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
                            <children>
                               <TableView fx:id="voter_tableview" layoutX="13.0" layoutY="8.0" prefHeight="278.0" prefWidth="814.0">
@@ -367,7 +308,7 @@
                               <Line endX="-10.199951171875" endY="140.20004272460938" layoutX="696.0" layoutY="333.0" startX="-10.199951171875" startY="-8.599945068359375" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="514.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css">
+                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="514.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
                            <children>
                               <Label fx:id="publishres_totalvoter" layoutX="612.0" layoutY="162.0" text="52" />
                               <Label layoutX="81.0" layoutY="163.0" text="No of people voted :">
@@ -390,25 +331,32 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
-                              <GridPane layoutX="119.0" layoutY="107.0" prefHeight="128.0" prefWidth="312.0">
+                              <GridPane layoutX="119.0" layoutY="107.0" prefHeight="158.0" prefWidth="312.0">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="186.20001220703125" minWidth="10.0" prefWidth="108.7999755859375" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.7999725341797" minWidth="10.0" prefWidth="202.4000244140625" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints maxHeight="152.59998168945313" minHeight="4.599981689453131" prefHeight="45.8" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="190.20001831054688" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="236.39999999999998" minHeight="10.0" prefHeight="44.20000610351563" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="152.59998168945313" minHeight="4.599981689453131" prefHeight="32.59998779296875" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="152.59998168945313" minHeight="4.599981689453131" prefHeight="16.6" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="190.20001831054688" minHeight="10.0" prefHeight="36.6" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="190.20001831054688" minHeight="10.0" prefHeight="10.200000000000003" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="236.39999999999998" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="236.39999999999998" minHeight="10.0" prefHeight="16.40001831054687" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="236.39999999999998" minHeight="1.9999938964843693" prefHeight="6.799981689453119" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
                                     <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="105.0" text="Current Password :" />
-                                    <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="102.0" text="New Password :" GridPane.rowIndex="1" />
-                                    <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="107.0" text="Confirm Password :" GridPane.rowIndex="2" />
-                                    <TextField fx:id="admin_cp_current" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" />
-                                    <PasswordField fx:id="admin_cp_new" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <PasswordField fx:id="admin_cp_confirm" prefHeight="29.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="102.0" text="New Password :" GridPane.rowIndex="2" />
+                                    <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="107.0" text="Confirm Password :" GridPane.rowIndex="4" />
+                                    <TextField fx:id="admin_cp_current" onAction="#passworderrorset" onMouseClicked="#passworderrorset" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" />
+                                    <PasswordField fx:id="admin_cp_new" onAction="#passworderrorset" onMouseClicked="#passworderrorset" styleClass="checkbox-prompttext" stylesheets="@Main.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="admin_cp_confirm" onAction="#passworderrorset" onMouseClicked="#passworderrorset" prefHeight="29.0" prefWidth="198.0" styleClass="checkbox-prompttext" stylesheets="@Main.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="current_pass_error" prefHeight="29.0" prefWidth="202.0" text="cp error" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="new_pass_error" text="np error" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="confirm_pass_error" text="confirm error" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                               <Label layoutX="243.0" layoutY="13.0" text="Change  Password">
@@ -417,17 +365,82 @@
                                  </font>
                               </Label>
                               <Line endX="74.0" endY="0.20000457763671875" layoutX="317.0" layoutY="36.0" startX="-73.99998474121094" startY="0.20000457763671875" />
-                              <Button fx:id="admin_changepass_btn" layoutX="202.0" layoutY="257.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="191.0" styleClass="changepasswordbtn" stylesheets="@Main.css" text="Change Password" />
-                              <CheckBox fx:id="admin_newshow_checkbox" layoutX="443.0" layoutY="163.0" mnemonicParsing="false" text="Show" AnchorPane.leftAnchor="443.20000000000005">
+                              <Button fx:id="admin_changepass_btn" layoutX="221.0" layoutY="291.0" mnemonicParsing="false" onAction="#changepassword" prefHeight="32.0" prefWidth="191.0" styleClass="changepasswordbtn" stylesheets="@Main.css" text="Change Password" />
+                              <CheckBox fx:id="admin_newshow_checkbox" layoutX="443.0" layoutY="163.0" mnemonicParsing="false" onAction="#shownewpass" text="Show" AnchorPane.leftAnchor="443.20000000000005">
                                  <font>
                                     <Font name="Times New Roman Bold" size="12.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="admin_confirmshow_checkbox" layoutX="443.0" layoutY="206.0" mnemonicParsing="false" text="Show" AnchorPane.leftAnchor="443.0">
+                              <CheckBox fx:id="admin_confirmshow_checkbox" layoutX="443.0" layoutY="206.0" mnemonicParsing="false" onAction="#showconfirmpass" text="Show" AnchorPane.leftAnchor="443.0">
                                  <font>
                                     <Font name="Times New Roman Bold" size="12.0" />
                                  </font>
                               </CheckBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="admin_result_form" layoutY="36.0" prefHeight="515.0" prefWidth="820.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0f0f000" height="303.0" layoutX="275.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
+                              <Label layoutX="332.0" layoutY="100.0" text="Position :">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="published_result_post" layoutX="399.0" layoutY="98.0" text="Manager">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="published_result_img" fitHeight="120.0" fitWidth="161.0" layoutX="336.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../Desktop/OIG%20(1).jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="314.0" layoutY="309.0" text="Total Vote :">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="published_result_vote" layoutX="403.0" layoutY="308.0" text="5200">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="328.0" layoutY="277.0" text="Name :">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="published_result_name" layoutX="387.0" layoutY="276.0" text="Manager">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="334.0" layoutY="338.0" text="Win by :">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="published_result_wonby" layoutX="408.0" layoutY="337.0" text="482">
+                                 <font>
+                                    <Font name="Times New Roman" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="315.0" layoutY="405.0" text="Congratulations !!!">
+                                 <font>
+                                    <Font name="Times New Roman" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="268.0" layoutY="43.0" text="Election Date :">
+                                 <font>
+                                    <Font name="Times New Roman" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="401.0" layoutY="44.0" text="Election Date ">
+                                 <font>
+                                    <Font name="Times New Roman" size="21.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>

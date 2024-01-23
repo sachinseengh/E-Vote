@@ -41,6 +41,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.fxml.Initializable;
 
+
 public class AdminDashboardController implements Initializable {
 	@FXML
 	private TextField admin_candidate_one_name;
@@ -73,13 +74,7 @@ public class AdminDashboardController implements Initializable {
 	private CheckBox admin_newshow_checkbox;
 
 	@FXML
-	private AnchorPane admin_result_form;
-
-	@FXML
 	private AnchorPane admin_strtvoting_form;
-
-	@FXML
-	private AnchorPane admin_voter_result_form;
 
 	@FXML
 	private ImageView candidate_one_image;
@@ -287,22 +282,36 @@ public class AdminDashboardController implements Initializable {
 	private Label imageone_name;
 	@FXML
 	private Label imagetwo_name;
-	
+
 	@FXML
-    private AnchorPane admin_election_details_form;
+	private AnchorPane admin_election_details_form;
+
+	@FXML
+	private AnchorPane admin_result_form;
+
+	@FXML
+	private Label confirm_pass_error;
+
+	@FXML
+	private Label current_pass_error;
+
+	@FXML
+	private Label new_pass_error;
+	
+
+ 
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
 		if (e.getSource() == nav_startvoting_btn) {
-			
-			
+
 			startelectionorshowdetails();
-		
+
 			admin_changepassword_form.setVisible(false);
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(false);
-			
+
 			nav_startvoting_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
 			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
 			nav_publishresult_btn.setStyle("-fx-background-color:transparent;");
@@ -316,7 +325,7 @@ public class AdminDashboardController implements Initializable {
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(true);
 			admin_election_details_form.setVisible(false);
-			
+
 			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
 			nav_verifyvoter_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
 			nav_publishresult_btn.setStyle("-fx-background-color:transparent;");
@@ -330,9 +339,7 @@ public class AdminDashboardController implements Initializable {
 			admin_result_form.setVisible(true);
 			verifyvoter_form.setVisible(false);
 			admin_election_details_form.setVisible(false);
-			
-			
-			
+
 			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
 			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
 			nav_publishresult_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
@@ -346,8 +353,7 @@ public class AdminDashboardController implements Initializable {
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(false);
 			admin_election_details_form.setVisible(false);
-			
-			
+
 			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
 			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
 			nav_publishresult_btn.setStyle("-fx-background-color:tranparent;");
@@ -361,7 +367,7 @@ public class AdminDashboardController implements Initializable {
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(false);
 			admin_election_details_form.setVisible(false);
-			
+
 			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
 			nav_verifyvoter_btn.setStyle("-fx-background-color:transparent;");
 			nav_publishresult_btn.setStyle("-fx-background-color:tranparent;");
@@ -404,8 +410,10 @@ public class AdminDashboardController implements Initializable {
 	public void close() {
 		System.exit(0);
 	}
-private double x=0;
-private double y=0;
+
+	private double x = 0;
+	private double y = 0;
+
 	public void logout() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Confirm logout");
@@ -417,9 +425,9 @@ private double y=0;
 		if (option.get().equals(ButtonType.OK)) {
 			try {
 				Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-				Stage stage= new Stage();
+				Stage stage = new Stage();
 				Scene scene = new Scene(root);
-			
+
 				root.setOnMousePressed(new EventHandler<MouseEvent>() {
 					@Override
 					public void handle(MouseEvent event) {
@@ -591,73 +599,195 @@ private double y=0;
 		}
 
 		// save function to save into folder
-		
-		if(position_error.getText().equals("")&& candidateone_error.getText().equals("")
-				&&candidatetwo_error.getText().equals("")&& candidateone_img_error.getText().equals("")
+
+		if (position_error.getText().equals("") && candidateone_error.getText().equals("")
+				&& candidatetwo_error.getText().equals("") && candidateone_img_error.getText().equals("")
 				&& candidatetwo_img_error.getText().equals("")) {
-		try {
-			candidateimgmoveintofolder(selectedFile_one);
-			candidateimgmoveintofolder(selectedFile_two);
-		} catch (Exception e) {
+			try {
+				candidateimgmoveintofolder(selectedFile_one);
+				candidateimgmoveintofolder(selectedFile_two);
+			} catch (Exception e) {
+
+			}
+
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Start Election Confirmation");
+			alert.setHeaderText(null);
+			alert.setContentText("Do you Want to Start Election?");
+
+			Optional<ButtonType> option = alert.showAndWait();
+
+			if (option.get().equals(ButtonType.OK)) {
+				Adminsql election = new Adminsql();
+				election.startElection(position_name.getText(), admin_candidate_one_name.getText(),
+						imageone_name.getText(), admin_candidate_two_name.getText(), imagetwo_name.getText());
+
+			}
 
 		}
-	
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Start Election Confirmation");
-		alert.setHeaderText(null);
-		alert.setContentText("Do you Want to Start Election?");
-		
-		Optional<ButtonType> option = alert.showAndWait();
-		
-		if(option.get().equals(ButtonType.OK)){
-		Adminsql election = new Adminsql();
-		election.startElection(position_name.getText(), admin_candidate_one_name.getText(),
-				imageone_name.getText(),admin_candidate_two_name.getText(), imagetwo_name.getText());
-		
-		}
-		
-
 	}
-		}
 
 	// ----------------pattern to check letter only-----------------------------
+
+	// it is used to check whether a election is going on or not
+	public void startelectionorshowdetails() {
+		try {
+			Conn c = new Conn();
+			String sql = "select count(*) as row_count from election";
+
+			ResultSet rs = c.s.executeQuery(sql);
+			Integer row = null;
+			while (rs.next()) {
+				row = rs.getInt("row_count");
+			}
+
+			if (row == 0) {
+				admin_strtvoting_form.setVisible(true);
+
+			} else {
+				admin_election_details_form.setVisible(true);
+			}
+
+		} catch (Exception ae) {
+			ae.printStackTrace();
+		}
+	}
+
+	/*---------------------Change Password-------------------------*/
+
+	public void passworderrorset() {
+		current_pass_error.setText("");
+		new_pass_error.setText("");
+		confirm_pass_error.setText("");
+	}
+	
+	
+	public void shownewpass() {
+		showPassword(admin_newshow_checkbox,admin_cp_new);
+	}
+	public void showconfirmpass() {
+		showPassword(admin_confirmshow_checkbox,admin_cp_confirm);
+	}
+  
+
+	public void changepassword() {
+		if (admin_cp_current.getText().equals("") && admin_cp_current.getText().trim().isEmpty()
+				&& admin_cp_current.getText().isEmpty()) {
+
+			current_pass_error.setText("Current Password is required");
+
+		}
+
+		if (admin_cp_new.getText().equals("") && admin_cp_new.getText().trim().isEmpty()
+				&& admin_cp_new.getText().isEmpty()) {
+			new_pass_error.setText("New Password is required");  
+			
+		} else {
+			String txt = admin_cp_new.getText();
+
+			if (!hasDigit(txt)) {
+				new_pass_error.setText("At least one digit is required");
+			} else if (!hasAlphabet(txt)) {
+				new_pass_error.setText("At least one alphabet is required");
+			} else if (!hasSpecialCharacter(txt)) {
+				new_pass_error.setText("Special Character( _,@,#) is required");
+			}else if (!PasswordValidation(txt)) {
+				new_pass_error.setText("Invalid characters");
+			}
+
+		}
+
+		if (admin_cp_confirm.getText().equals("") && admin_cp_confirm.getText().trim().isEmpty()
+				&& admin_cp_confirm.getText().isEmpty()) {
+			confirm_pass_error.setText("password required");
+		}
+		if(!admin_cp_new.getText().trim().isEmpty()&& !admin_cp_confirm.getText().trim().isEmpty()) {
+			
+			if(!admin_cp_new.getText().equals(admin_cp_confirm.getText())) {
+			confirm_pass_error.setText("Passwords not matched");
+			}
+			
+			//---------------check current password is correct or not-----------//
+			if(!admin_cp_current.getText().trim().isEmpty()) {
+			Adminsql as = new Adminsql();
+			String ogpassword = as.checkPassword();
+			
+			
+			if(!admin_cp_current.getText().equals(ogpassword)) {
+				current_pass_error.setText("Incorrect Password");
+			}
+			}
+		}
+//		
+		
+		
+		if(new_pass_error.getText().equals("")&& confirm_pass_error.getText().equals("")&& current_pass_error.getText().equals("")) {
+			
+			Adminsql as = new Adminsql();
+			as.changePassword(admin_cp_new.getText());
+			
+			admin_cp_new.setText("");
+			admin_cp_current.setText("");
+			admin_cp_confirm.setText("");
+		}
+
+	}
+
 	public Matcher letteronlyregex(String txt) {
 		String regex = "^[a-zA-Z\\s]+$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(txt);
 		return matcher;
 	}
-	
-	// it is used to check whether a election is going on or not
-    public void startelectionorshowdetails() {
-    	try {
-			Conn c = new Conn();
-			String sql ="select count(*) as row_count from election";
-			
-			ResultSet rs = c.s.executeQuery(sql);
-			Integer row=null;
-			while(rs.next()) {
-				row = rs.getInt("row_count");
-			}
-			
-			
-			if(row == 0) {
-				admin_strtvoting_form.setVisible(true);
-				
-				
-			}else {
-				admin_election_details_form.setVisible(true);
-			}
-			
-		}catch(Exception ae) {
-			ae.printStackTrace();
+
+	public Boolean hasDigit(String txt) {
+		String regex = ".*\\d.*";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(txt);
+		return matcher.matches();
+	}
+
+	public Boolean hasAlphabet(String txt) {
+		String regex = ".*[a-zA-Z].*";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(txt);
+		return matcher.matches();
+	}
+
+	public Boolean hasSpecialCharacter(String txt) {
+		String regex = ".*[_#@].*";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(txt);
+		return matcher.matches();
+	}
+
+	public Boolean PasswordValidation(String txt) {
+		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d_#@]+$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(txt);
+		return matcher.matches();
+	}
+	public void showPassword(CheckBox checkbox,PasswordField passwordfield) {
+		if(checkbox.isSelected()) {
+			passwordfield.setPromptText(passwordfield.getText());
+			passwordfield.setText("");
+		}else {
+			passwordfield.setText(passwordfield.getPromptText());
+			passwordfield.setPromptText("");
+		
 		}
-    }
+		
+	}
+
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		errorset();
 		startelectionorshowdetails();
+
+		// changepassword
+		passworderrorset();
 	}
 
 }
