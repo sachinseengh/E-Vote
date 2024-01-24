@@ -100,27 +100,23 @@ public class MainController implements Initializable {
     
     Parent root;
  
-    //to minimize screen
-    public void minimize(){
-        Stage stage = (Stage)minimize_btn.getScene().getWindow();
-        stage.setIconified(true);
-    }
-//    toggle fullscreen
-    public void togglefullscreen() {
-    	Stage stage = (Stage)fullscreen.getScene().getWindow();
-    	
-    	stage.setFullScreen(!stage.isFullScreen());
-    	
-    }
-    
-    //close the program
-    public void close() {
-    	System.exit(0);
-    }
-    
-  //toggle function to switch between admin and voter
-    private double x =0;
-	 private double y=0; 
+ //---------------utility functions---------------------
+    Utility_Functions uf = new Utility_Functions();
+	
+	public void minimize() {
+		uf.minimize(minimize_btn);
+	}
+	public void togglefullscreen() {
+		uf.togglefullscreen(fullscreen);
+	}
+	public void close() {
+	uf.close();
+	}
+	
+	
+	
+
+
 	 
 	 
 	 //switch user
@@ -158,9 +154,9 @@ public class MainController implements Initializable {
     
     
     public void registrationOpen() throws IOException {
-    	root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
+    	 Parent root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
         
-    	MouseMovableScene();
+    	uf.MouseMovableScene(root);
     }
     
     public void adminLogin() {
@@ -191,7 +187,8 @@ public class MainController implements Initializable {
     			
     			admin_loginbtn.getScene().getWindow().hide();
     			 root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
-    			 MouseMovableScene() ;
+    			 
+    			uf.MouseMovableScene(root) ;
     		}else {
     			Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle(" Login Failed");
@@ -206,10 +203,6 @@ public class MainController implements Initializable {
     	}
     }
 
-    
-    
-    
-    
     
     
     public void VoterLogin() {
@@ -236,7 +229,7 @@ public class MainController implements Initializable {
         			
         			admin_loginbtn.getScene().getWindow().hide();
         			 root = FXMLLoader.load(getClass().getResource("VoterDashboard.fxml"));
-        			 MouseMovableScene() ;
+        			 uf.MouseMovableScene(root) ;
         		}else {
         			Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle(" Login Failed");
@@ -251,44 +244,7 @@ public class MainController implements Initializable {
     	}
     }
     
-    public void MouseMovableScene() {
-    	 Stage stage = new Stage();
-         
-         root.setOnMousePressed(new EventHandler<MouseEvent>(){
-		           @Override
-		           public void handle(MouseEvent event) {
-		               x= event.getSceneX();
-		               y= event.getSceneY();
-		           }
-
-		         });
-
-		         root.setOnMouseDragged(new EventHandler<MouseEvent>(){
-		           @Override
-		           public void handle(MouseEvent event) {
-		              stage.setX(event.getScreenX()-x);
-		              stage.setY(event.getScreenY()-y);
-		              
-		              stage.setOpacity(0.9);
-		           }
-
-		         });
-		         
-		         root.setOnMouseReleased(new EventHandler<MouseEvent>(){
-		           @Override
-		           public void handle(MouseEvent event) {
-		              stage.setOpacity(1);
-		           }
-
-		         });
-		         
-				
-         stage.initStyle(StageStyle.TRANSPARENT);
-         Scene scene = new Scene(root);
-         
-        stage.setScene(scene);
-         stage.show();
-    }
+    
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

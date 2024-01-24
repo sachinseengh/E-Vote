@@ -389,81 +389,28 @@ public class AdminDashboardController implements Initializable {
 		candidatetwo_img_error.setText("");
 	}
 
-	// ----------------------minimize
-	// screen------------------------------------------
+
+//	--------------utility functions-------------
+	Utility_Functions uf = new Utility_Functions();
+	
 	public void minimize() {
-		Stage stage = (Stage) minimize_btn.getScene().getWindow();
-		stage.setIconified(true);
+		uf.minimize(minimize_btn);
 	}
-
-	// --------------------toggle
-	// fullscreen---------------------------------------------
-
 	public void togglefullscreen() {
-		Stage stage = (Stage) fullscreen_btn.getScene().getWindow();
-
-		stage.setFullScreen(!stage.isFullScreen());
+		uf.togglefullscreen(fullscreen_btn);
 	}
-
-	// ------------------ close the
-	// program----------------------------------------------
 	public void close() {
-		System.exit(0);
+	uf.close();
 	}
-
-	private double x = 0;
-	private double y = 0;
-
+	
 	public void logout() {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Confirm logout");
-		alert.setHeaderText(null);
-		alert.setContentText("Do you want to logout?");
-
-		Optional<ButtonType> option = alert.showAndWait();
-
-		if (option.get().equals(ButtonType.OK)) {
-			try {
-				Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-				Stage stage = new Stage();
-				Scene scene = new Scene(root);
-
-				root.setOnMousePressed(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						x = event.getSceneX();
-						y = event.getSceneY();
-					}
-
-				});
-
-				root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						stage.setX(event.getScreenX() - x);
-						stage.setY(event.getScreenY() - y);
-
-						stage.setOpacity(0.9);
-					}
-
-				});
-
-				root.setOnMouseReleased(new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent event) {
-						stage.setOpacity(1);
-					}
-
-				});
-				nav_logout_btn.getScene().getWindow().hide();
-				stage.setScene(scene);
-				stage.initStyle(StageStyle.TRANSPARENT);
-				stage.show();
-			} catch (Exception e) {
-
-			}
-		}
+		uf.logout(nav_logout_btn);
 	}
+	
+
+	
+
+	
 
 	File selectedFile_one;
 	File selectedFile_two;
