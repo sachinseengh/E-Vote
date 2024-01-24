@@ -22,7 +22,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.VoterDashboardController">
    <children>
       <AnchorPane layoutX="92.0" layoutY="126.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -80,7 +80,7 @@
                            <graphic>
                               <FontAwesomeIcon fill="#f7f6f6" glyphName="PENCIL" />
                            </graphic></Button>
-                        <Button fx:id="voter_nav_logout_btn" layoutX="-6.6" layoutY="508.79999999999995" mnemonicParsing="false" prefHeight="38.0" prefWidth="112.0" styleClass="voter-nav-logout" stylesheets="@Main.css" text="Log out" AnchorPane.bottomAnchor="3.2000000000000455" AnchorPane.leftAnchor="-6.6">
+                        <Button fx:id="voter_nav_logout_btn" layoutX="-6.6" layoutY="508.79999999999995" mnemonicParsing="false" onAction="#logout" prefHeight="38.0" prefWidth="112.0" styleClass="voter-nav-logout" stylesheets="@Main.css" text="Log out" AnchorPane.bottomAnchor="3.2000000000000455" AnchorPane.leftAnchor="-6.6">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.5em" />
                            </graphic>
@@ -92,17 +92,17 @@
                      <children>
                         <AnchorPane layoutY="1.0" prefHeight="35.0" prefWidth="631.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button fx:id="close_btn" layoutX="601.0" layoutY="4.0" mnemonicParsing="false" styleClass="minimize" stylesheets="@Main.css" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+                              <Button fx:id="close_btn" layoutX="601.0" layoutY="4.0" mnemonicParsing="false" onAction="#close" styleClass="minimize" stylesheets="@Main.css" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="CLOSE" size="1.2em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="fullscreen_btn" layoutX="580.0" layoutY="3.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="22.0" styleClass="fullscreen" stylesheets="@Main.css" AnchorPane.rightAnchor="26.399999999999977" AnchorPane.topAnchor="4.0">
+                              <Button fx:id="fullscreen_btn" layoutX="580.0" layoutY="3.0" mnemonicParsing="false" onAction="#fullscreen" prefHeight="26.0" prefWidth="22.0" styleClass="fullscreen" stylesheets="@Main.css" AnchorPane.rightAnchor="26.399999999999977" AnchorPane.topAnchor="4.0">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="SQUARE" size="1.1em" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="minimize_btn" layoutX="552.8" layoutY="5.4" mnemonicParsing="false" styleClass="close" stylesheets="@Main.css" AnchorPane.rightAnchor="51.200000000000045" AnchorPane.topAnchor="5.4">
+                              <Button fx:id="minimize_btn" layoutX="552.8" layoutY="5.4" mnemonicParsing="false" onAction="#minimize" styleClass="close" stylesheets="@Main.css" AnchorPane.rightAnchor="51.200000000000045" AnchorPane.topAnchor="5.4">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="MINUS" size="1.2em" />
                                  </graphic>
