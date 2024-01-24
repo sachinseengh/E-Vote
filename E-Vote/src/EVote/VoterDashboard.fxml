@@ -53,7 +53,7 @@
                            </font>
                         </Label>
                         <Line endX="85.19998168945312" endY="1.52587890625E-5" layoutX="66.0" layoutY="178.0" startX="-50.899986267089844" startY="1.52587890625E-5" />
-                        <Button fx:id="voter_nav_vote_btn" layoutX="11.0" layoutY="224.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="149.0" stylesheets="@Main.css" text="Vote">
+                        <Button fx:id="voter_nav_vote_btn" alignment="BASELINE_LEFT" layoutX="11.0" layoutY="224.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="149.0" stylesheets="@Main.css" text="Vote">
                            <styleClass>
                               <String fx:value="voter-nav-button" />
                               <String fx:value="voter-nav-vote" />
@@ -64,7 +64,7 @@
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="CHECK_CIRCLE" />
                            </graphic></Button>
-                        <Button fx:id="voter_nav_details_btn" layoutX="4.0" layoutY="271.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="158.0" stylesheets="@Main.css" text="My Details">
+                        <Button fx:id="voter_nav_details_btn" alignment="BASELINE_LEFT" layoutX="4.0" layoutY="271.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="158.0" stylesheets="@Main.css" text="My Details">
                            <styleClass>
                               <String fx:value="voter-nav-button" />
                               <String fx:value="voter-nav-details" />
@@ -72,7 +72,7 @@
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="BOOK" />
                            </graphic></Button>
-                        <Button fx:id="voter_nav_cpassword_btn" layoutX="4.0" layoutY="317.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="158.0" stylesheets="@Main.css" text="Change Password">
+                        <Button fx:id="voter_nav_cpassword_btn" alignment="BASELINE_LEFT" layoutX="4.0" layoutY="317.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="158.0" stylesheets="@Main.css" text="Change Password">
                            <styleClass>
                               <String fx:value="voter-nav-button" />
                               <String fx:value="voter-nav-cpassword" />
@@ -108,7 +108,7 @@
                                  </graphic>
                               </Button>
                            </children></AnchorPane>
-                        <AnchorPane layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="340.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="119.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
@@ -125,7 +125,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="323.0" layoutY="31.0" prefHeight="38.0" prefWidth="98.0" text="Post name">
+                              <Label fx:id="election_post_name" layoutX="323.0" layoutY="31.0" prefHeight="38.0" prefWidth="98.0" text="Post name">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -150,7 +150,7 @@
                               <Label layoutX="134.0" layoutY="84.0" prefHeight="18.0" prefWidth="318.0" text="Select your Desired Candidate" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="254.0" layoutY="7.0" text="My Details">
                                  <font>

@@ -78,9 +78,10 @@ public class MainController implements Initializable {
     @FXML
     private Button voter_registrationstatus;
 
-    @FXML
-    private TextField voter_username;
 
+
+    @FXML
+    private TextField voter_phoneno;
     @FXML
     private Button voter_viewresult;
 
@@ -204,7 +205,52 @@ public class MainController implements Initializable {
     		}
     	}
     }
-	
+
+    
+    
+    
+    
+    
+    
+    public void VoterLogin() {
+    	if(voter_phoneno.getText().isEmpty()|| voter_password.getText().isEmpty()
+    			|| voter_phoneno.getText().equals("") || voter_password.getText().equals("")
+    		     || voter_phoneno.getText().trim().isEmpty()|| voter_password.getText().trim().isEmpty()) {
+    	
+    		Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Login ");
+            alert.setHeaderText(null);
+            alert.setContentText("Fill the Blanks Fields");
+            alert.showAndWait(); 
+    		
+    	}else{
+    		try {
+        		Conn c = new Conn();
+        		
+        		String sql ="select * from voter_login where phone='"+voter_phoneno.getText()+"'"
+        				+ " and password='"+voter_password.getText()+"'";
+        		
+        		ResultSet rs=c.s.executeQuery(sql);
+        		
+        		if(rs.next()) {
+        			
+        			admin_loginbtn.getScene().getWindow().hide();
+        			 root = FXMLLoader.load(getClass().getResource("VoterDashboard.fxml"));
+        			 MouseMovableScene() ;
+        		}else {
+        			Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle(" Login Failed");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Incorrect phone or password");
+                    alert.show();
+        		}
+        		
+        	}catch(Exception e){
+        		e.printStackTrace();
+        		}
+    	}
+    }
+    
     public void MouseMovableScene() {
     	 Stage stage = new Stage();
          
