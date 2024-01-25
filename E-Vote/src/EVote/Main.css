@@ -119,22 +119,22 @@
 }
 
 .voter-nav-vote{
-	-fx-background-color:rgba(44, 132, 156, 0.493);
+	-fx-font-size:15px;
+	-fx-text-fill:white;
+	-fx-background-color:rgb(15, 120, 149);
+}
+.voter-nav-vote:hover{
+	-fx-font-size:17px;
 }
 
-.voter-nav-details{
-	-fx-background-color:transparent;
-}
-.voter-nav-cpassword{
-	-fx-background-color:transparent;
-}
 .voter-nav-button{
 	-fx-font-size:15px;
 	-fx-text-fill:white;
+	-fx-background-color:transparent;
 }
 .voter-nav-button:hover{
 	-fx-font-size:17px;
-	-fx-background-color:rgba(25, 82, 106, 0.848);
+	-fx-background-color:transparent;
 }
 
 .voter-nav-logout{

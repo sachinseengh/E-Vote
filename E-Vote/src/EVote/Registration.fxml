@@ -14,12 +14,12 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.RegistrationController">
    <children>
       <AnchorPane layoutX="-4.0" layoutY="-3.0" prefHeight="556.0" prefWidth="807.0" />
       <BorderPane layoutX="200.0" layoutY="103.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <AnchorPane fx:id="center_form" prefHeight="590.0" prefWidth="844.0" styleClass="working_area" stylesheets="@Main.css" BorderPane.alignment="TOP_RIGHT">
+            <AnchorPane fx:id="center_form" prefHeight="650.0" prefWidth="816.0" styleClass="working_area" stylesheets="@Main.css" BorderPane.alignment="TOP_RIGHT">
                <children>
                   <AnchorPane layoutX="-41.0" layoutY="26.0" prefHeight="34.0" prefWidth="796.0">
                      <children>
@@ -31,94 +31,82 @@
                         <Line endX="100.0" layoutX="449.0" layoutY="29.0" startX="-100.0" />
                      </children>
                   </AnchorPane>
-                  <Label layoutX="39.0" layoutY="106.0" prefHeight="31.0" prefWidth="96.0" text="Full Name :">
+                  <Label layoutX="57.0" layoutY="121.0" prefHeight="31.0" prefWidth="96.0" text="Full Name :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fullname_txtfield" layoutX="136.0" layoutY="103.0" prefHeight="30.0" prefWidth="249.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="71.0" layoutY="235.0" text="Email :">
+                  <TextField fx:id="fullname_txtfield" layoutX="160.0" layoutY="112.0" onMouseClicked="#seterrornull" prefHeight="33.0" prefWidth="226.0" styleClass="textfields" stylesheets="@Main.css" />
+                  <Label layoutX="56.0" layoutY="224.0" text="Phone :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="136.0" layoutY="233.0" prefHeight="26.0" prefWidth="249.0" styleClass="textfields" />
-                  <Label layoutX="70.0" layoutY="192.0" text="Phone :">
+                  <TextField fx:id="phone_txtfield" layoutX="121.0" layoutY="216.0" onMouseClicked="#seterrornull" prefHeight="33.0" prefWidth="272.0" styleClass="textfields" stylesheets="@Main.css" />
+                  <Label layoutX="57.0" layoutY="175.0" text="Email :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="135.0" layoutY="190.0" prefHeight="26.0" prefWidth="251.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="71.0" layoutY="151.0" text="Email :">
+                  <TextField fx:id="email_txt" layoutX="127.0" layoutY="166.0" onMouseClicked="#seterrornull" prefHeight="34.0" prefWidth="262.0" styleClass="textfields" stylesheets="@Main.css" />
+                  <Label layoutX="54.0" layoutY="273.0" prefHeight="19.0" prefWidth="112.0" text="Date of Birth :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="137.0" layoutY="148.0" prefHeight="26.0" prefWidth="250.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="70.0" layoutY="284.0" prefHeight="19.0" prefWidth="112.0" text="Date of Birth :">
+                  <DatePicker fx:id="datepicker_txtfield" layoutX="168.0" layoutY="270.0" onMouseClicked="#seterrornull" prefHeight="26.0" prefWidth="226.0" stylesheets="@Main.css" />
+                  <Label layoutX="53.0" layoutY="320.0" text="Address :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <DatePicker layoutX="184.0" layoutY="281.0" prefHeight="26.0" prefWidth="201.0" stylesheets="@Main.css" />
-                  <Label layoutX="71.0" layoutY="329.0" text="Address :">
+                  <TextField fx:id="address_txtfield" layoutX="138.0" layoutY="311.0" onMouseClicked="#seterrornull" prefHeight="33.0" prefWidth="255.0" styleClass="textfields" stylesheets="@Main.css" />
+                  <Label layoutX="54.0" layoutY="368.0" text="Password :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="156.0" layoutY="326.0" prefHeight="26.0" prefWidth="233.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="70.0" layoutY="367.0" text="Username :">
+                  <TextField fx:id="password_textfield" layoutX="149.0" layoutY="357.0" onMouseClicked="#seterrornull" prefHeight="33.0" prefWidth="245.0" styleClass="textfields" stylesheets="@Main.css" />
+                  <Label layoutX="50.0" layoutY="411.0" text="Citizenship no :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="178.0" layoutY="365.0" prefHeight="26.0" prefWidth="211.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="71.0" layoutY="408.0" text="Password :">
-                     <font>
-                        <Font name="Times New Roman" size="19.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="166.0" layoutY="403.0" prefHeight="26.0" prefWidth="220.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="71.0" layoutY="444.0" text="Citizenship no :">
-                     <font>
-                        <Font name="Times New Roman" size="19.0" />
-                     </font>
-                  </Label>
-                  <TextField layoutX="207.0" layoutY="441.0" prefHeight="26.0" prefWidth="178.0" styleClass="textfields" stylesheets="@Main.css" />
-                  <Label layoutX="431.0" layoutY="112.0" text="Passport Size photo :">
+                  <TextField fx:id="citizenshipno_txtfield" layoutX="186.0" layoutY="402.0" onMouseClicked="#seterrornull" prefHeight="33.0" prefWidth="211.0" styleClass="textfields" stylesheets="@Main.css" />
+                  <Label layoutX="50.0" layoutY="502.0" text="Passport Size photo :">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="492.0" layoutY="204.0" text="Employee id :">
+                  <Label layoutX="482.0" layoutY="134.0" text="Employee id :">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="461.0" layoutY="285.0" text="Citizenship Front :">
+                  <Label layoutX="457.0" layoutY="265.0" text="Citizenship Front :">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="461.0" layoutY="390.0" text="Citizenship Back :">
+                  <Label layoutX="452.0" layoutY="432.0" text="Citizenship Back :">
                      <font>
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="86.0" layoutX="600.0" layoutY="349.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                  <ImageView fitHeight="89.0" fitWidth="163.0" layoutX="598.0" layoutY="347.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="600.0" layoutY="350.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="162.0" text="Button" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="68.0" layoutX="601.0" layoutY="172.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
-                  <ImageView fitHeight="72.0" fitWidth="164.0" layoutX="599.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="601.0" layoutY="173.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="159.0" text="Button" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="76.0" layoutX="600.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="163.0" />
-                  <ImageView fitHeight="79.0" fitWidth="164.0" layoutX="598.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="600.0" layoutY="86.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="162.0" text="Button" />
-                  <Button layoutX="642.0" layoutY="514.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="140.0" text="Submit" />
-                  <Button layoutX="504.0" layoutY="516.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" text="Reset" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="86.0" layoutX="599.0" layoutY="253.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                  <ImageView fitHeight="89.0" fitWidth="163.0" layoutX="597.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button layoutX="599.0" layoutY="254.0" mnemonicParsing="false" prefHeight="85.0" prefWidth="162.0" text="Button" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff96" height="86.0" layoutX="591.0" layoutY="391.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
+                  <ImageView fitHeight="89.0" fitWidth="163.0" layoutX="589.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="citizenshipback_addbtn" layoutX="591.0" layoutY="392.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff93" height="68.0" layoutX="595.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
+                  <ImageView fitHeight="72.0" fitWidth="164.0" layoutX="593.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="employeeid_addbtn" layoutX="595.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="66.0" prefWidth="159.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff99" height="76.0" layoutX="219.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="163.0" />
+                  <ImageView fitHeight="75.0" fitWidth="162.0" layoutX="217.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="passportsizephoto_btn" layoutX="219.0" layoutY="475.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="75.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Button fx:id="submit_btn" layoutX="637.0" layoutY="609.0" mnemonicParsing="false" onAction="#submit" prefHeight="44.0" prefWidth="140.0" text="Submit" />
+                  <Button fx:id="reset_btn" layoutX="499.0" layoutY="611.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" text="Reset" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="86.0" layoutX="595.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
+                  <ImageView fitHeight="89.0" fitWidth="163.0" layoutX="593.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="citizenshipfront_addbtn" layoutX="595.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
                   <Line endX="711.5999755859375" endY="11.400003433227539" layoutX="89.0" layoutY="16.0" startX="-95.40000915527344" startY="11.400003433227539" stroke="#eaeaea" />
                   <AnchorPane layoutX="114.0" layoutY="-8.0" prefHeight="54.0" prefWidth="635.0" AnchorPane.rightAnchor="12.399999999999977" AnchorPane.topAnchor="-8.0">
                      <children>
@@ -127,7 +115,7 @@
                               <FontAwesomeIcon glyphName="SQUARE" size="1.2em" />
                            </graphic>
                         </Button>
-                        <Button layoutX="600.0" layoutY="15.0" mnemonicParsing="false" onAction="#minimize" styleClass="fullscreen" stylesheets="@Main.css" AnchorPane.topAnchor="14.4">
+                        <Button fx:id="register_minimize_btn" layoutX="600.0" layoutY="15.0" mnemonicParsing="false" onAction="#minimize" styleClass="fullscreen" stylesheets="@Main.css" AnchorPane.topAnchor="14.4">
                            <graphic>
                               <FontAwesomeIcon fx:id="register_minimizebtn" glyphName="MINUS" size="1.2em" />
                            </graphic>
@@ -139,6 +127,25 @@
                         </Button>
                      </children>
                   </AnchorPane>
+                  <Label fx:id="fullname_error" alignment="CENTER" layoutX="158.0" layoutY="146.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="address_error" alignment="CENTER" layoutX="148.0" layoutY="348.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="password_error" alignment="CENTER" layoutX="158.0" layoutY="392.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="citizenshipno_error" alignment="CENTER" layoutX="174.0" layoutY="444.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="dateofbirth_error" alignment="CENTER" layoutX="164.0" layoutY="302.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="phone_error" alignment="CENTER" layoutX="121.0" layoutY="250.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="email_error" alignment="CENTER" layoutX="127.0" layoutY="197.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="citizenshipfront_error" alignment="CENTER" layoutX="530.0" layoutY="343.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="employee_id_error" alignment="CENTER" layoutX="534.0" layoutY="202.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="passpost_error" alignment="CENTER" layoutX="165.0" layoutY="574.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label layoutX="594.0" layoutY="323.0" text="img Name :" />
+                  <Label fx:id="citizenshipfront_img" layoutX="662.0" layoutY="323.0" text="No file selected" />
+                  <Label fx:id="citizenshipback_error" alignment="CENTER" layoutX="529.0" layoutY="498.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label layoutX="592.0" layoutY="479.0" text="img Name :" />
+                  <Label fx:id="citizenshipback_name" layoutX="660.0" layoutY="478.0" text="No file selected" />
+                  <Label layoutX="598.0" layoutY="179.0" text="img Name :" />
+                  <Label fx:id="employee_id_img" layoutX="666.0" layoutY="179.0" text="No file selected" />
+                  <Label layoutX="214.0" layoutY="557.0" text="img Name :" />
+                  <Label fx:id="passportphoto_img" layoutX="282.0" layoutY="557.0" text="No file selected" />
                </children></AnchorPane>
          </center>
          <left>
@@ -146,7 +153,7 @@
                <children>
                   <ImageView fitHeight="90.0" fitWidth="94.0" layoutX="34.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@image/Evote-logo.png" />
+                        <Image url="@../../../../../../Desktop/Evote-logo.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="58.0" layoutY="103.0" prefHeight="42.0" prefWidth="66.0" styleClass="evote" stylesheets="@Main.css" text="Vote" textFill="#f7f7f7">

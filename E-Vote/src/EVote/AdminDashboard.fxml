@@ -103,7 +103,7 @@
                               </Button>
                            </children></AnchorPane>
                         <Line endX="450.79998779296875" endY="-90.99999237060547" layoutX="182.0" layoutY="127.0" startX="-181.99996948242188" startY="-90.99999237060547" stroke="#e7e4e4" />
-                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_strtvoting_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#removeerrorwhiletyping" prefHeight="518.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="388.0" layoutY="7.0" text="Voting">
                                  <font>
@@ -249,9 +249,9 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="517.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                        <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="518.0" prefWidth="806.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
                            <children>
-                              <TableView fx:id="voter_tableview" layoutX="13.0" layoutY="8.0" prefHeight="278.0" prefWidth="814.0">
+                              <TableView fx:id="voter_tableview" layoutX="13.0" layoutY="8.0" prefHeight="278.0" prefWidth="791.0">
                                  <columns>
                                     <TableColumn fx:id="voter_tablecol_id" prefWidth="31.99996852874756" text="ID" />
                                     <TableColumn fx:id="voter_tablecol_name" prefWidth="131.19992446899414" text="Name" />
@@ -331,7 +331,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <GridPane layoutX="119.0" layoutY="107.0" prefHeight="158.0" prefWidth="312.0">
                                 <columnConstraints>
@@ -376,6 +376,7 @@
                                     <Font name="Times New Roman Bold" size="12.0" />
                                  </font>
                               </CheckBox>
+                              <Label layoutX="122.0" layoutY="265.0" text="Note : Uncheck the show checkbox before clicking change password" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="admin_result_form" layoutY="36.0" prefHeight="515.0" prefWidth="820.0" styleClass="working_area" stylesheets="@Main.css" visible="false">

@@ -54,6 +54,7 @@ class Utility_Functions{
 			
 
 				MouseMovableScene(root);
+				nav_logout_btn.getScene().getWindow().hide();
 			} catch (Exception e) {
 
 			}

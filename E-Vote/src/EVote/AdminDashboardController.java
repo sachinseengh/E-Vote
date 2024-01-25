@@ -492,16 +492,17 @@ public class AdminDashboardController implements Initializable {
 
 	// -----------------startelectionbuttonfunction-----------------------------
 	public void startElection() {
-
+      
+		Validations validation = new Validations();
 		// checkposition
 		if (position_name.getText().equals("") || position_name.getText().trim().isEmpty()
 				|| position_name.getText() == null) {
 			position_error.setText("Fill the position ");
 		} else {
 			String position = position_name.getText();
-			Matcher result = letteronlyregex(position);
+			Boolean result = (Boolean) validation.letteronlyregex(position);
 
-			if (!result.matches()) {
+			if (!result) {
 				position_error.setText("Position can only contains letters");
 			}
 		}
@@ -513,9 +514,9 @@ public class AdminDashboardController implements Initializable {
 
 		} else {
 			String candidate_one = admin_candidate_one_name.getText();
-			Matcher candidate1 = letteronlyregex(candidate_one);
+			Boolean candidate1 = (Boolean) validation.letteronlyregex(candidate_one);
 
-			if (!candidate1.matches()) {
+			if (!candidate1) {
 
 				candidateone_error.setText("Candidate can only contains letters ");
 			}
@@ -529,9 +530,9 @@ public class AdminDashboardController implements Initializable {
 
 		} else {
 			String candidate_one = admin_candidate_two_name.getText();
-			Matcher candidate1 = letteronlyregex(candidate_one);
+			Boolean candidate1 = (Boolean) validation.letteronlyregex(candidate_one);
 
-			if (!candidate1.matches()) {
+			if (!candidate1) {
 				candidatetwo_error.setText("Candidates can only contains letters ");
 			}
 
@@ -574,7 +575,7 @@ public class AdminDashboardController implements Initializable {
 		}
 	}
 
-	// ----------------pattern to check letter only-----------------------------
+
 
 	// it is used to check whether a election is going on or not
 	public void startelectionorshowdetails() {
@@ -602,6 +603,8 @@ public class AdminDashboardController implements Initializable {
 
 	/*---------------------Change Password-------------------------*/
 
+	Validations validation = new Validations();
+	
 	public void passworderrorset() {
 		current_pass_error.setText("");
 		new_pass_error.setText("");
@@ -610,121 +613,25 @@ public class AdminDashboardController implements Initializable {
 	
 	
 	public void shownewpass() {
-		showPassword(admin_newshow_checkbox,admin_cp_new);
+		validation.showPassword(admin_newshow_checkbox,admin_cp_new);
 	}
 	public void showconfirmpass() {
-		showPassword(admin_confirmshow_checkbox,admin_cp_confirm);
+		validation.showPassword(admin_confirmshow_checkbox,admin_cp_confirm);
 	}
   
 
 	public void changepassword() {
-		if (admin_cp_current.getText().equals("") && admin_cp_current.getText().trim().isEmpty()
-				&& admin_cp_current.getText().isEmpty()) {
-
-			current_pass_error.setText("Current Password is required");
-
-		}
-
-		if (admin_cp_new.getText().equals("") && admin_cp_new.getText().trim().isEmpty()
-				&& admin_cp_new.getText().isEmpty()) {
-			new_pass_error.setText("New Password is required");  
-			
-		} else {
-			String txt = admin_cp_new.getText();
-
-			if (!hasDigit(txt)) {
-				new_pass_error.setText("At least one digit is required");
-			} else if (!hasAlphabet(txt)) {
-				new_pass_error.setText("At least one alphabet is required");
-			} else if (!hasSpecialCharacter(txt)) {
-				new_pass_error.setText("Special Character( _,@,#) is required");
-			}else if (!PasswordValidation(txt)) {
-				new_pass_error.setText("Invalid characters");
-			}
-
-		}
-
-		if (admin_cp_confirm.getText().equals("") && admin_cp_confirm.getText().trim().isEmpty()
-				&& admin_cp_confirm.getText().isEmpty()) {
-			confirm_pass_error.setText("password required");
-		}
-		if(!admin_cp_new.getText().trim().isEmpty()&& !admin_cp_confirm.getText().trim().isEmpty()) {
-			
-			if(!admin_cp_new.getText().equals(admin_cp_confirm.getText())) {
-			confirm_pass_error.setText("Passwords not matched");
-			}
-			
-			//---------------check current password is correct or not-----------//
-			if(!admin_cp_current.getText().trim().isEmpty()) {
-			Adminsql as = new Adminsql();
-			String ogpassword = as.checkPassword();
-			
-			
-			if(!admin_cp_current.getText().equals(ogpassword)) {
-				current_pass_error.setText("Incorrect Password");
-			}
-			}
-		}
-//		
+		Adminsql as = new Adminsql();		
 		
-		
-		if(new_pass_error.getText().equals("")&& confirm_pass_error.getText().equals("")&& current_pass_error.getText().equals("")) {
-			
-			Adminsql as = new Adminsql();
-			as.changePassword(admin_cp_new.getText());
-			
-			admin_cp_new.setText("");
-			admin_cp_current.setText("");
-			admin_cp_confirm.setText("");
-		}
-
-	}
-
-	public Matcher letteronlyregex(String txt) {
-		String regex = "^[a-zA-Z\\s]+$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(txt);
-		return matcher;
-	}
-
-	public Boolean hasDigit(String txt) {
-		String regex = ".*\\d.*";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(txt);
-		return matcher.matches();
-	}
-
-	public Boolean hasAlphabet(String txt) {
-		String regex = ".*[a-zA-Z].*";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(txt);
-		return matcher.matches();
-	}
-
-	public Boolean hasSpecialCharacter(String txt) {
-		String regex = ".*[_#@].*";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(txt);
-		return matcher.matches();
-	}
-
-	public Boolean PasswordValidation(String txt) {
-		String regex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d_#@]+$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(txt);
-		return matcher.matches();
-	}
-	public void showPassword(CheckBox checkbox,PasswordField passwordfield) {
-		if(checkbox.isSelected()) {
-			passwordfield.setPromptText(passwordfield.getText());
-			passwordfield.setText("");
-		}else {
-			passwordfield.setText(passwordfield.getPromptText());
-			passwordfield.setPromptText("");
+		ChangePassword cp = new ChangePassword();
+		cp.changepassword(admin_cp_current, admin_cp_new, admin_cp_confirm, current_pass_error,
+				new_pass_error, confirm_pass_error,as);
 		
 		}
-		
-	}
+
+	
+
+	
 
 
 	@Override
