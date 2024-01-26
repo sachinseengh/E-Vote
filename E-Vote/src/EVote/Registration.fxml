@@ -14,12 +14,12 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.RegistrationController">
    <children>
-      <AnchorPane layoutX="-4.0" layoutY="-3.0" prefHeight="556.0" prefWidth="807.0" />
+      <AnchorPane layoutX="-4.0" layoutY="-3.0" prefHeight="700.0" prefWidth="1062.0" />
       <BorderPane layoutX="200.0" layoutY="103.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <AnchorPane fx:id="center_form" prefHeight="650.0" prefWidth="816.0" styleClass="working_area" stylesheets="@Main.css" BorderPane.alignment="TOP_RIGHT">
+            <AnchorPane fx:id="center_form" prefHeight="700.0" prefWidth="780.0" styleClass="working_area" stylesheets="@Main.css" BorderPane.alignment="TOP_RIGHT">
                <children>
                   <AnchorPane layoutX="-41.0" layoutY="26.0" prefHeight="34.0" prefWidth="796.0">
                      <children>
@@ -93,22 +93,22 @@
                         <Font name="Times New Roman" size="17.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff96" height="86.0" layoutX="591.0" layoutY="391.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                  <ImageView fitHeight="89.0" fitWidth="163.0" layoutX="589.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="citizenshipback_addbtn" layoutX="591.0" layoutY="392.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff93" height="68.0" layoutX="595.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
-                  <ImageView fitHeight="72.0" fitWidth="164.0" layoutX="593.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="employeeid_addbtn" layoutX="595.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="66.0" prefWidth="159.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff99" height="76.0" layoutX="219.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="163.0" />
-                  <ImageView fitHeight="75.0" fitWidth="162.0" layoutX="217.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="passportsizephoto_btn" layoutX="219.0" layoutY="475.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="75.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
-                  <Button fx:id="submit_btn" layoutX="637.0" layoutY="609.0" mnemonicParsing="false" onAction="#submit" prefHeight="44.0" prefWidth="140.0" text="Submit" />
-                  <Button fx:id="reset_btn" layoutX="499.0" layoutY="611.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="121.0" text="Reset" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="86.0" layoutX="595.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                  <ImageView fitHeight="89.0" fitWidth="163.0" layoutX="593.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="citizenshipfront_addbtn" layoutX="595.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff96" height="85.0" layoutX="591.0" layoutY="391.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
+                  <ImageView fx:id="citizenback_imageview" fitHeight="85.0" fitWidth="161.0" layoutX="591.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="citizenshipback_addbtn" layoutX="591.0" layoutY="392.0" mnemonicParsing="false" onAction="#insertcitizenback" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff93" height="85.0" layoutX="595.0" layoutY="110.0" stroke="BLACK" strokeType="INSIDE" width="160.0" />
+                  <ImageView fx:id="employeeid_imageview" fitHeight="85.0" fitWidth="160.0" layoutX="595.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="employeeid_addbtn" layoutX="595.0" layoutY="111.0" mnemonicParsing="false" onAction="#insertemployeeid" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="159.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff99" height="85.0" layoutX="219.0" layoutY="475.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
+                  <ImageView fx:id="photo_imageview" fitHeight="85.0" fitWidth="161.0" layoutX="220.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="passportsizephoto_btn" layoutX="219.0" layoutY="475.0" mnemonicParsing="false" onAction="#insertpassportsizeimage" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="161.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <Button fx:id="submit_btn" layoutX="637.0" layoutY="609.0" mnemonicParsing="false" onAction="#register" prefHeight="44.0" prefWidth="140.0" text="Submit" />
+                  <Button fx:id="reset_btn" layoutX="499.0" layoutY="611.0" mnemonicParsing="false" onAction="#clearallfield" prefHeight="39.0" prefWidth="121.0" text="Reset" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa3" height="85.0" layoutX="595.0" layoutY="233.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
+                  <ImageView fx:id="citizenfront_imageview" fitHeight="85.0" fitWidth="161.0" layoutX="595.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="citizenshipfront_addbtn" layoutX="595.0" layoutY="234.0" mnemonicParsing="false" onAction="#insertcitizenfront" onMouseClicked="#seterrornull" prefHeight="85.0" prefWidth="162.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
                   <Line endX="711.5999755859375" endY="11.400003433227539" layoutX="89.0" layoutY="16.0" startX="-95.40000915527344" startY="11.400003433227539" stroke="#eaeaea" />
-                  <AnchorPane layoutX="114.0" layoutY="-8.0" prefHeight="54.0" prefWidth="635.0" AnchorPane.rightAnchor="12.399999999999977" AnchorPane.topAnchor="-8.0">
+                  <AnchorPane layoutX="138.5999999999999" layoutY="-12.0" prefHeight="54.0" prefWidth="676.0" AnchorPane.rightAnchor="6.2000000000000455" AnchorPane.topAnchor="-12.0">
                      <children>
                         <Button fx:id="register_fullscreenbtn" layoutX="622.0" layoutY="14.0" mnemonicParsing="false" onAction="#togglefullscreen" styleClass="minimize" stylesheets="@Main.css" AnchorPane.rightAnchor="24.400000000000045" AnchorPane.topAnchor="14.0">
                            <graphic>
@@ -131,21 +131,21 @@
                   <Label fx:id="address_error" alignment="CENTER" layoutX="148.0" layoutY="348.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
                   <Label fx:id="password_error" alignment="CENTER" layoutX="158.0" layoutY="392.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
                   <Label fx:id="citizenshipno_error" alignment="CENTER" layoutX="174.0" layoutY="444.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
-                  <Label fx:id="dateofbirth_error" alignment="CENTER" layoutX="164.0" layoutY="302.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="dateofbirth_error" alignment="CENTER" layoutX="172.0" layoutY="302.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
                   <Label fx:id="phone_error" alignment="CENTER" layoutX="121.0" layoutY="250.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
                   <Label fx:id="email_error" alignment="CENTER" layoutX="127.0" layoutY="197.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
                   <Label fx:id="citizenshipfront_error" alignment="CENTER" layoutX="530.0" layoutY="343.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
-                  <Label fx:id="employee_id_error" alignment="CENTER" layoutX="534.0" layoutY="202.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
+                  <Label fx:id="employee_id_error" alignment="CENTER" layoutX="534.0" layoutY="211.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
                   <Label fx:id="passpost_error" alignment="CENTER" layoutX="165.0" layoutY="574.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
-                  <Label layoutX="594.0" layoutY="323.0" text="img Name :" />
-                  <Label fx:id="citizenshipfront_img" layoutX="662.0" layoutY="323.0" text="No file selected" />
+                  <Label layoutX="521.0" layoutY="323.0" text="img Name :" />
+                  <Label fx:id="citizenshipfront_img" layoutX="589.0" layoutY="323.0" maxHeight="18.0" maxWidth="222.0" text="No file selected" />
                   <Label fx:id="citizenshipback_error" alignment="CENTER" layoutX="529.0" layoutY="498.0" prefHeight="18.0" prefWidth="234.0" text="Name is required" textFill="#ff0707" />
-                  <Label layoutX="592.0" layoutY="479.0" text="img Name :" />
-                  <Label fx:id="citizenshipback_name" layoutX="660.0" layoutY="478.0" text="No file selected" />
-                  <Label layoutX="598.0" layoutY="179.0" text="img Name :" />
-                  <Label fx:id="employee_id_img" layoutX="666.0" layoutY="179.0" text="No file selected" />
-                  <Label layoutX="214.0" layoutY="557.0" text="img Name :" />
-                  <Label fx:id="passportphoto_img" layoutX="282.0" layoutY="557.0" text="No file selected" />
+                  <Label layoutX="517.0" layoutY="482.0" text="img Name :" />
+                  <Label fx:id="citizenshipback_name" layoutX="585.0" layoutY="481.0" maxHeight="18.0" maxWidth="222.0" text="No file selected" />
+                  <Label layoutX="523.0" layoutY="196.0" text="img Name :" />
+                  <Label fx:id="employee_id_img" layoutX="591.0" layoutY="196.0" maxHeight="18.0" maxWidth="221.0" prefHeight="18.0" prefWidth="221.0" text="No file selected" />
+                  <Label layoutX="139.0" layoutY="560.0" text="img Name :" />
+                  <Label fx:id="passportphoto_img" layoutX="207.0" layoutY="560.0" maxHeight="18.0" maxWidth="222.0" text="No file selected" />
                </children></AnchorPane>
          </center>
          <left>

@@ -324,6 +324,7 @@ public class AdminDashboardController implements Initializable {
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(true);
+			
 			admin_election_details_form.setVisible(false);
 
 			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
@@ -331,6 +332,9 @@ public class AdminDashboardController implements Initializable {
 			nav_publishresult_btn.setStyle("-fx-background-color:transparent;");
 			nav_voter_btn.setStyle("-fx-background-color:transparent;");
 			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
+			
+			
+		
 
 		} else if (e.getSource() == nav_publishresult_btn) {
 			admin_strtvoting_form.setVisible(false);
