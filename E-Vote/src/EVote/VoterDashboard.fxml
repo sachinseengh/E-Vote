@@ -227,7 +227,7 @@
                                  </children>
                               </GridPane>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="voter_changepass_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_changepass_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <GridPane layoutX="119.0" layoutY="107.0" prefHeight="146.0" prefWidth="312.0">
                                 <columnConstraints>

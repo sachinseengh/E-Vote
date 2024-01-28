@@ -54,7 +54,7 @@
                         <Font name="Times New Roman" size="19.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="datepicker_txtfield" layoutX="168.0" layoutY="270.0" onMouseClicked="#seterrornull" prefHeight="26.0" prefWidth="226.0" stylesheets="@Main.css" />
+                  <DatePicker fx:id="datepicker_txtfield" layoutX="168.0" layoutY="270.0" onMouseClicked="#seterrornull" prefHeight="26.0" prefWidth="226.0" promptText="DD/MM/YYYY" stylesheets="@Main.css" />
                   <Label layoutX="53.0" layoutY="320.0" text="Address :">
                      <font>
                         <Font name="Times New Roman" size="19.0" />

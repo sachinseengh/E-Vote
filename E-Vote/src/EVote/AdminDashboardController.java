@@ -14,6 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -32,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -40,7 +43,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.fxml.Initializable;
-
 
 public class AdminDashboardController implements Initializable {
 	@FXML
@@ -164,37 +166,37 @@ public class AdminDashboardController implements Initializable {
 	private TextArea verification_remarks_txt;
 
 	@FXML
-	private TableView<?> verification_tableview;
+	private TableView<GetUnVerified> verification_tableview;
 
 	@FXML
 	private Button verification_verify_btn;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_address;
+	private TableColumn<GetUnVerified,String> verificationtable_col_address;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_citizenbackimg;
+	private TableColumn<GetUnVerified,String> verificationtable_col_citizenbackimg;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_citizenfrontimg;
+	private TableColumn<GetUnVerified,String> verificationtable_col_citizenfrontimg;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_citizenshipno;
+	private TableColumn<GetUnVerified,String> verificationtable_col_citizenshipno;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_dob;
+	private TableColumn<GetUnVerified,String> verificationtable_col_dob;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_employeeidimage;
+	private TableColumn<GetUnVerified,String> verificationtable_col_employeeidimage;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_id;
+	private TableColumn<GetUnVerified,String> verificationtable_col_phone;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_name;
+	private TableColumn<GetUnVerified,String> verificationtable_col_name;
 
 	@FXML
-	private TableColumn<?, ?> verificationtable_col_path;
+	private TableColumn<GetUnVerified,String> verificationtable_col_photo;
 
 	@FXML
 	private AnchorPane verifyvoter_form;
@@ -297,9 +299,6 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private Label new_pass_error;
-	
-
- 
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
@@ -324,7 +323,7 @@ public class AdminDashboardController implements Initializable {
 			voter_form.setVisible(false);
 			admin_result_form.setVisible(false);
 			verifyvoter_form.setVisible(true);
-			
+
 			admin_election_details_form.setVisible(false);
 
 			nav_startvoting_btn.setStyle("-fx-background-color:transparent;");
@@ -332,9 +331,6 @@ public class AdminDashboardController implements Initializable {
 			nav_publishresult_btn.setStyle("-fx-background-color:transparent;");
 			nav_voter_btn.setStyle("-fx-background-color:transparent;");
 			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
-			
-			
-		
 
 		} else if (e.getSource() == nav_publishresult_btn) {
 			admin_strtvoting_form.setVisible(false);
@@ -393,28 +389,24 @@ public class AdminDashboardController implements Initializable {
 		candidatetwo_img_error.setText("");
 	}
 
-
 //	--------------utility functions-------------
 	Utility_Functions uf = new Utility_Functions();
-	
+
 	public void minimize() {
 		uf.minimize(minimize_btn);
 	}
+
 	public void togglefullscreen() {
 		uf.togglefullscreen(fullscreen_btn);
 	}
+
 	public void close() {
-	uf.close();
+		uf.close();
 	}
-	
+
 	public void logout() {
 		uf.logout(nav_logout_btn);
 	}
-	
-
-	
-
-	
 
 	File selectedFile_one;
 	File selectedFile_two;
@@ -496,7 +488,7 @@ public class AdminDashboardController implements Initializable {
 
 	// -----------------startelectionbuttonfunction-----------------------------
 	public void startElection() {
-      
+
 		Validations validation = new Validations();
 		// checkposition
 		if (position_name.getText().equals("") || position_name.getText().trim().isEmpty()
@@ -579,8 +571,6 @@ public class AdminDashboardController implements Initializable {
 		}
 	}
 
-
-
 	// it is used to check whether a election is going on or not
 	public void startelectionorshowdetails() {
 		try {
@@ -608,35 +598,74 @@ public class AdminDashboardController implements Initializable {
 	/*---------------------Change Password-------------------------*/
 
 	Validations validation = new Validations();
-	
+
 	public void passworderrorset() {
 		current_pass_error.setText("");
 		new_pass_error.setText("");
 		confirm_pass_error.setText("");
 	}
-	
-	
+
 	public void shownewpass() {
-		validation.showPassword(admin_newshow_checkbox,admin_cp_new);
+		validation.showPassword(admin_newshow_checkbox, admin_cp_new);
 	}
+
 	public void showconfirmpass() {
-		validation.showPassword(admin_confirmshow_checkbox,admin_cp_confirm);
+		validation.showPassword(admin_confirmshow_checkbox, admin_cp_confirm);
 	}
-  
 
 	public void changepassword() {
-		Adminsql as = new Adminsql();		
-		
+		Adminsql as = new Adminsql();
+
 		ChangePassword cp = new ChangePassword();
-		cp.changepassword(admin_cp_current, admin_cp_new, admin_cp_confirm, current_pass_error,
-				new_pass_error, confirm_pass_error,as);
-		
+		cp.changepassword(admin_cp_current, admin_cp_new, admin_cp_confirm, current_pass_error, new_pass_error,
+				confirm_pass_error, as);
+
+	}
+
+	/*---------------------Verify-voter---------------------------*/
+	// FOR TABLE DATA
+	ObservableList<GetUnVerified> listdata;
+
+	public ObservableList<GetUnVerified> dataList() {
+		Conn c = new Conn();
+		listdata = FXCollections.observableArrayList();
+		String sql = "select * from unverified_voters";
+
+		try {
+			ResultSet result = c.s.executeQuery(sql);
+			GetUnVerified data;
+			while (result.next()) {
+				data = new GetUnVerified(result.getString("phone"), result.getString("fullname"),
+						result.getString("dob"), result.getString("address"), result.getString("citizenshipno"),
+						result.getString("photo"), result.getString("employee_id"),
+						result.getString("citizenship_front"), result.getString("citizenship_back"));
+			listdata.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return listdata;
 
+	}
 	
-
+	//To show data
+	public void showUnverified() {
+		ObservableList<GetUnVerified> showList = dataList();
+		
+		
+		verificationtable_col_phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+		verificationtable_col_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+		verificationtable_col_dob.setCellValueFactory(new PropertyValueFactory<>("Dob"));
+		verificationtable_col_citizenshipno.setCellValueFactory(new PropertyValueFactory<>("Citizenshipno"));
+		verificationtable_col_photo.setCellValueFactory(new PropertyValueFactory<>("Photo"));
+		verificationtable_col_employeeidimage.setCellValueFactory(new PropertyValueFactory<>("Employeeid"));
+		verificationtable_col_citizenfrontimg.setCellValueFactory(new PropertyValueFactory<>("Citizenshipfront"));
+		verificationtable_col_citizenbackimg.setCellValueFactory(new PropertyValueFactory<>("Citizenshipback"));
+		verificationtable_col_address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+		
+		verification_tableview.setItems(showList);
 	
-
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -646,6 +675,10 @@ public class AdminDashboardController implements Initializable {
 
 		// changepassword
 		passworderrorset();
+		
+		
+		//unverified
+		showUnverified();
 	}
 
 }

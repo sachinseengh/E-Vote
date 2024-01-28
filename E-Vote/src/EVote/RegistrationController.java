@@ -293,6 +293,7 @@ public class RegistrationController implements Initializable {
 		dateofbirth_error.setText("");
 		address_error.setText("");
 	}
+
 	public void clearallfield() {
 		fullname_txtfield.setText("");
 		email_txt.setText("");
@@ -306,6 +307,7 @@ public class RegistrationController implements Initializable {
 		citizenfront_imageview.setImage(null);
 		citizenback_imageview.setImage(null);
 	}
+	
 
 	public void register() {
 		Validations validation = new Validations();
@@ -338,9 +340,17 @@ public class RegistrationController implements Initializable {
 
 		}
 
+		
 		if (datepicker_txtfield.getValue() == null) {
 			dateofbirth_error.setText("DOB is required");
+		}else {
+			try {
+				datepicker_txtfield.getValue();
+			}catch(Exception e) {
+				dateofbirth_error.setText("Invalid DOB");
+			}
 		}
+		
 
 		if (address_txtfield.getText().equals("") || address_txtfield.getText().trim().isEmpty()
 				|| address_txtfield.getText() == null) {
@@ -392,8 +402,6 @@ public class RegistrationController implements Initializable {
 			citizenshipback_error.setText("Passport size image Required");
 		}
 
-		
-		
 		if (fullname_error.getText().equals("") && citizenshipback_error.getText().equals("")
 				&& citizenshipfront_error.getText().equals("") && employee_id_error.getText().equals("")
 				&& employee_id_error.getText().equals("") && citizenshipno_error.getText().equals("")
@@ -401,32 +409,25 @@ public class RegistrationController implements Initializable {
 				&& phone_error.getText().equals("") && dateofbirth_error.getText().equals("")
 				&& address_error.getText().equals("")) {
 
-			
-			
-			
-			
 			try {
-				
+
 				votersimgmoveintofolder(passportsizephoto);
 				votersimgmoveintofolder(employeeid);
 				votersimgmoveintofolder(citizenshipfront);
 				votersimgmoveintofolder(citizenshipback);
-				
-			}catch(Exception e) {
+
+			} catch (Exception e) {
 				e.getStackTrace();
 			}
+
+			Votersql vs = new Votersql();
+			vs.RegisterVoter(fullname_txtfield.getText(), email_txt.getText(), phone_txtfield.getText(),
+					datepicker_txtfield.getValue().toString(), address_txtfield.getText(), password_textfield.getText(),
+					citizenshipno_txtfield.getText(), passportphoto_img.getText(), employee_id_img.getText(),
+					citizenshipfront_img.getText(), citizenshipback_name.getText());
 			
 			clearallfield();
-			
-			
-			
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Register done");
-			
-			alert.setHeaderText(null);
-			alert.setContentText("Registration done . You can check you status");
-			alert.show();
-   
+		
 		}
 
 	}
