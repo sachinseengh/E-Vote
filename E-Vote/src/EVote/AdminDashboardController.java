@@ -29,6 +29,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -150,11 +151,14 @@ public class AdminDashboardController implements Initializable {
 	@FXML
 	private TextField verification_citizenshpno_txt;
 
+	@FXML 
+	private TextField verification_dob_txt;
+	
 	@FXML
 	private DatePicker verification_date_txt;
 
 	@FXML
-	private TextField verification_id_txt;
+	private TextField verification_phone_txt;
 
 	@FXML
 	private TextField verification_name_txt;
@@ -206,6 +210,8 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private ImageView voter_citizenshipback_img;
+	@FXML
+	private ImageView zoomedimage;
 
 	@FXML
 	private ImageView voter_citizenshipfront_img;
@@ -263,6 +269,19 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private TableView<?> voter_tableview;
+	
+	
+	@FXML
+	private ImageView review_citizenback;
+
+	@FXML
+    private ImageView review_citizenfront;
+
+	@FXML
+	private ImageView review_employeeid;
+
+	@FXML
+	private ImageView review_photo;
 
 	@FXML
 	private Label voter_total_txt;
@@ -299,6 +318,17 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private Label new_pass_error;
+	
+	
+	@FXML
+	private Label photo_name;
+	
+	@FXML
+	private Label employeeid_name;
+	@FXML
+	private Label citizenshipfront_name;
+	@FXML
+	private Label citizenshipback_name;
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
@@ -666,7 +696,71 @@ public class AdminDashboardController implements Initializable {
 		verification_tableview.setItems(showList);
 	
 	}
+	public void selectUnverified() {
+	
+		GetUnVerified data =verification_tableview.getSelectionModel().getSelectedItem();
+		
+		int num = verification_tableview.getSelectionModel().getSelectedIndex();
+		
+		if((num-1)<-1)
+			return;
+		
+		verification_phone_txt.setText(data.getPhone());
+		verification_name_txt.setText(data.getName());
+		verification_dob_txt.setText(data.getDob());
+		verification_address_txt.setText(data.getAddress());
+		verification_citizenshpno_txt.setText(data.getCitizenshipno());
+	
+		photo_name.setText(data.getPhoto());
+		employeeid_name.setText(data.getEmployeeid());
+		citizenshipfront_name.setText(data.getCitizenshipfront());
+		citizenshipback_name.setText(data.getCitizenshipback());
+		
+		
+		try {
+		Image photoimage = new Image("file:" +"votersimages/"+ photo_name.getText());
+		review_photo.setImage(photoimage);
+		
+		Image employeeidimage = new Image("file:" +"votersimages/"+ employeeid_name.getText());
+		review_employeeid.setImage(employeeidimage);
+		
+		Image citizenshipfrontimage = new Image("file:" +"votersimages/"+ citizenshipfront_name.getText());
+		review_citizenfront.setImage(citizenshipfrontimage);
+		
+		Image citizenshipbackimage = new Image("file:" +"votersimages/"+ citizenshipback_name.getText());
+		review_citizenback.setImage(citizenshipbackimage);
+		}catch(Exception e) {
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	public void Zoomphoto() {
+		zoomUnverifiedImage(photo_name.getText());
+	}
+	public void ZoomEmployeeid() {
+		zoomUnverifiedImage(employeeid_name.getText());
+	}
+	public void Zoomcitizenfront() {
+		zoomUnverifiedImage(citizenshipfront_name.getText());
+	}
+	public void Zoomcitizenback() {
+		zoomUnverifiedImage(citizenshipback_name.getText());
+	}
+	
+	
+	
+	
+	
 
+	public void zoomUnverifiedImage(String imagename) {
+		Image photoimage = new Image("file:" +"votersimages/"+imagename);
+		zoomedimage.setImage(photoimage);
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 

@@ -169,9 +169,9 @@
                               <Button fx:id="candidatetwo_imgbtn" layoutX="513.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertImagetwo" onMouseClicked="#removeerrorwhiletyping" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
                          
                            </children></AnchorPane>
-                        <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" prefHeight="764.0" prefWidth="919.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#selectUnverified" prefHeight="764.0" prefWidth="919.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="36.0">
                            <children>
-                              <TableView fx:id="verification_tableview" layoutX="14.0" layoutY="23.0" prefHeight="278.0" prefWidth="887.0" AnchorPane.leftAnchor="14.0">
+                              <TableView fx:id="verification_tableview" layoutX="14.0" layoutY="23.0" onMouseClicked="#selectUnverified" prefHeight="278.0" prefWidth="887.0" AnchorPane.leftAnchor="14.0">
                                 <columns>
                                   <TableColumn fx:id="verificationtable_col_phone" prefWidth="62.40000855922699" text="Phone" />
                                   <TableColumn fx:id="verificationtable_col_name" prefWidth="162.40003967285156" text="Name" />
@@ -189,7 +189,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="verification_id_txt" layoutX="78.0" layoutY="311.0" prefHeight="26.0" prefWidth="171.0" styleClass="textfields" stylesheets="@Main.css" />
+                              <TextField fx:id="verification_phone_txt" layoutX="78.0" layoutY="311.0" prefHeight="26.0" prefWidth="171.0" styleClass="textfields" stylesheets="@Main.css" />
                               <Label layoutX="25.0" layoutY="396.0" prefHeight="22.0" prefWidth="46.0" text="DOB :">
                                  <font>
                                     <Font size="15.0" />
@@ -206,7 +206,7 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="verification_address_txt" layoutX="86.0" layoutY="422.0" prefHeight="26.0" prefWidth="162.0" styleClass="textfields" stylesheets="@Main.css" />
+                              <TextField fx:id="verification_address_txt" layoutX="93.0" layoutY="426.0" prefHeight="26.0" prefWidth="162.0" styleClass="textfields" stylesheets="@Main.css" />
                               <Label layoutX="21.0" layoutY="470.0" prefHeight="22.0" prefWidth="106.0" text="Citizenship no :">
                                  <font>
                                     <Font size="15.0" />
@@ -215,24 +215,24 @@
                               <TextField fx:id="verification_citizenshpno_txt" layoutX="128.0" layoutY="458.0" prefHeight="26.0" prefWidth="120.0" styleClass="textfields" stylesheets="@Main.css" />
                               <Label layoutX="303.0" layoutY="336.0" text="Photo :" />
                               <Label layoutX="294.0" layoutY="425.0" text="Citizenship front :" />
-                              <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="361.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="review_photo" fitHeight="59.0" fitWidth="71.0" layoutX="361.0" layoutY="311.0" onMouseClicked="#Zoomphoto" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="71.0" fitWidth="133.0" layoutX="380.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="review_citizenfront" fitHeight="71.0" fitWidth="133.0" layoutX="380.0" layoutY="398.0" onMouseClicked="#Zoomcitizenfront" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
                               <Label layoutX="485.0" layoutY="340.0" text="Employee id :" />
                               <Label layoutX="488.0" layoutY="427.0" text="Citizenship back :" />
-                              <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="585.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="review_employeeid" fitHeight="59.0" fitWidth="71.0" layoutX="585.0" layoutY="308.0" onMouseClicked="#ZoomEmployeeid" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="61.0" fitWidth="71.0" layoutX="584.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="review_citizenback" fitHeight="61.0" fitWidth="71.0" layoutX="584.0" layoutY="398.0" onMouseClicked="#Zoomcitizenback" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
@@ -247,12 +247,9 @@
                                  </font>
                               </Label>
                               <Label layoutX="34.0" layoutY="592.0" text="image preview :" />
-                              <ImageView fitHeight="237.0" fitWidth="454.0" layoutX="131.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../Desktop/coding.jpg" />
-                                 </image>
-                              </ImageView>
-                              <TextField fx:id="verification_name_txt1" layoutX="78.0" layoutY="391.0" prefHeight="26.0" prefWidth="171.0" styleClass="textfields" stylesheets="@Main.css" />
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="244.0" layoutX="126.0" layoutY="504.0" stroke="BLACK" strokeType="INSIDE" width="431.0" />
+                              <ImageView fx:id="zoomedimage" fitHeight="237.0" fitWidth="420.0" layoutX="131.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextField fx:id="verification_dob_txt" layoutX="78.0" layoutY="391.0" prefHeight="26.0" prefWidth="171.0" styleClass="textfields" stylesheets="@Main.css" />
                               <Label layoutX="302.0" layoutY="369.0" text="Image :" />
                               <Label fx:id="photo_name" layoutX="347.0" layoutY="370.0" prefHeight="18.0" prefWidth="137.0" text="Image Name" />
                               <Label layoutX="487.0" layoutY="366.0" text="Image :" />
