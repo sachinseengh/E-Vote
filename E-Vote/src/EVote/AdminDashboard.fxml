@@ -169,7 +169,7 @@
                               <Button fx:id="candidatetwo_imgbtn" layoutX="513.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertImagetwo" onMouseClicked="#removeerrorwhiletyping" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
                          
                            </children></AnchorPane>
-                        <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" prefHeight="764.0" prefWidth="919.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" prefHeight="764.0" prefWidth="919.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <TableView fx:id="verification_tableview" layoutX="14.0" layoutY="23.0" prefHeight="278.0" prefWidth="887.0" AnchorPane.leftAnchor="14.0">
                                 <columns>
@@ -213,34 +213,34 @@
                                  </font>
                               </Label>
                               <TextField fx:id="verification_citizenshpno_txt" layoutX="128.0" layoutY="458.0" prefHeight="26.0" prefWidth="120.0" styleClass="textfields" stylesheets="@Main.css" />
-                              <Label layoutX="278.0" layoutY="339.0" text="Photo :" />
-                              <Label layoutX="265.0" layoutY="458.0" text="Citizenship front :" />
-                              <ImageView fitHeight="71.0" fitWidth="133.0" layoutX="323.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                              <Label layoutX="303.0" layoutY="336.0" text="Photo :" />
+                              <Label layoutX="294.0" layoutY="425.0" text="Citizenship front :" />
+                              <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="361.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@image/Evote-logo.png" />
+                                    <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="71.0" fitWidth="133.0" layoutX="358.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="71.0" fitWidth="133.0" layoutX="380.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@image/Evote-logo.png" />
+                                    <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="404.0" layoutY="338.0" text="Employee id :" />
-                              <Label layoutX="424.0" layoutY="459.0" text="Employee id:" />
-                              <ImageView fitHeight="71.0" fitWidth="133.0" layoutX="481.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
+                              <Label layoutX="485.0" layoutY="340.0" text="Employee id :" />
+                              <Label layoutX="488.0" layoutY="427.0" text="Citizenship back :" />
+                              <ImageView fitHeight="59.0" fitWidth="71.0" layoutX="585.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@image/Evote-logo.png" />
+                                    <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="71.0" fitWidth="133.0" layoutX="498.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="61.0" fitWidth="71.0" layoutX="584.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@image/Evote-logo.png" />
+                                    <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="574.0" layoutY="364.0" text="Remarks:" />
-                              <TextArea fx:id="verification_remarks_txt" layoutX="628.0" layoutY="324.0" prefHeight="106.0" prefWidth="171.0" />
-                              <Button fx:id="verification_reject_btn" layoutX="618.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Reject" />
-                              <Button fx:id="verification_verify_btn" layoutX="715.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Verify" />
+                              <Label layoutX="677.0" layoutY="364.0" text="Remarks:" />
+                              <TextArea fx:id="verification_remarks_txt" layoutX="731.0" layoutY="324.0" prefHeight="106.0" prefWidth="171.0" />
+                              <Button fx:id="verification_reject_btn" layoutX="721.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Reject" />
+                              <Button fx:id="verification_verify_btn" layoutX="818.0" layoutY="465.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Verify" />
                               <Label layoutX="430.0" layoutY="3.0" text="Unverified Voter">
                                  <font>
                                     <Font name="Times New Roman" size="15.0" />
@@ -253,6 +253,14 @@
                                  </image>
                               </ImageView>
                               <TextField fx:id="verification_name_txt1" layoutX="78.0" layoutY="391.0" prefHeight="26.0" prefWidth="171.0" styleClass="textfields" stylesheets="@Main.css" />
+                              <Label layoutX="302.0" layoutY="369.0" text="Image :" />
+                              <Label fx:id="photo_name" layoutX="347.0" layoutY="370.0" prefHeight="18.0" prefWidth="137.0" text="Image Name" />
+                              <Label layoutX="487.0" layoutY="366.0" text="Image :" />
+                              <Label fx:id="employeeid_name" layoutX="532.0" layoutY="367.0" prefHeight="18.0" prefWidth="134.0" text="Image Name" />
+                              <Label layoutX="293.0" layoutY="467.0" text="Image :" />
+                              <Label fx:id="citizenshipfront_name" layoutX="338.0" layoutY="468.0" prefHeight="18.0" prefWidth="137.0" text="Image Name" />
+                              <Label layoutX="490.0" layoutY="467.0" text="Image :" />
+                              <Label fx:id="citizenshipback_name" layoutX="535.0" layoutY="468.0" prefHeight="18.0" prefWidth="134.0" text="Image Name" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="518.0" prefWidth="806.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
