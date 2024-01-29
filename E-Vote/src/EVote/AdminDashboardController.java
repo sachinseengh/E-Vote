@@ -167,7 +167,7 @@ public class AdminDashboardController implements Initializable {
 	private Button verification_reject_btn;
 
 	@FXML
-	private TextArea verification_remarks_txt;
+	private TextArea verification_reason_txt;
 
 	@FXML
 	private TableView<GetUnVerified> verification_tableview;
@@ -243,10 +243,10 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private ImageView voter_photo_img;
-	
+
 	@FXML
 	private TextField unverified_id;
-	
+
 	@FXML
 	private TextField unverified_email;
 
@@ -346,10 +346,6 @@ public class AdminDashboardController implements Initializable {
 	private Label citizenshipfront_name;
 	@FXML
 	private Label citizenshipback_name;
-
-	
-
-	
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
@@ -686,9 +682,9 @@ public class AdminDashboardController implements Initializable {
 			ResultSet result = c.s.executeQuery(sql);
 			GetUnVerified data;
 			while (result.next()) {
-				data = new GetUnVerified(result.getInt("id"),result.getString("email"),result.getString("phone"), result.getString("fullname"),
-						result.getString("dob"), result.getString("address"), result.getString("citizenshipno"),
-						result.getString("photo"), result.getString("employee_id"),
+				data = new GetUnVerified(result.getInt("id"), result.getString("email"), result.getString("phone"),
+						result.getString("fullname"), result.getString("dob"), result.getString("address"),
+						result.getString("citizenshipno"), result.getString("photo"), result.getString("employee_id"),
 						result.getString("citizenship_front"), result.getString("citizenship_back"));
 				listdata.add(data);
 			}
@@ -703,7 +699,6 @@ public class AdminDashboardController implements Initializable {
 	public void showUnverified() {
 		ObservableList<GetUnVerified> showList = dataList();
 
-		
 		verificationtable_col_phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 		verificationtable_col_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		verificationtable_col_dob.setCellValueFactory(new PropertyValueFactory<>("Dob"));
@@ -729,10 +724,9 @@ public class AdminDashboardController implements Initializable {
 		if ((num - 1) < -1)
 			return;
 
-		
 		unverified_id.setText(String.valueOf(data.getId()));
 		unverified_email.setText(data.getEmail());
-		
+
 		verification_phone_txt.setText(data.getPhone());
 		verification_name_txt.setText(data.getName());
 		verification_dob_txt.setText(data.getDob());
@@ -794,11 +788,11 @@ public class AdminDashboardController implements Initializable {
 		} else {
 
 			Conn c = new Conn();
-			
+
 			String sql = "insert into status (id,phone,citizenshipno,dob,remarks,status) values ('"
 					+ Integer.parseInt(unverified_id.getText()) + "','" + verification_phone_txt.getText() + "','"
 					+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
-					+ verification_remarks_txt.getText() + "','Approved')";
+					+ verification_reason_txt.getText() + "','Approved')";
 
 			String sql2 = "insert into voters values('" + Integer.parseInt(unverified_id.getText()) + "','"
 					+ verification_name_txt.getText() + "','" + unverified_email.getText() + "','"
@@ -806,61 +800,87 @@ public class AdminDashboardController implements Initializable {
 					+ verification_address_txt.getText() + "','" + verification_citizenshpno_txt.getText() + "','"
 					+ photo_name.getText() + "','" + employeeid_name.getText() + "','" + citizenshipfront_name.getText()
 					+ "','" + citizenshipback_name.getText() + "')";
-			
-			
-			
-			String password=null;
-			try {	
-				
-				
-				String sql3 ="select password from unverified_voters where id ='"+Integer.parseInt(unverified_id.getText())+"'";
-				ResultSet rs=c.s.executeQuery(sql3);
-				if(rs.next()) {
-					password= rs.getString("password");
-				}	
-			}catch(Exception e) {
-				e.printStackTrace();
-				}
-			
-			String sql4 =" insert into voter_login values ('"+Integer.parseInt(unverified_id.getText()) +"','"+ verification_phone_txt.getText()+"','"+password+"')";
 
-			
-			
+			String password = null;
+			try {
+
+				String sql3 = "select password from unverified_voters where id ='"
+						+ Integer.parseInt(unverified_id.getText()) + "'";
+				ResultSet rs = c.s.executeQuery(sql3);
+				if (rs.next()) {
+					password = rs.getString("password");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			String sql4 = " insert into voter_login values ('" + Integer.parseInt(unverified_id.getText()) + "','"
+					+ verification_phone_txt.getText() + "','" + password + "')";
+
 			try {
 				int affectedrow1 = c.s.executeUpdate(sql);
 				int affectedrow2 = c.s.executeUpdate(sql2);
 				int affectedrow4 = c.s.executeUpdate(sql4);
-				
-				
-				
-			   if(affectedrow1>0 && affectedrow2>0 && affectedrow4>0) {
-				   String sql5 = "delete from unverified_voters where id='"+Integer.parseInt(unverified_id.getText())+"'";
-				   int affectedrow5 = c.s.executeUpdate(sql5);
-				   
-				   if(affectedrow5>0) {
-					   Alert alert = new Alert(AlertType.INFORMATION);
-					   alert.setTitle("Approved");
-					   alert.setHeaderText(null);
-					   alert.setContentText("Voter Approved successfully");
-					   alert.show();
-					   showUnverified();
-				   }
-				   
-			   }else {
-				   Alert alert = new Alert(AlertType.ERROR);
-				   alert.setTitle("Error");
-				   alert.setHeaderText(null);
-				   alert.setContentText("Something went Wrong");
-				   alert.show();
-			   }
-				
-				
-			}catch(Exception e) {
+
+				if (affectedrow1 > 0 && affectedrow2 > 0 && affectedrow4 > 0) {
+					String sql5 = "delete from unverified_voters where id='" + Integer.parseInt(unverified_id.getText())
+							+ "'";
+					int affectedrow5 = c.s.executeUpdate(sql5);
+
+					if (affectedrow5 > 0) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Approved");
+						alert.setHeaderText(null);
+						alert.setContentText("Voter Approved successfully");
+						alert.show();
+						showUnverified();
+					}
+
+				} else {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText(null);
+					alert.setContentText("Something went Wrong");
+					alert.show();
+				}
+
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-			
+
+		}
+	}
+
+	public void reject() {
+		if (unverified_id.getText().equals("")
+				|| unverified_id.getText() == null && unverified_id.getText().isEmpty()) {
+
+			unverified_error.setText("Select a row from the table");
+		} else {
+			if (verification_reason_txt.getText().equals("")
+					|| verification_reason_txt.getText() == null && verification_reason_txt.getText().isEmpty()) {
+				remarks_txt.setText("Reason Required for Rejection");
+			} else {
+				Conn c = new Conn();
+				String sql = "delete from unverified_voters where id='" + Integer.parseInt(unverified_id.getText())
+						+ "'";
+				try {
+					int affectedrow = c.s.executeUpdate(sql);
+					showUnverified();
+
+					if (affectedrow > 0) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Rejected");
+						alert.setHeaderText(null);
+						alert.setContentText("Voter Approved Rejected");
+						alert.show();
+						showUnverified();
+					}
+				} catch (Exception e) {
+
+				}
+			}
+
 		}
 	}
 

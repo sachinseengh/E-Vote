@@ -236,9 +236,9 @@
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="572.0" layoutY="609.0" text="Remarks:" />
-                              <TextArea fx:id="verification_remarks_txt" layoutX="624.0" layoutY="571.0" prefHeight="106.0" prefWidth="264.0" />
-                              <Button fx:id="verification_reject_btn" layoutX="707.0" layoutY="712.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Reject" />
+                              <Label layoutX="572.0" layoutY="609.0" text="Reason :" />
+                              <TextArea fx:id="verification_reason_txt" layoutX="624.0" layoutY="571.0" prefHeight="106.0" prefWidth="264.0" />
+                              <Button fx:id="verification_reject_btn" layoutX="707.0" layoutY="712.0" mnemonicParsing="false" onAction="#reject" prefHeight="26.0" prefWidth="94.0" text="Reject" />
                               <Button fx:id="verification_verify_btn" layoutX="804.0" layoutY="712.0" mnemonicParsing="false" onAction="#approve" prefHeight="26.0" prefWidth="89.0" text="Verify" />
                               <Label layoutX="430.0" layoutY="3.0" text="Unverified Voter">
                                  <font>
@@ -290,8 +290,8 @@
                       
                               <Line endX="25.466644287109375" endY="220.6666259765625" layoutX="482.0" layoutY="534.0" startX="25.466644287109375" startY="-198.5333251953125" />
                               <Label layoutX="674.0" layoutY="306.0" text="Image preview" />
-                              <Label fx:id="remarks_txt" layoutX="629.0" layoutY="681.0" text="Remarks required " textFill="#f20000" />
-                              <Label fx:id="unverified_error" layoutX="26.0" layoutY="315.0" prefHeight="30.0" prefWidth="459.0" text="Error" textFill="#fa0000">
+                              <Label fx:id="remarks_txt" layoutX="629.0" layoutY="681.0" textFill="#f20000" />
+                              <Label fx:id="unverified_error" layoutX="26.0" layoutY="315.0" prefHeight="30.0" prefWidth="459.0" textFill="#fa0000">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
