@@ -14,11 +14,15 @@ public class GetUnVerified{
 	private String employee_id;
 	private String citizenshipfront;
 	private String citizenshipback;
+	private int id;
+	private String email;
 	
-	 public GetUnVerified(String phone,String Name,String dob,
+	 public GetUnVerified(int id,String email,String phone,String Name,String dob,
 			String address,String citizenshipno,String photo,String employee_id,
 			String citizenshipfront,String citizenshipback) {
 		 
+		 this.id = id;
+		 this.email=email;
 		 this.Phone = phone;
 		 this.Name = Name;
 		 this.dob = dob;
@@ -29,6 +33,14 @@ public class GetUnVerified{
 		 this.citizenshipfront= citizenshipfront;
 		 this.citizenshipback= citizenshipback;	 	 
 	}
+	 
+	 
+	 public int getId() {
+		 return this.id;
+	 }
+	 public String getEmail() {
+		 return this.email;
+	 }
 	 
 	 public String getPhone() {
 		 return this.Phone;
