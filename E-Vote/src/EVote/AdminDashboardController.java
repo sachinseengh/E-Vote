@@ -14,8 +14,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -211,6 +214,12 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private TextField voter_address_txt;
+	
+	@FXML
+	private TextField voter_email;
+	
+	@FXML
+	private TextField voter_phone;
 
 	@FXML
 	private ImageView voter_citizenshipback_img;
@@ -227,7 +236,7 @@ public class AdminDashboardController implements Initializable {
 	private Button voter_delete_btn;
 
 	@FXML
-	private DatePicker voter_dob_txt;
+	private TextField voter_dob_txt;
 
 	@FXML
 	private ImageView voter_employeeid_img;
@@ -243,6 +252,18 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private ImageView voter_photo_img;
+	
+	
+	@FXML
+	private Label voter_photo_name;
+	
+	@FXML
+	private Label voter_employeeid_name;
+	@FXML
+	private Label voter_citizenshipfront_name;
+	@FXML
+	private Label voter_citizenshipback_name;
+	
 
 	@FXML
 	private TextField unverified_id;
@@ -251,34 +272,40 @@ public class AdminDashboardController implements Initializable {
 	private TextField unverified_email;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_address;
+	private TableColumn<GetVoters, String> voter_tablecol_address;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_citizenno;
+	private TableColumn<GetVoters, String> voter_tablecol_citizenno;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_citizenshipback;
+	private TableColumn<GetVoters, String> voter_tablecol_citizenshipback;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_citizenshipfront;
+	private TableColumn<GetVoters, String> voter_tablecol_citizenshipfront;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_dob;
+	private TableColumn<GetVoters, String> voter_tablecol_dob;
+	
+	
+	@FXML
+	private TableColumn<GetVoters, String> voter_tablecol_phone;
+	@FXML
+	private TableColumn<GetVoters, String> voter_tablecol_email;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_employeeidimg;
+	private TableColumn<GetVoters, String> voter_tablecol_employeeidimg;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_id;
+	private TableColumn<GetVoters, Integer> voter_tablecol_id;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_name;
+	private TableColumn<GetVoters, String> voter_tablecol_name;
 
 	@FXML
-	private TableColumn<?, ?> voter_tablecol_photo;
+	private TableColumn<GetVoters, String> voter_tablecol_photo;
 
 	@FXML
-	private TableView<?> voter_tableview;
+	private TableView<GetVoters> voter_tableview;
 
 	@FXML
 	private ImageView review_citizenback;
@@ -346,6 +373,9 @@ public class AdminDashboardController implements Initializable {
 	private Label citizenshipfront_name;
 	@FXML
 	private Label citizenshipback_name;
+	
+	@FXML
+	private TextField search_txtfield;
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
@@ -834,6 +864,7 @@ public class AdminDashboardController implements Initializable {
 						alert.setContentText("Voter Approved successfully");
 						alert.show();
 						showUnverified();
+						showVoters();
 					}
 
 				} else {
@@ -884,6 +915,128 @@ public class AdminDashboardController implements Initializable {
 		}
 	}
 
+	
+	/*--------------------------------voter table-------------------*/
+	// FOR TABLE DATA
+		
+	ObservableList<GetVoters> voterlistdata;
+
+	public ObservableList<GetVoters> voterdataList() {
+		Conn c = new Conn();
+		voterlistdata = FXCollections.observableArrayList();
+		String sql = "select * from  voters";
+
+		try {
+			ResultSet result = c.s.executeQuery(sql);
+			GetVoters data;
+			while (result.next()) {
+				data = new GetVoters(result.getInt("id"), result.getString("email"), result.getString("phone"),
+						result.getString("name"), result.getString("dob"), result.getString("address"),
+						result.getString("citizenshipno"), result.getString("photo"), result.getString("employee_id"),
+						result.getString("citizenshipfront"), result.getString("citizenshipback"));
+				voterlistdata.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return voterlistdata;
+
+	}
+
+	// To show data
+	public void showVoters() {
+		ObservableList<GetVoters> showList = voterdataList();
+
+		voter_tablecol_phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+		voter_tablecol_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+		voter_tablecol_dob.setCellValueFactory(new PropertyValueFactory<>("Dob"));
+		voter_tablecol_citizenno.setCellValueFactory(new PropertyValueFactory<>("Citizenshipno"));
+		voter_tablecol_photo.setCellValueFactory(new PropertyValueFactory<>("Photo"));
+		voter_tablecol_employeeidimg.setCellValueFactory(new PropertyValueFactory<>("Employeeid"));
+		voter_tablecol_citizenshipfront.setCellValueFactory(new PropertyValueFactory<>("Citizenshipfront"));
+		voter_tablecol_citizenshipback.setCellValueFactory(new PropertyValueFactory<>("Citizenshipback"));
+		voter_tablecol_address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+		voter_tablecol_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
+		voter_tablecol_email.setCellValueFactory(new PropertyValueFactory<>("Email"));
+
+		voter_tableview.setItems(showList);
+
+	}
+
+	public void selectVoters() {
+
+		GetVoters data = voter_tableview.getSelectionModel().getSelectedItem();
+
+		int num = voter_tableview.getSelectionModel().getSelectedIndex();
+
+		if ((num - 1) < -1)
+			return;
+
+		voter_id_txt.setText(String.valueOf(data.getId()));
+		voter_email.setText(data.getEmail());
+
+		voter_phone.setText(data.getPhone());
+		voter_name_txt.setText(data.getName());
+		voter_dob_txt.setText(data.getDob());
+		voter_address_txt.setText(data.getAddress());
+		voter_citizenshipno_txt.setText(data.getCitizenshipno());
+
+		voter_photo_name.setText(data.getPhoto());
+		voter_employeeid_name.setText(data.getEmployeeid());
+		voter_citizenshipfront_name.setText(data.getCitizenshipfront());
+		voter_citizenshipback_name.setText(data.getCitizenshipback());
+
+		try {
+			Image photoimage = new Image("file:" + "votersimages/" + voter_photo_name.getText());
+			voter_photo_img.setImage(photoimage);
+
+			Image employeeidimage = new Image("file:" + "votersimages/" + voter_employeeid_name.getText());
+			voter_employeeid_img.setImage(employeeidimage);
+
+			Image citizenshipfrontimage = new Image("file:" + "votersimages/" + voter_citizenshipfront_name.getText());
+			voter_citizenshipfront_img.setImage(citizenshipfrontimage);
+
+			Image citizenshipbackimage = new Image("file:" + "votersimages/" + voter_citizenshipback_name.getText());
+			voter_citizenshipback_img.setImage(citizenshipbackimage);
+		} catch (Exception e) {
+
+		}
+
+	}
+	
+	public void VoterSearch() {
+		FilteredList<GetVoters> filter = new FilteredList<>(voterlistdata, e -> true);
+		search_txtfield.textProperty().addListener((Observable, oldValue, newValue) -> {
+
+			filter.setPredicate(predicateRoomData -> {
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				String searchkey = newValue.toLowerCase();
+
+				if (predicateRoomData.getId().toString().contains(searchkey)) {
+					return true;
+				} else if (predicateRoomData.getName().toLowerCase().contains(searchkey)) {
+					return true;
+				} else if (predicateRoomData.getCitizenshipno().toString().contains(searchkey)) {
+					return true;
+				} else if (predicateRoomData.getEmail().toLowerCase().contains(searchkey)) {
+					return true;
+					
+				}else if (predicateRoomData.getPhone().toLowerCase().contains(searchkey)) {
+						return true;
+					
+				} else
+					return false;
+
+			});
+		});
+
+		SortedList<GetVoters> sortList = new SortedList<>(filter);
+		sortList.comparatorProperty().bind(voter_tableview.comparatorProperty());
+		voter_tableview.setItems(sortList);
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -895,6 +1048,10 @@ public class AdminDashboardController implements Initializable {
 
 		// unverified
 		showUnverified();
+		
+		
+		//voters
+		showVoters();
 	}
 
 }
