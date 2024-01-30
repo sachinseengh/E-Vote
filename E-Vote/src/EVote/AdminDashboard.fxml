@@ -324,7 +324,7 @@
                         </AnchorPane>
                         <AnchorPane fx:id="voter_form" layoutY="36.0" prefHeight="766.0" prefWidth="917.0" styleClass="working_area" stylesheets="@Main.css">
                            <children>
-                              <Button fx:id="voter_delete_btn" layoutX="747.0" layoutY="699.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="122.0" styleClass="delete" stylesheets="@Main.css" text="Delete" />
+                              <Button fx:id="voter_delete_btn" layoutX="747.0" layoutY="699.0" mnemonicParsing="false" onAction="#deletevoter" prefHeight="43.0" prefWidth="122.0" styleClass="delete" stylesheets="@Main.css" text="Delete" />
                               <Label layoutX="13.0" layoutY="13.0" text="Total Voter :">
                                  <font>
                                     <Font size="14.0" />
@@ -370,12 +370,12 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="voter_photo_img" fitHeight="74.0" fitWidth="79.0" layoutX="88.0" layoutY="657.0" onMouseClicked="#Zoomphoto" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="voter_photo_img" fitHeight="74.0" fitWidth="79.0" layoutX="88.0" layoutY="657.0" onMouseClicked="#Zoomvoterphoto" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="voter_citizenshipback_img" fitHeight="59.0" fitWidth="71.0" layoutX="422.0" layoutY="669.0" onMouseClicked="#Zoomcitizenfront" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="voter_citizenshipback_img" fitHeight="59.0" fitWidth="71.0" layoutX="422.0" layoutY="669.0" onMouseClicked="#Zoomvotercitizenback" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
@@ -390,17 +390,17 @@
                                     <Font size="15.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="voter_citizenshipfront_img" fitHeight="59.0" fitWidth="71.0" layoutX="422.0" layoutY="563.0" onMouseClicked="#ZoomEmployeeid" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="voter_citizenshipfront_img" fitHeight="59.0" fitWidth="71.0" layoutX="415.0" layoutY="562.0" onMouseClicked="#Zoomvotercitizenfront" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="voter_employeeid_img" fitHeight="61.0" fitWidth="71.0" layoutX="421.0" layoutY="464.0" onMouseClicked="#Zoomcitizenback" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="voter_employeeid_img" fitHeight="61.0" fitWidth="71.0" layoutX="421.0" layoutY="464.0" onMouseClicked="#ZoomvoterEmployeeid" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="voter_zoomedimage" fitHeight="222.0" fitWidth="327.0" layoutX="585.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="voter_zoomedimage" fitHeight="222.0" fitWidth="327.0" layoutX="568.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/coding.jpg" />
                                  </image>
@@ -451,7 +451,7 @@
                                  </font>
                               </Label>
                               <Line endX="25.466644287109375" endY="220.6666259765625" layoutX="514.0" layoutY="535.0" startX="25.46661376953125" startY="-95.00003051757812" />
-                              <Label layoutX="720.0" layoutY="409.0" text="Image preview" />
+                              <Label layoutX="707.0" layoutY="409.0" text="Image preview" />
                               <Label fx:id="remarks_txt1" textFill="#f20000" />
                               <Label layoutX="211.0" layoutY="421.0" prefHeight="22.0" prefWidth="56.0" text="Email :">
                                  <font>
@@ -490,6 +490,7 @@
                                  </opaqueInsets>
                               </TextField>
                               <FontAwesomeIcon glyphName="SEARCH" layoutX="881.0" layoutY="24.0" />
+                              <Label fx:id="votererror_txt" layoutX="303.0" layoutY="383.0" text=" " textFill="#d71414" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="514.0" prefWidth="834.0" styleClass="working_area" stylesheets="@Main.css" visible="false">

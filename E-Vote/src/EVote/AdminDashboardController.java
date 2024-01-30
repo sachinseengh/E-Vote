@@ -228,6 +228,9 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private ImageView voter_citizenshipfront_img;
+	
+	@FXML
+	private ImageView voter_zoomedimage;
 
 	@FXML
 	private TextField voter_citizenshipno_txt;
@@ -373,6 +376,9 @@ public class AdminDashboardController implements Initializable {
 	private Label citizenshipfront_name;
 	@FXML
 	private Label citizenshipback_name;
+	
+	@FXML
+	private Label votererror_txt;
 	
 	@FXML
 	private TextField search_txtfield;
@@ -1008,22 +1014,24 @@ public class AdminDashboardController implements Initializable {
 		FilteredList<GetVoters> filter = new FilteredList<>(voterlistdata, e -> true);
 		search_txtfield.textProperty().addListener((Observable, oldValue, newValue) -> {
 
-			filter.setPredicate(predicateRoomData -> {
+			filter.setPredicate(predicateVoterData -> {
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
 				String searchkey = newValue.toLowerCase();
 
-				if (predicateRoomData.getId().toString().contains(searchkey)) {
+				if (predicateVoterData.getId().toString().contains(searchkey)) {
 					return true;
-				} else if (predicateRoomData.getName().toLowerCase().contains(searchkey)) {
+				} else if (predicateVoterData.getName().toLowerCase().contains(searchkey)) {
 					return true;
-				} else if (predicateRoomData.getCitizenshipno().toString().contains(searchkey)) {
+				} else if (predicateVoterData.getCitizenshipno().toString().contains(searchkey)) {
 					return true;
-				} else if (predicateRoomData.getEmail().toLowerCase().contains(searchkey)) {
+				} else if (predicateVoterData.getEmail().toLowerCase().contains(searchkey)) {
 					return true;
 					
-				}else if (predicateRoomData.getPhone().toLowerCase().contains(searchkey)) {
+				}else if(predicateVoterData.getDob().contains(searchkey)) {
+					return true;
+				}else if (predicateVoterData.getPhone().toLowerCase().contains(searchkey)) {
 						return true;
 					
 				} else
@@ -1037,6 +1045,86 @@ public class AdminDashboardController implements Initializable {
 		voter_tableview.setItems(sortList);
 	}
 
+	
+	/*------------zoom voter image-----------------------*/
+	public void Zoomvoterphoto() {
+		zoomVoterImage(voter_photo_name.getText());
+	}
+
+	public void ZoomvoterEmployeeid() {
+		zoomVoterImage(voter_employeeid_name.getText());
+	}
+
+	public void Zoomvotercitizenfront() {
+		zoomVoterImage(voter_citizenshipfront_name.getText());
+	}
+
+	public void Zoomvotercitizenback() {
+		zoomVoterImage(voter_citizenshipback_name.getText());
+	}
+	
+	public void zoomVoterImage(String imagename) {
+		Image photoimage = new Image("file:" + "votersimages/" + imagename);
+		voter_zoomedimage.setImage(photoimage);
+	}
+	
+	/*------------------Delete voter --------------------------*/
+	
+	public void deletevoter() {
+		if (voter_id_txt.getText().equals("")
+				|| voter_id_txt.getText() == null && voter_id_txt.getText().isEmpty()) {
+
+			votererror_txt.setText("Select a row from the table");
+		} else {
+			
+			String delete_status = "delete from status where id ='"+voter_id_txt.getText()+"'";
+			String delete_voterlogin="delete from voter_login where id ='"+voter_id_txt.getText()+"'";
+			String delete_voter ="delete from voters where id = '"+voter_id_txt.getText()+"'";
+			
+			
+			
+			Alert alert  = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Confirmation");
+			alert.setHeaderText(null);
+			alert.setContentText("Are you sure want to delete the voter id ='"+voter_id_txt.getText()+"'");
+			
+			Optional<ButtonType> option = alert.showAndWait();
+
+			if (option.get().equals(ButtonType.OK)) {
+				try {
+					Conn c = new Conn();
+					
+					int affectedrow1 = c.s.executeUpdate(delete_status);
+					int affectedrow2 = c.s.executeUpdate(delete_voterlogin);
+					int affectedrow3 = c.s.executeUpdate(delete_voter);
+					
+					
+					if(affectedrow1>0 && affectedrow2>0 && affectedrow3>0) {
+						
+						Alert alert2  = new Alert(AlertType.INFORMATION);
+						alert2.setTitle("Successfully deleted");
+						alert2.setHeaderText(null);
+						alert2.setContentText("Voter Deleted Successfully");
+						alert2.show();
+						showVoters();
+						
+					}else {
+						Alert alert3  = new Alert(AlertType.ERROR);
+						alert3.setTitle("Failed");
+						alert3.setHeaderText(null);
+						alert3.setContentText("Voter Deletion Failed");
+						alert3.show();
+					}
+					
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		
+			
+		}
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -1052,6 +1140,9 @@ public class AdminDashboardController implements Initializable {
 		
 		//voters
 		showVoters();
+		
+		//search voter
+		VoterSearch();
 	}
 
 }
