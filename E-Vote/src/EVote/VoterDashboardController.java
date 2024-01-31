@@ -1,6 +1,7 @@
 package EVote;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -15,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -124,6 +126,12 @@ public class VoterDashboardController implements Initializable{
 	    private AnchorPane voter_vote_form;
 	    
 	    @FXML
+	    private AnchorPane Novoting_form;
+	    
+	    @FXML
+	    private AnchorPane Thanks_form;
+	    
+	    @FXML
 	    private Label confirm_pass_error;
 	    
 
@@ -131,6 +139,9 @@ public class VoterDashboardController implements Initializable{
 	    private Label current_pass_error;
 	    @FXML
 	    private Label new_pass_error;
+	    
+	    @FXML
+	    private ImageView voter_image;
 	    
 	//-----------------utility functions--------------
 	    
@@ -149,11 +160,15 @@ public class VoterDashboardController implements Initializable{
 		uf.logout(voter_nav_logout_btn);
 	}
 	
+	
+	/*----------------change scene------------*/
+	
 	public void switchScene(ActionEvent e) {
 		if(e.getSource()==voter_nav_vote_btn) {
-			voter_vote_form.setVisible(true);
+			showElectionorNoElection();
 			voter_mydetails_form.setVisible(false);
 			voter_changepass_form.setVisible(false);
+		
 			
 			voter_nav_vote_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
 			voter_nav_details_btn.setStyle("-fx-background-color:transparent;");
@@ -163,6 +178,7 @@ public class VoterDashboardController implements Initializable{
 			voter_vote_form.setVisible(false);
 			voter_mydetails_form.setVisible(true);
 			voter_changepass_form.setVisible(false);
+			Novoting_form.setVisible(false);
 				
 			voter_nav_vote_btn.setStyle("-fx-background-color:transparent;");
 			voter_nav_details_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
@@ -172,6 +188,7 @@ public class VoterDashboardController implements Initializable{
 			voter_vote_form.setVisible(false);
 			voter_mydetails_form.setVisible(false);
 			voter_changepass_form.setVisible(true);
+			Novoting_form.setVisible(false);
 			
 			voter_nav_vote_btn.setStyle("-fx-background-color:transparent;");
 			voter_nav_details_btn.setStyle("-fx-background-color:transparent;");
@@ -180,6 +197,113 @@ public class VoterDashboardController implements Initializable{
 	}
 	
 	
+	
+	
+	
+   /*------------------Vote Section----------*/
+	
+	public void  showElectionorNoElection() {
+		
+		String sql ="select count(*) as row_count from election";
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			Integer row = null;
+			while(rs.next()) {
+				row = rs.getInt("row_count");
+			}
+			if(row == 0) {
+				Novoting_form.setVisible(true);
+			}else {
+				voter_vote_form.setVisible(true);
+			}
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*---------------profile picture and name on the top left corner---------*/
+	
+	
+	public void voterDetailsatLeftCorner() {
+		String sql = "select * from voters where phone ='"+getDetails.phone+"'";
+		try {
+			Conn c = new Conn();
+			
+			
+			ResultSet rs = c.s.executeQuery(sql);
+			if(rs.next()) {
+				voter_name_txt.setText(rs.getString("name"));
+				
+				//FETCHING ALL THE DETAILS AND SETTING IN THE getDetails file
+				getDetails.id=rs.getInt("id");
+				getDetails.phone = rs.getString("phone");
+				getDetails.name=rs.getString("name");
+				getDetails.email = rs.getString("email");
+				getDetails.dob = rs.getString("dob");
+				getDetails.citizenshipno = rs.getString("citizenshipno");
+				getDetails.address = rs.getString("address");
+				getDetails.citizenship_back = rs.getString("citizenshipback");
+				getDetails.citizenship_front = rs.getString("citizenshipfront");
+				
+				try {
+					
+				Image profilepic = new Image("file:" + "votersimages/" +rs.getString("photo"));
+				voter_image.setImage(profilepic);
+			
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
+	}	
+	
+	
+    /*------------------show Details------------------*/
+	public void showDetails() {
+		mydetails_name_value.setText(getDetails.name);
+		mydetails_email_value.setText(getDetails.email);
+		mydetails_phone_value.setText(getDetails.phone);
+		mydetails_address_value.setText(getDetails.address);
+		mydetails_ctzshpno_value.setText(getDetails.citizenshipno);
+		mydetails_dob_value.setText(getDetails.dob);
+		
+		
+		Image cf = new Image("file:" + "votersimages/" +getDetails.citizenship_front);
+		mydetails_cf_img.setImage(cf);
+		
+		Image bf = new Image("file:" + "votersimages/" +getDetails.citizenship_back);
+		mydetails_cb_image.setImage(bf);
+	}
 	
 	
 	
@@ -204,7 +328,7 @@ public class VoterDashboardController implements Initializable{
 	public void changepassword() {
 		Votersql vs = new Votersql();
 				
-		ChangePassword cp = new ChangePassword();
+		VoterChangePassword cp = new VoterChangePassword();
 //		cp.changepassword(changepassword_current, changepassword_new, changepassword_confirm, current_pass_error,
 //				new_pass_error, confirm_pass_error);
 
@@ -214,7 +338,18 @@ public class VoterDashboardController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		
+		voterDetailsatLeftCorner();
+		
+		showElectionorNoElection();
+		
+		
+		//Voter Details
+		showDetails();
+		
+		
 		passworderrorsetnull();
+		
 	}
 	
 	

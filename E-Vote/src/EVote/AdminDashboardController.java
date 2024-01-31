@@ -701,7 +701,7 @@ public class AdminDashboardController implements Initializable {
 
 		ChangePassword cp = new ChangePassword();
 		cp.changepassword(admin_cp_current, admin_cp_new, admin_cp_confirm, current_pass_error, new_pass_error,
-				confirm_pass_error, as);
+				confirm_pass_error);
 
 	}
 

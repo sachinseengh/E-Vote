@@ -4,10 +4,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 
-class ChangePassword{
+class VoterChangePassword{
 	Validations validation = new Validations();
-	Adminsql as = new Adminsql();
   
+	Votersql vs = new  Votersql();
 	public void changepassword(TextField current,TextField newp ,TextField confirm,Label currenterror,Label
 			newerror,Label confimerror) {
 		
@@ -56,7 +56,8 @@ class ChangePassword{
 			//---------------check current password is correct or not-----------//
 			if(!current.getText().trim().isEmpty()) {
 		
-			String ogpassword =  as.checkPassword();
+			
+			String ogpassword =  vs.checkPassword();
 			
 			
 			
@@ -67,11 +68,10 @@ class ChangePassword{
 		}
 	
 	
-		
 	if(newerror.getText().equals("")&& currenterror.getText().equals("")&& confimerror.getText().equals("")) {
 		
 		
-		as.changePassword(newp.getText());
+		vs.changePassword(newp.getText());
 		
 		newp.setText("");
 		current.setText("");

@@ -29,11 +29,7 @@
                <left>
                   <AnchorPane prefHeight="550.0" prefWidth="155.0" styleClass="logo_area" stylesheets="@Main.css" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="46.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../Desktop/OIG%20(2).jpg" />
-                           </image>
-                        </ImageView>
+                        <ImageView fx:id="voter_image" fitHeight="79.0" fitWidth="105.0" layoutX="31.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
                         <Circle fx:id="voter_nav_profileimage" fill="#ffffff08" layoutX="83.0" layoutY="110.4" radius="35.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.topAnchor="75.4" />
                         <ImageView fitHeight="29.0" fitWidth="31.0" layoutX="31.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -95,7 +91,7 @@
                                  </graphic>
                               </Button>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="340.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="119.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
@@ -137,7 +133,7 @@
                               <Label layoutX="134.0" layoutY="84.0" prefHeight="18.0" prefWidth="318.0" text="Select your Desired Candidate" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="254.0" layoutY="7.0" text="My Details">
                                  <font>
@@ -152,7 +148,6 @@
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints maxHeight="71.79999389648438" minHeight="25.0" prefHeight="34.199987792968756" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="71.79999389648438" minHeight="25.0" prefHeight="34.6" vgrow="SOMETIMES" />
                                   <RowConstraints maxHeight="119.79996337890626" minHeight="25.0" prefHeight="32.599999999999994" vgrow="SOMETIMES" />
                                   <RowConstraints maxHeight="324.00000610351566" minHeight="25.0" prefHeight="35.79999389648437" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="324.00000610351566" minHeight="25.0" prefHeight="39.80000000000001" vgrow="SOMETIMES" />
@@ -167,59 +162,53 @@
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="username :" GridPane.rowIndex="1">
+                                    <Label text="Email :" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Email :" GridPane.rowIndex="2">
+                                    <Label text="Phone" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Phone" GridPane.rowIndex="3">
+                                    <Label text="Address :" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Address :" GridPane.rowIndex="4">
+                                    <Label text="Citizenship no :" GridPane.rowIndex="4">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Citizenship no :" GridPane.rowIndex="5">
+                                    <Label text="DOB :" GridPane.rowIndex="5">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="DOB :" GridPane.rowIndex="6">
+                                    <Label layoutX="10.0" layoutY="206.0" text="citizenship Front :" GridPane.rowIndex="6">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="206.0" text="citizenship Front :" GridPane.rowIndex="7">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                    </Label>
-                                    <Label text="citizenship Back :" GridPane.rowIndex="8">
+                                    <Label text="citizenship Back :" GridPane.rowIndex="7">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="mydetails_name_value" text="Label" GridPane.columnIndex="1" />
-                                    <Label fx:id="mydetails_username_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label fx:id="mydetails_email_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label fx:id="mydetails_phone_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label fx:id="mydetails_address_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label fx:id="mydetails_ctzshpno_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <Label fx:id="mydetails_dob_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <ImageView fx:id="mydetails_cf_img" fitHeight="60.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                    <Label fx:id="mydetails_email_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label fx:id="mydetails_phone_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label fx:id="mydetails_address_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Label fx:id="mydetails_ctzshpno_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="mydetails_dob_value" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <ImageView fx:id="mydetails_cf_img" fitHeight="65.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <image>
                                           <Image url="@../../../../../../Desktop/coding.jpg" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="mydetails_cb_image" fitHeight="65.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                    <ImageView fx:id="mydetails_cb_image" fitHeight="65.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                        <image>
                                           <Image url="@../../../../../../Desktop/coding.jpg" />
                                        </image>
@@ -274,6 +263,30 @@
                            </children>
                         </AnchorPane>
                         <Line endX="450.79998779296875" endY="-90.99999237060547" layoutX="182.0" layoutY="127.0" startX="-181.99996948242188" startY="-90.99999237060547" stroke="#e7e4e4" />
+                        <AnchorPane fx:id="Novoting_form" layoutX="-1.0" layoutY="36.0" prefHeight="517.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                           <children>
+                              <Label layoutX="103.0" layoutY="217.0" text="No Active Election at the moment !!! ">
+                                 <font>
+                                    <Font name="Times New Roman" size="28.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="Thanks_form" layoutX="-4.0" layoutY="35.0" prefHeight="517.0" prefWidth="638.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                           <children>
+                              <Label layoutX="217.0" layoutY="207.0" text="Thanks for Voting.">
+                                 <font>
+                                    <Font name="Times New Roman" size="32.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIcon glyphName="CHECK" layoutX="146.0" layoutY="246.0" size="5em" wrappingWidth="67.20001220703125" />
+                              <Label layoutX="223.0" layoutY="150.0" text="You have Already Voted." textFill="#216619">
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </center>

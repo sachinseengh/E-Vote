@@ -227,6 +227,10 @@ public class MainController implements Initializable {
         		
         		if(rs.next()) {
         			
+        			
+        			//it can be used to show the name of voter in voter dashboard
+        			getDetails.phone = voter_phoneno.getText();
+        			
         			admin_loginbtn.getScene().getWindow().hide();
         			 root = FXMLLoader.load(getClass().getResource("VoterDashboard.fxml"));
         			 uf.MouseMovableScene(root) ;
@@ -237,6 +241,12 @@ public class MainController implements Initializable {
                     alert.setContentText("Incorrect phone or password");
                     alert.show();
         		}
+        		
+        		
+        	
+        	
+        		
+        		
         		
         	}catch(Exception e){
         		e.printStackTrace();
