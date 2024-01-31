@@ -185,10 +185,14 @@ public class MainController implements Initializable {
     		
     		if(rs.next()) {
     			
+    		
+    			
     			admin_loginbtn.getScene().getWindow().hide();
     			 root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
     			 
     			uf.MouseMovableScene(root) ;
+    			
+    			
     		}else {
     			Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle(" Login Failed");
@@ -228,12 +232,17 @@ public class MainController implements Initializable {
         		if(rs.next()) {
         			
         			
+        			
         			//it can be used to show the name of voter in voter dashboard
         			getDetails.phone = voter_phoneno.getText();
         			
         			admin_loginbtn.getScene().getWindow().hide();
         			 root = FXMLLoader.load(getClass().getResource("VoterDashboard.fxml"));
         			 uf.MouseMovableScene(root) ;
+        			 
+        			 
+        			
+        			 
         		}else {
         			Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle(" Login Failed");

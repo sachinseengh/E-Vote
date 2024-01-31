@@ -43,9 +43,9 @@ class ChangePassword{
 		}
 		if(!newp.getText().trim().isEmpty()&& !newp.getText().trim().isEmpty()) {
 			
-			if(!newp.getText().equals(newp.getText())) {
+			if(!newp.getText().equals(confirm.getText())) {
 				confimerror.setText("Passwords not matched");
-			}
+			}else {
 			
 			
 			
@@ -62,6 +62,7 @@ class ChangePassword{
 			
 			if(!current.getText().equals(ogpassword)) {
 				currenterror.setText("Incorrect Password");
+			}
 			}
 			}
 		}

@@ -91,7 +91,7 @@
                                  </graphic>
                               </Button>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="340.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="119.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
@@ -133,7 +133,7 @@
                               <Label layoutX="134.0" layoutY="84.0" prefHeight="18.0" prefWidth="318.0" text="Select your Desired Candidate" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="254.0" layoutY="7.0" text="My Details">
                                  <font>
@@ -236,8 +236,8 @@
                                     <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="102.0" text="New Password :" GridPane.rowIndex="2" />
                                     <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="107.0" text="Confirm Password :" GridPane.rowIndex="4" />
                                     <TextField fx:id="changepassword_current" onMouseClicked="#passworderrorsetnull" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" />
-                                    <PasswordField fx:id="changepassword_new" onMouseClicked="#passworderrorsetnull" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <PasswordField fx:id="changepassword_confirm" onMouseClicked="#passworderrorsetnull" prefHeight="29.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <PasswordField fx:id="changepassword_new" onMouseClicked="#passworderrorsetnull" styleClass="checkbox-prompttext" stylesheets="@Main.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <PasswordField fx:id="changepassword_confirm" onMouseClicked="#passworderrorsetnull" prefHeight="29.0" prefWidth="198.0" styleClass="checkbox-prompttext" stylesheets="@Main.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <Label fx:id="current_pass_error" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Label fx:id="new_pass_error" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label fx:id="confirm_pass_error" text="Label" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -249,13 +249,13 @@
                                  </font>
                               </Label>
                               <Line endX="74.0" endY="0.20000457763671875" layoutX="317.0" layoutY="36.0" startX="-73.99998474121094" startY="0.20000457763671875" />
-                              <Button fx:id="changepassword_cpass_btn" layoutX="206.0" layoutY="279.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="191.0" styleClass="changepasswordbtn" stylesheets="@Main.css" text="Change Password" />
-                              <CheckBox fx:id="cp_newpas_show_checkbox" layoutX="443.0" layoutY="163.0" mnemonicParsing="false" text="Show" AnchorPane.leftAnchor="443.20000000000005">
+                              <Button fx:id="changepassword_cpass_btn" layoutX="206.0" layoutY="279.0" mnemonicParsing="false" onAction="#changepassword" prefHeight="32.0" prefWidth="191.0" styleClass="changepasswordbtn" stylesheets="@Main.css" text="Change Password" />
+                              <CheckBox fx:id="cp_newpas_show_checkbox" layoutX="443.0" layoutY="163.0" mnemonicParsing="false" onAction="#shownewpass" text="Show" AnchorPane.leftAnchor="443.20000000000005">
                                  <font>
                                     <Font name="Times New Roman Bold" size="12.0" />
                                  </font>
                               </CheckBox>
-                              <CheckBox fx:id="cp_confpas_show_checkbox" layoutX="443.0" layoutY="206.0" mnemonicParsing="false" text="Show" AnchorPane.leftAnchor="443.0">
+                              <CheckBox fx:id="cp_confpas_show_checkbox" layoutX="443.0" layoutY="206.0" mnemonicParsing="false" onAction="#showconfirmpass" text="Show" AnchorPane.leftAnchor="443.0">
                                  <font>
                                     <Font name="Times New Roman Bold" size="12.0" />
                                  </font>

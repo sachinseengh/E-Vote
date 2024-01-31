@@ -7,7 +7,10 @@ import javafx.scene.control.TextField;
 class VoterChangePassword{
 	Validations validation = new Validations();
   
-	Votersql vs = new  Votersql();
+	Votersql as = new  Votersql();
+	
+	
+	
 	public void changepassword(TextField current,TextField newp ,TextField confirm,Label currenterror,Label
 			newerror,Label confimerror) {
 		
@@ -43,21 +46,16 @@ class VoterChangePassword{
 		}
 		if(!newp.getText().trim().isEmpty()&& !newp.getText().trim().isEmpty()) {
 			
-			if(!newp.getText().equals(newp.getText())) {
+			if(!newp.getText().equals(confirm.getText())) {
 				confimerror.setText("Passwords not matched");
-			}
-			
-			
-			
-			
+			}else {
 			
 			
 			
 			//---------------check current password is correct or not-----------//
 			if(!current.getText().trim().isEmpty()) {
 		
-			
-			String ogpassword =  vs.checkPassword();
+			String ogpassword =  as.checkPassword();
 			
 			
 			
@@ -65,13 +63,15 @@ class VoterChangePassword{
 				currenterror.setText("Incorrect Password");
 			}
 			}
+			}
 		}
 	
 	
+		
 	if(newerror.getText().equals("")&& currenterror.getText().equals("")&& confimerror.getText().equals("")) {
 		
 		
-		vs.changePassword(newp.getText());
+		as.changePassword(newp.getText());
 		
 		newp.setText("");
 		current.setText("");
@@ -79,3 +79,7 @@ class VoterChangePassword{
 	}
 	}
 }
+	
+	
+	
+	

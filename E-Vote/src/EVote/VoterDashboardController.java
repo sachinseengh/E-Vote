@@ -257,7 +257,7 @@ public class VoterDashboardController implements Initializable{
 				voter_name_txt.setText(rs.getString("name"));
 				
 				//FETCHING ALL THE DETAILS AND SETTING IN THE getDetails file
-				getDetails.id=rs.getInt("id");
+				getDetails.id=rs.getInt("id");	
 				getDetails.phone = rs.getString("phone");
 				getDetails.name=rs.getString("name");
 				getDetails.email = rs.getString("email");
@@ -307,7 +307,7 @@ public class VoterDashboardController implements Initializable{
 	
 	
 	
-	//------------change password---------------------
+/*----------------------------change password----------------------*/
 	Validations validation = new Validations();
 	
 	public void passworderrorsetnull() {
@@ -319,18 +319,20 @@ public class VoterDashboardController implements Initializable{
 	
 	public void shownewpass() {
 		validation.showPassword(cp_newpas_show_checkbox,changepassword_new);
+		
 	}
 	public void showconfirmpass() {
 		validation.showPassword(cp_confpas_show_checkbox,changepassword_confirm);
+		
 	}
   
 
 	public void changepassword() {
 		Votersql vs = new Votersql();
-				
+		
 		VoterChangePassword cp = new VoterChangePassword();
-//		cp.changepassword(changepassword_current, changepassword_new, changepassword_confirm, current_pass_error,
-//				new_pass_error, confirm_pass_error);
+		cp.changepassword(changepassword_current, changepassword_new, changepassword_confirm, current_pass_error,
+				new_pass_error, confirm_pass_error);
 
 	}
 
