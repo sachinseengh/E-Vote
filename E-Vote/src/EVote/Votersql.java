@@ -5,6 +5,10 @@ import java.time.LocalDate;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 class Votersql {
 
@@ -74,8 +78,8 @@ class Votersql {
 		String password = null;
 		try {
 			Conn c = new Conn();
-			String sql = "select password from voter_login where phone='" + getDetails.phone + "' and id ='" + getDetails.id
-					+ "'";
+			String sql = "select password from voter_login where phone='" + getDetails.phone + "' and id ='"
+					+ getDetails.id + "'";
 			ResultSet rs = c.s.executeQuery(sql);
 
 			if (rs.next()) {
@@ -87,4 +91,30 @@ class Votersql {
 		}
 		return null;
 	}
+
+	public void showcandidate(ImageView candidate_one, RadioButton candidate_one_radio, ImageView candidate_two,
+			RadioButton candidate_two_radio,Label position,Label electiondate) {
+		String sql = "select * from election";
+
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+
+			if (rs.next()) {
+				Image c_one = new Image("file:" + "candidateimage/" +rs.getString("candidate_one_img"));
+				candidate_one.setImage(c_one);
+				
+				Image c_two = new Image("file:" + "candidateimage/" +rs.getString("candidate_two_img"));
+				candidate_two.setImage(c_two);
+				
+				candidate_one_radio.setText(rs.getString("candidate_one_name"));
+				candidate_two_radio.setText(rs.getString("candidate_two_name"));
+				position.setText(rs.getString("position"));
+				electiondate.setText(String.valueOf(rs.getDate("Election_date")));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

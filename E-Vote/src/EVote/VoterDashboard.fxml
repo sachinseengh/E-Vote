@@ -131,6 +131,8 @@
                               </RadioButton>
                               <Button fx:id="voter_vote_btn" layoutX="180.0" layoutY="355.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="295.0" styleClass="votebtn" stylesheets="@Main.css" text="Vote" />
                               <Label layoutX="134.0" layoutY="84.0" prefHeight="18.0" prefWidth="318.0" text="Select your Desired Candidate" />
+                              <Label layoutX="509.0" layoutY="8.0" text="Date :" />
+                              <Label fx:id="election_date" layoutX="546.0" layoutY="8.0" prefHeight="18.0" prefWidth="82.0" text="Date" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="voter_mydetails_form" layoutX="0.8" layoutY="36.0" prefHeight="514.0" prefWidth="630.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="36.0">
