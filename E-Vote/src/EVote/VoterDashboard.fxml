@@ -114,12 +114,12 @@
                                  </font>
                               </Label>
                               <Group layoutX="147.0" layoutY="160.0" />
-                              <ImageView fx:id="candidate_one_img" fitHeight="155.0" fitWidth="199.0" layoutX="138.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="candidate_one_img" fitHeight="155.0" fitWidth="199.0" layoutX="138.0" layoutY="123.0" onMouseClicked="#select_can_one" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/OIG%20(1).jpg" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="candidate_two_img" fitHeight="154.0" fitWidth="157.0" layoutX="360.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="candidate_two_img" fitHeight="154.0" fitWidth="157.0" layoutX="360.0" layoutY="123.0" onMouseClicked="#select_can_two" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/OIG%20(2).jpg" />
                                  </image>
@@ -129,7 +129,7 @@
                                     <Font name="Times New Roman" size="19.0" />
                                  </font>
                               </RadioButton>
-                              <Button fx:id="voter_vote_btn" layoutX="180.0" layoutY="355.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="295.0" styleClass="votebtn" stylesheets="@Main.css" text="Vote" />
+                              <Button fx:id="voter_vote_btn" layoutX="180.0" layoutY="355.0" mnemonicParsing="false" onAction="#vote" prefHeight="44.0" prefWidth="295.0" styleClass="votebtn" stylesheets="@Main.css" text="Vote" />
                               <Label layoutX="134.0" layoutY="84.0" prefHeight="18.0" prefWidth="318.0" text="Select your Desired Candidate" />
                               <Label layoutX="509.0" layoutY="8.0" text="Date :" />
                               <Label fx:id="election_date" layoutX="546.0" layoutY="8.0" prefHeight="18.0" prefWidth="82.0" text="Date" />

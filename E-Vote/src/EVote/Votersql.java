@@ -16,10 +16,11 @@ class Votersql {
 			String voter_password, String citizenshipno, String passportsize_photo, String employee_id,
 			String citizenship_front, String citizenship_back) {
 
-		String sql = "insert into unverified_voters values ('" + fullname + "','" + email + "'," + "'" + phone + "','"
-				+ localDate + "','" + address + "'," + "'" + voter_password + "','" + citizenshipno + "','"
-				+ passportsize_photo + "','" + employee_id + "','" + citizenship_front + "','" + citizenship_back
-				+ "')";
+		String sql = "insert into unverified_voters(fullname,email,phone,dob,address,citizenshipno,photo,employee_id,citizenship_front,citizenship_back,password) values ('"
+				+ fullname + "','" + email + "'," + "'" + phone + "','" + localDate + "','" + address + "','"
+				+ citizenshipno + "','" + passportsize_photo + "','" + employee_id + "','" + citizenship_front + "','"
+				+ citizenship_back + "','"+voter_password+"')";
+		System.out.print(sql);
 
 		try {
 			Conn c = new Conn();
@@ -93,7 +94,7 @@ class Votersql {
 	}
 
 	public void showcandidate(ImageView candidate_one, RadioButton candidate_one_radio, ImageView candidate_two,
-			RadioButton candidate_two_radio,Label position,Label electiondate) {
+			RadioButton candidate_two_radio, Label position, Label electiondate) {
 		String sql = "select * from election";
 
 		try {
@@ -101,12 +102,12 @@ class Votersql {
 			ResultSet rs = c.s.executeQuery(sql);
 
 			if (rs.next()) {
-				Image c_one = new Image("file:" + "candidateimage/" +rs.getString("candidate_one_img"));
+				Image c_one = new Image("file:" + "candidateimage/" + rs.getString("candidate_one_img"));
 				candidate_one.setImage(c_one);
-				
-				Image c_two = new Image("file:" + "candidateimage/" +rs.getString("candidate_two_img"));
+
+				Image c_two = new Image("file:" + "candidateimage/" + rs.getString("candidate_two_img"));
 				candidate_two.setImage(c_two);
-				
+
 				candidate_one_radio.setText(rs.getString("candidate_one_name"));
 				candidate_two_radio.setText(rs.getString("candidate_two_name"));
 				position.setText(rs.getString("position"));
@@ -117,4 +118,30 @@ class Votersql {
 		}
 	}
 
+	public void vote(String candidate) {
+		String sql = "insert into votes(citizenshipno,votefor) values ('" + getDetails.citizenshipno + "','" + candidate
+				+ "')";
+		try {
+			Conn c = new Conn();
+			int affected_row = c.s.executeUpdate(sql);
+
+			if (affected_row > 0) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("successful");
+				alert.setHeaderText(null);
+				alert.setContentText("Voted Successfully");
+				alert.show();
+
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Failed");
+				alert.setHeaderText(null);
+				alert.setContentText("Failed to vote");
+				alert.show();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

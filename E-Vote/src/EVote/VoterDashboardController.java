@@ -267,6 +267,35 @@ public class VoterDashboardController implements Initializable {
 		vs.showcandidate(candidate_one_img, candidate_one_radio, candidate_two_img, candidate_two_radio,
 				election_post_name, election_date);
 	}
+	public void select_can_one() {
+		candidate_one_radio.setSelected(true);
+	}
+	public void select_can_two() {
+		candidate_two_radio.setSelected(true);
+	}
+	
+	public void vote() {
+		if(!candidate_one_radio.isSelected() && !candidate_two_radio.isSelected()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Candidate not selected");
+			alert.showAndWait();
+		}else {
+			String candidate;
+			
+			if(candidate_one_radio.isSelected()) {
+				candidate= candidate_one_radio.getText();
+			}else {
+				candidate= candidate_two_radio.getText();
+			}
+			
+			Votersql vs = new Votersql();
+			vs.vote(candidate);
+			candidate_one_radio.setSelected(false);
+			candidate_two_radio.setSelected(false);
+		}
+	}
 
 	/*------------------show Details------------------*/
 	public void showDetails() {
