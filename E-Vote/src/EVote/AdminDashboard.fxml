@@ -493,7 +493,7 @@
                               <Label fx:id="votererror_txt" layoutX="303.0" layoutY="383.0" text=" " textFill="#d71414" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="764.0" prefWidth="917.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="764.0" prefWidth="917.0" styleClass="working_area" stylesheets="@Main.css">
                            <children>
                               <Label fx:id="publishres_totalvoter" layoutX="612.0" layoutY="162.0" text="52" />
                               <Label layoutX="81.0" layoutY="163.0" text="No of people voted :">
@@ -503,12 +503,12 @@
                               </Label>
                               <Label fx:id="publishres_numbervoted" layoutX="204.0" layoutY="162.0" text="5" />
                               <Label layoutX="533.0" layoutY="162.0" text="Total Voter :" />
-                              <Button fx:id="publishres_refresh_btn" layoutX="224.0" layoutY="158.0" mnemonicParsing="false" text="Refresh">
+                              <Button fx:id="publishres_refresh_btn" layoutX="224.0" layoutY="158.0" mnemonicParsing="false" onAction="#showNoOfVotes" text="Refresh">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="REFRESH" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="publishres_endvoting_btn" layoutX="248.0" layoutY="280.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="324.0" styleClass="end" stylesheets="@Main.css" text="End Voting and Publish Result" />
+                              <Button fx:id="publishres_endvoting_btn" layoutX="248.0" layoutY="280.0" mnemonicParsing="false" onAction="#endElection" prefHeight="42.0" prefWidth="324.0" styleClass="end" stylesheets="@Main.css" text="End Voting and Publish Result" />
                               <Label layoutX="232.0" layoutY="61.0" text="There's a live election in progress">
                                  <font>
                                     <Font name="Times New Roman" size="28.0" />
@@ -516,7 +516,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="admin_changepassword_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <GridPane layoutX="119.0" layoutY="107.0" prefHeight="158.0" prefWidth="312.0">
                                 <columnConstraints>

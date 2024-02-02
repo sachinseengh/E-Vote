@@ -91,7 +91,7 @@
                                  </graphic>
                               </Button>
                            </children></AnchorPane>
-                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="voter_vote_form" layoutY="36.0" prefHeight="514.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="36.0">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="340.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="177.0" layoutX="119.0" layoutY="114.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
@@ -274,7 +274,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="Thanks_form" layoutX="-4.0" layoutY="35.0" prefHeight="517.0" prefWidth="638.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                        <AnchorPane fx:id="Thanks_form" layoutY="35.0" prefHeight="518.0" prefWidth="634.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
                            <children>
                               <Label layoutX="217.0" layoutY="207.0" text="Thanks for Voting.">
                                  <font>

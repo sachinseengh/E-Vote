@@ -47,7 +47,7 @@ class Validations{
 	
 	
 	public Boolean numberonly(String txt) {
-		String regex = "^(98|96|97)\\d+{10}$";
+		String regex = "^(98|96|97)\\d{8}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(txt);
 		return matcher.matches();

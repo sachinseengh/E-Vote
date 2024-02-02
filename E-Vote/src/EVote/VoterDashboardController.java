@@ -2,6 +2,7 @@ package EVote;
 
 import java.net.URL;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -168,7 +169,8 @@ public class VoterDashboardController implements Initializable {
 
 	public void switchScene(ActionEvent e) {
 		if (e.getSource() == voter_nav_vote_btn) {
-			showElectionorNoElection();
+			showElectionorNoElectionorDone() ;
+			
 			voter_mydetails_form.setVisible(false);
 			voter_changepass_form.setVisible(false);
 
@@ -181,6 +183,7 @@ public class VoterDashboardController implements Initializable {
 			voter_mydetails_form.setVisible(true);
 			voter_changepass_form.setVisible(false);
 			Novoting_form.setVisible(false);
+			Thanks_form.setVisible(false);
 
 			voter_nav_vote_btn.setStyle("-fx-background-color:transparent;");
 			voter_nav_details_btn.setStyle("-fx-background-color:rgb(15, 120, 149);");
@@ -191,6 +194,7 @@ public class VoterDashboardController implements Initializable {
 			voter_mydetails_form.setVisible(false);
 			voter_changepass_form.setVisible(true);
 			Novoting_form.setVisible(false);
+			Thanks_form.setVisible(false);
 
 			voter_nav_vote_btn.setStyle("-fx-background-color:transparent;");
 			voter_nav_details_btn.setStyle("-fx-background-color:transparent;");
@@ -200,25 +204,49 @@ public class VoterDashboardController implements Initializable {
 
 	/*------------------Vote Section----------*/
 
-	public void showElectionorNoElection() {
+	public void showElectionorNoElectionorDone()  {
+		
+		
+		ResultSet result;
+		String checkvote="select *from votes where citizenshipno='"+getDetails.citizenshipno+"'";
 
-		String sql = "select count(*) as row_count from election";
 		try {
 			Conn c = new Conn();
-			ResultSet rs = c.s.executeQuery(sql);
-			Integer row = null;
-			while (rs.next()) {
-				row = rs.getInt("row_count");
-			}
-			if (row == 0) {
-				Novoting_form.setVisible(true);
-			} else {
-				voter_vote_form.setVisible(true);
-			}
+	    result = c.s.executeQuery(checkvote);
+	       
+	    
+	    if(result.next()) {
+	    	voter_vote_form.setVisible(false);
+	    	Thanks_form.setVisible(true);
+	    }else {
+	    	String sql = "select count(*) as row_count from election";
+			try {
+			
+				ResultSet rs = c.s.executeQuery(sql);
+				Integer row = null;
+				while (rs.next()) {
+					row = rs.getInt("row_count");
+				}
+				if (row == 0) {
+					Novoting_form.setVisible(true);
+				} else {
+					voter_vote_form.setVisible(true);
+				}
 
-		} catch (Exception e) {
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    	
+	    }
+	    
+	
+	    
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+	
+	
 
 	}
 
@@ -292,6 +320,7 @@ public class VoterDashboardController implements Initializable {
 			
 			Votersql vs = new Votersql();
 			vs.vote(candidate);
+			showElectionorNoElectionorDone() ;
 			candidate_one_radio.setSelected(false);
 			candidate_two_radio.setSelected(false);
 		}
@@ -351,7 +380,7 @@ public class VoterDashboardController implements Initializable {
 		
 		
 		
-		showElectionorNoElection();
+		showElectionorNoElectionorDone() ;
 		
 		
 		showcandidates();

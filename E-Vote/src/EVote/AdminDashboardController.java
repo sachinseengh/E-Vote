@@ -899,10 +899,20 @@ public class AdminDashboardController implements Initializable {
 				remarks_txt.setText("Reason Required for Rejection");
 			} else {
 				Conn c = new Conn();
-				String sql = "delete from unverified_voters where id='" + Integer.parseInt(unverified_id.getText())
+				
+				
+				String sql = "insert into status (id,phone,citizenshipno,dob,remarks,status) values ('"
+						+ Integer.parseInt(unverified_id.getText()) + "','" + verification_phone_txt.getText() + "','"
+						+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
+						+ verification_reason_txt.getText() + "','Rejected')";
+				
+				
+				String sql2 = "delete from unverified_voters where id='" + Integer.parseInt(unverified_id.getText())
 						+ "'";
 				try {
-					int affectedrow = c.s.executeUpdate(sql);
+					c.s.executeUpdate(sql);
+					int affectedrow = c.s.executeUpdate(sql2);
+					
 					showUnverified();
 
 					if (affectedrow > 0) {
@@ -1125,6 +1135,68 @@ public class AdminDashboardController implements Initializable {
 			
 		}
 	}
+	
+	
+	
+	/*------------------------End voting Section------------------*/
+	
+	public void showNoOfVotes() {
+		String sql ="select count(id) from votes";
+		
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if(rs.next()) {
+				publishres_numbervoted.setText(String.valueOf(rs.getInt("count(id)")));
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void showTotalVoter() {
+        String sql ="select count(id) from voters";
+		
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if(rs.next()) {
+				publishres_totalvoter.setText(String.valueOf(rs.getInt("count(id)")));
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void endElection() {
+
+		
+		int voter =Integer.parseInt(publishres_totalvoter.getText());
+		int votes=0;
+	     String sql ="select count(id) from votes";
+		
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if(rs.next()) {
+				votes = rs.getInt("count(id)");
+				
+			}
+			System.out.print(votes);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -1143,6 +1215,14 @@ public class AdminDashboardController implements Initializable {
 		
 		//search voter
 		VoterSearch();
+		
+		
+		
+		
+		//total number of vote casted
+		showNoOfVotes() ;
+		//total number of voter
+		showTotalVoter();
 	}
 
 }

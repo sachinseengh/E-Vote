@@ -426,7 +426,7 @@ public class RegistrationController implements Initializable {
 					citizenshipno_txtfield.getText(), passportphoto_img.getText(), employee_id_img.getText(),
 					citizenshipfront_img.getText(), citizenshipback_name.getText());
 			
-
+			clearallfield();
 		
 		}
 
