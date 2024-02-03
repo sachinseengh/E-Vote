@@ -19,6 +19,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -96,6 +98,28 @@ public class MainController implements Initializable {
     
     @FXML
     private AnchorPane no_result_form;
+    
+    
+    
+    @FXML
+    private Label total_vote;
+
+    @FXML
+    private Label election_date;  
+    @FXML
+    private Label name;
+    @FXML
+    private Label post;
+    @FXML
+    private Label win_by;
+
+    @FXML
+    private Label wish;
+
+    @FXML
+    private ImageView image_view;
+    
+    
 
     
     Parent root;
@@ -263,12 +287,36 @@ public class MainController implements Initializable {
     	}
     }
     
+public void showResult() {
+		
+		String sql ="Select * from result";
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if(rs.next()) {
+				election_date.setText(String.valueOf(rs.getDate("election_date")));
+				post.setText(rs.getString("post"));
+				
+				Image image = new Image("file:"+"candidateimage/"+rs.getString("winner_img"));
+				
+				image_view.setImage(image);
+				
+				name.setText(rs.getString("winner"));
+				total_vote.setText(String.valueOf(rs.getInt("total_vote")));
+				win_by.setText(String.valueOf(rs.getInt("winby")));
+				wish.setText(rs.getString("wish"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		
-		
+    	//show result
+    	showResult();
 	}
 	
 }

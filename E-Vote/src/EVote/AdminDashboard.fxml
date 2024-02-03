@@ -66,7 +66,7 @@
                               <Font size="10.0" />
                            </font>
                         </Button>
-                        <Button fx:id="nav_publishresult_btn" alignment="BASELINE_LEFT" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_publishres_btn" stylesheets="@Main.css" text="Publish Result">
+                        <Button fx:id="nav_publishresult_btn" alignment="BASELINE_LEFT" layoutX="9.0" layoutY="304.0" mnemonicParsing="false" onAction="#switchscene" prefHeight="38.0" prefWidth="150.0" styleClass="admin_publishres_btn" stylesheets="@Main.css" text="View Result">
                            <graphic>
                               <FontAwesomeIcon fill="WHITE" glyphName="TROPHY" size="1.5em" />
                            </graphic></Button>
@@ -494,7 +494,7 @@
                               <Label fx:id="votererror_txt" layoutX="303.0" layoutY="383.0" text=" " textFill="#d71414" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="764.0" prefWidth="1168.0" styleClass="working_area" stylesheets="@Main.css">
+                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="764.0" prefWidth="1168.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
                            <children>
                               <Label fx:id="publishres_totalvoter" layoutX="612.0" layoutY="162.0" text="52" />
                               <Label layoutX="81.0" layoutY="163.0" text="No of people voted :">
@@ -565,7 +565,7 @@
                               <Label layoutX="122.0" layoutY="265.0" text="Note : Uncheck the show checkbox before clicking change password" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_result_form" layoutY="36.0" prefHeight="765.0" prefWidth="917.0" styleClass="working_area" stylesheets="@Main.css" visible="false">
+                        <AnchorPane fx:id="admin_result_form" layoutY="36.0" prefHeight="765.0" prefWidth="917.0" styleClass="working_area" stylesheets="@Main.css">
                            <children>
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f0f0f000" height="303.0" layoutX="326.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" width="243.0" />
                               <Label layoutX="383.0" layoutY="197.0" text="Position :">
@@ -613,7 +613,7 @@
                                     <Font name="Times New Roman" size="20.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="366.0" layoutY="502.0" text="Congratulations !!!">
+                              <Label fx:id="wish" layoutX="366.0" layoutY="502.0" text="Congratulations !!!">
                                  <font>
                                     <Font name="Times New Roman" size="21.0" />
                                  </font>
@@ -623,7 +623,7 @@
                                     <Font name="Times New Roman" size="21.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="452.0" layoutY="141.0" text="Election Date ">
+                              <Label fx:id="election_date" layoutX="452.0" layoutY="141.0" text="Election Date ">
                                  <font>
                                     <Font name="Times New Roman" size="21.0" />
                                  </font>

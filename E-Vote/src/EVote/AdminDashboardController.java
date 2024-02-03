@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -320,6 +321,9 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private Label voter_total_txt;
+	
+	@FXML
+	private Label wish;
 
 	@FXML
 	private Label position_error;
@@ -331,6 +335,9 @@ public class AdminDashboardController implements Initializable {
 	private Label candidateone_error;
 	@FXML
 	private Label candidatetwo_error;
+	
+	@FXML
+	private Label election_date;
 
 	@FXML
 	private Label candidateone_img_error;
@@ -1158,19 +1165,19 @@ public class AdminDashboardController implements Initializable {
 
 	public void endElection() {
 
+		Conn c = new Conn();
 		int voter = Integer.parseInt(publishres_totalvoter.getText());
 
 		int votes = 0;
 		String sql = "select count(id) from votes";
 
 		try {
-			Conn c = new Conn();
+			
 			ResultSet rs = c.s.executeQuery(sql);
 			if (rs.next()) {
 				votes = rs.getInt("count(id)");
 
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1185,35 +1192,97 @@ public class AdminDashboardController implements Initializable {
 				alert.showAndWait();
 			} else {
 
-				//election bata candidate ko name chahiyo 
-				//के हो भाइ एस्तो
-				
-				
-				
-				
-				String count = "SELECT COUNT(CASE WHEN votefor = '" + admin_candidate_one_name.getText()
-						+ "' THEN 1 END) as candidate_one_count," + " COUNT(CASE WHEN votefor= '"
-						+ admin_candidate_two_name.getText() + "' THEN 1 END) as candidate_two_count FROM votes";
-				
-				int candidate_one_vote=0;
-				int candidate_two_vote=0;
+				String can1_name = "";
+				String can2_name = "";
+				String can1_img = "";
+				String can2_img = "";
+				String post = "";
+				Date date=null;
+
+				ResultSet rs;
+
+				String candidate = "select *from election";
+
+				try {
+					
+					rs = c.s.executeQuery(candidate);
+					if (rs.next()) {
+						can1_name = rs.getString("candidate_one_name");
+						can2_name = rs.getString("candidate_two_name");
+						can1_img = rs.getString("candidate_one_img");
+						can2_img = rs.getString("candidate_two_img");
+						post = rs.getString("position");
+						date = rs.getDate("Election_date");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				String count = "SELECT COUNT(CASE WHEN votefor = '" + can1_name
+						+ "' THEN 1 END) as candidate_one_count," + " COUNT(CASE WHEN votefor= '" + can2_name
+						+ "' THEN 1 END) as candidate_two_count FROM votes";
+
+				int candidate_one_vote = 0;
+				int candidate_two_vote = 0;
 				
 				try {
-					Conn c = new Conn();
-					ResultSet rs = c.s.executeQuery(count);
 					
-					if(rs.next()) {
-						candidate_one_vote=rs.getInt("candidate_one_count");
-						candidate_two_vote =rs.getInt("candidate_two_count");
-						
+					ResultSet result = c.s.executeQuery(count);
+
+					if (result.next()) {
+						candidate_one_vote = result.getInt("candidate_one_count");
+						candidate_two_vote = result.getInt("candidate_two_count");
+					}
+				} catch (Exception e) {
+
+				}
+				
+			
+				int winner_vote=0;
+				int win_by=0;
+                String winner="";
+                String winner_img="";
+                String wish="Congratulations!!!";;
+				
+				if (candidate_one_vote == candidate_two_vote) {
+                       winner="";
+                       winner_img="";
+                       wish ="Draw!!!";
+					   
+				} else if (candidate_one_vote > candidate_two_vote) {
+					
+					winner=can1_name;
+					winner_img=can1_img;
+					winner_vote=candidate_one_vote;
+					win_by = candidate_one_vote-candidate_two_vote;
+					
+					
+				} else if (candidate_one_vote < candidate_two_vote) {
+					winner=can2_name;
+					winner_img=can2_img;
+					winner_vote=candidate_two_vote;
+					win_by = candidate_two_vote-candidate_one_vote;
+				}
+				
+				
+				
+				
+				String result = "insert into result(post,winner,winner_img,total_vote,winby,election_date,wish)values ('"
+						+ post + "','" + winner + "','" + winner_img + "','" + winner_vote + "','"
+						+ win_by + "','"+date+"','"+wish+"')";
+				try {
+					int affected_row=c.s.executeUpdate(result);
+					if(affected_row>0) {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Published");
+						alert.setHeaderText(null);
+						alert.setContentText("Result published");
+						alert.show();
 					}
 					
 				}catch(Exception e) {
-					
+					e.printStackTrace();
 				}
-				
-				System.out.print(candidate_one_vote);
-				System.out.print(candidate_two_vote);
 
 			}
 		} else {
@@ -1226,6 +1295,31 @@ public class AdminDashboardController implements Initializable {
 
 	}
 
+	
+	
+	public void showResult() {
+		
+		String sql ="Select * from result";
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if(rs.next()) {
+				election_date.setText(String.valueOf(rs.getDate("election_date")));
+				published_result_post.setText(rs.getString("post"));
+				
+				Image image = new Image("file:"+"candidateimage/"+rs.getString("winner_img"));
+				
+				published_result_img.setImage(image);
+				
+				published_result_name.setText(rs.getString("winner"));
+				published_result_vote.setText(String.valueOf(rs.getInt("total_vote")));
+				published_result_wonby.setText(String.valueOf(rs.getInt("winby")));
+				wish.setText(rs.getString("wish"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -1248,6 +1342,11 @@ public class AdminDashboardController implements Initializable {
 		showNoOfVotes();
 		// total number of voter
 		showTotalVoter();
+		
+		
+		
+		//show result
+		showResult();
 	}
 
 }
