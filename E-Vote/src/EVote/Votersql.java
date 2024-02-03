@@ -20,7 +20,7 @@ class Votersql {
 				+ fullname + "','" + email + "'," + "'" + phone + "','" + localDate + "','" + address + "','"
 				+ citizenshipno + "','" + passportsize_photo + "','" + employee_id + "','" + citizenship_front + "','"
 				+ citizenship_back + "','"+voter_password+"')";
-		System.out.print(sql);
+		
 
 		try {
 			Conn c = new Conn();

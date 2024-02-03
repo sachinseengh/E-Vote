@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.AdminDashboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EVote.AdminDashboardController">
    <children>
       <AnchorPane layoutX="92.0" layoutY="126.0" prefHeight="550.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -236,16 +236,16 @@
                                     <Image url="@../../../../../../Desktop/Evote-logo.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="572.0" layoutY="609.0" text="Reason :" />
-                              <TextArea fx:id="verification_reason_txt" layoutX="624.0" layoutY="571.0" prefHeight="106.0" prefWidth="264.0" />
-                              <Button fx:id="verification_reject_btn" layoutX="707.0" layoutY="712.0" mnemonicParsing="false" onAction="#reject" prefHeight="26.0" prefWidth="94.0" text="Reject" />
-                              <Button fx:id="verification_verify_btn" layoutX="804.0" layoutY="712.0" mnemonicParsing="false" onAction="#approve" prefHeight="26.0" prefWidth="89.0" text="Verify" />
+                              <Label layoutX="626.0" layoutY="662.0" text="Reason :" />
+                              <TextArea fx:id="verification_reason_txt" layoutX="681.0" layoutY="640.0" prefHeight="63.0" prefWidth="456.0" promptText="No Reason Required for Approval" />
+                              <Button fx:id="verification_reject_btn" layoutX="956.0" layoutY="726.0" mnemonicParsing="false" onAction="#reject" prefHeight="26.0" prefWidth="94.0" text="Reject" />
+                              <Button fx:id="verification_verify_btn" layoutX="1053.0" layoutY="726.0" mnemonicParsing="false" onAction="#approve" prefHeight="26.0" prefWidth="89.0" text="Approve" />
                               <Label layoutX="430.0" layoutY="3.0" text="Unverified Voter">
                                  <font>
                                     <Font name="Times New Roman" size="15.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="zoomedimage" fitHeight="229.0" fitWidth="363.0" layoutX="540.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="zoomedimage" fitHeight="278.0" fitWidth="610.0" layoutX="607.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../Desktop/coding.jpg" />
                                  </image></ImageView>
@@ -289,7 +289,7 @@
                               </Label>
                       
                               <Line endX="25.466644287109375" endY="220.6666259765625" layoutX="482.0" layoutY="534.0" startX="25.466644287109375" startY="-198.5333251953125" />
-                              <Label layoutX="674.0" layoutY="306.0" text="Image preview" />
+                              <Label layoutX="801.0" layoutY="269.0" text="Image preview" />
                               <Label fx:id="remarks_txt" layoutX="629.0" layoutY="681.0" textFill="#f20000" />
                               <Label fx:id="unverified_error" layoutX="26.0" layoutY="315.0" prefHeight="30.0" prefWidth="459.0" textFill="#fa0000">
                                  <font>
@@ -304,7 +304,7 @@
                               </Label>
                               <TextField fx:id="unverified_id" editable="false" layoutX="52.0" layoutY="408.0" prefHeight="33.0" prefWidth="129.0" styleClass="textfields" stylesheets="@Main.css" />
                               <TextField fx:id="unverified_email" editable="false" layoutX="247.0" layoutY="412.0" prefHeight="34.0" prefWidth="247.0" styleClass="textfields" stylesheets="@Main.css" />
-                              <TableView fx:id="verification_tableview" layoutX="11.0" layoutY="23.0" onMouseClicked="#selectUnverified" prefHeight="285.0" prefWidth="895.0">
+                              <TableView fx:id="verification_tableview" layoutX="11.0" layoutY="23.0" onMouseClicked="#selectUnverified" prefHeight="242.0" prefWidth="1146.0">
                                 <columns>
                                   <TableColumn fx:id="verificationtable_col_id" prefWidth="75.0" text="id" />
                                   <TableColumn fx:id="verificationtable_col_phone" prefWidth="75.0" text="phone" />
@@ -319,6 +319,7 @@
                                     <TableColumn fx:id="verificationtable_col_citizenbackimg" prefWidth="71.20000000000005" text="citizenshipfront" />
                                 </columns>
                               </TableView>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="307.0" layoutX="571.0" layoutY="296.0" stroke="BLACK" strokeType="INSIDE" width="550.0" />
 
                            </children>
                         </AnchorPane>
@@ -493,7 +494,7 @@
                               <Label fx:id="votererror_txt" layoutX="303.0" layoutY="383.0" text=" " textFill="#d71414" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="764.0" prefWidth="917.0" styleClass="working_area" stylesheets="@Main.css">
+                        <AnchorPane fx:id="admin_election_details_form" layoutY="36.0" prefHeight="764.0" prefWidth="1168.0" styleClass="working_area" stylesheets="@Main.css">
                            <children>
                               <Label fx:id="publishres_totalvoter" layoutX="612.0" layoutY="162.0" text="52" />
                               <Label layoutX="81.0" layoutY="163.0" text="No of people voted :">
