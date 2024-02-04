@@ -419,6 +419,7 @@ public class AdminDashboardController implements Initializable {
 			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
 
 		} else if (e.getSource() == nav_publishresult_btn) {
+			 showResult() ;
 			admin_strtvoting_form.setVisible(false);
 			admin_changepassword_form.setVisible(false);
 			voter_form.setVisible(false);

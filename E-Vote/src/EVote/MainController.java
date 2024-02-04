@@ -120,6 +120,17 @@ public class MainController implements Initializable {
 	private TextField citizenshipno_txtfield;
 	@FXML
 	private Button check_btn;
+	
+	@FXML
+	private Button retvoterregistration;
+	
+	@FXML
+	private Button retloginpage;
+	
+	
+	
+	@FXML
+	private Button returnfrom_result;
 	@FXML
 	private Label status;
 	@FXML
@@ -164,13 +175,20 @@ public class MainController implements Initializable {
 			voter_working_area.setVisible(false);
 			voter_checkstatus_form.setVisible(true);
 
-		} else if (e.getSource() == voter_viewresult) {
-
-//    		i will call a function which is there is result then the result 
-			// and if there is result then result
-
+		} else if (e.getSource() == voter_viewresult || e.getSource()==admin_viewresult) {
+             
+			admin_working_area.setVisible(false);
 			published_result_form.setVisible(true);
 			voter_working_area.setVisible(false);
+		}else if(e.getSource()== retloginpage || e.getSource()== returnfrom_result) {
+			
+			voter_checkstatus_form.setVisible(false);
+			voter_working_area.setVisible(true);
+			published_result_form.setVisible(false);
+		}else if(e.getSource() == retvoterregistration) {
+			
+			voter_registernow.getScene().getWindow().hide();
+			registrationOpen();
 		}
 	}
 
