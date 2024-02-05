@@ -70,6 +70,8 @@ class Validations{
 	
 	
 	
+	
+	
 	public void showPassword(CheckBox checkbox,PasswordField passwordfield) {
 		if(checkbox.isSelected()) {
 			passwordfield.setPromptText(passwordfield.getText());

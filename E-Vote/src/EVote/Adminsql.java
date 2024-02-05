@@ -24,7 +24,7 @@ class Adminsql {
 			c.s.executeUpdate(sql);
 
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 	}
@@ -50,28 +50,31 @@ class Adminsql {
 	public void changePassword(String newpassword) {
 		try {
 			Conn c = new Conn();
-			String sql ="update admin set password = '"+newpassword+"' where username = 'admin'";
-			
+			String sql = "update admin set password = '" + newpassword + "' where username = 'admin'";
+
 			int affectedrow = c.s.executeUpdate(sql);
-			
-			if(affectedrow > 0) {
+
+			if (affectedrow > 0) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Successfull");
 				alert.setHeaderText(null);
 				alert.setContentText("Password Changed successfully");
 				alert.show();
-				
-			}else {
+
+			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Failed");
 				alert.setHeaderText(null);
 				alert.setContentText("Failed to change password");
 				alert.show();
 			}
-		}catch(Exception e) {
-			
+		} catch (Exception e) {
+
 		}
 
 	}
+	
+	
+	
 
 }

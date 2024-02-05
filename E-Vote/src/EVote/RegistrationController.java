@@ -306,11 +306,17 @@ public class RegistrationController implements Initializable {
 		employeeid_imageview.setImage(null);
 		citizenfront_imageview.setImage(null);
 		citizenback_imageview.setImage(null);
+		passportphoto_img.setText("No file selected");
+		employee_id_img.setText("No file selected");
+		citizenshipfront_img.setText("No file selected");
+		citizenshipback_name.setText("No file selected");
 	}
 	
 
 	public void register() {
+		Votersql vs = new Votersql();
 		Validations validation = new Validations();
+		
 		if (fullname_txtfield.getText().equals("") || fullname_txtfield.getText().trim().isEmpty()
 				|| fullname_txtfield.getText() == null) {
 			fullname_error.setText("Name is required");
@@ -336,6 +342,9 @@ public class RegistrationController implements Initializable {
 
 			if (!validation.numberonly(phone_txtfield.getText())) {
 				phone_error.setText("Invalid phone number");
+				
+			}else if(vs.checkNumber(phone_txtfield.getText())) {
+				phone_error.setText("Phone number already exists");
 			}
 
 		}
@@ -386,6 +395,8 @@ public class RegistrationController implements Initializable {
 		} else {
 			if (!validation.citizenshipnovalidator(citizenshipno_txtfield.getText())) {
 				citizenshipno_error.setText("Invalid Citizenshipno");
+			}else if(vs.checkCitizenshipno(citizenshipno_txtfield.getText())) {
+				citizenshipno_error.setText("Citizenshipno already exists");
 			}
 		}
 
@@ -420,7 +431,7 @@ public class RegistrationController implements Initializable {
 				e.getStackTrace();
 			}
 
-			Votersql vs = new Votersql();
+		
 			vs.RegisterVoter(fullname_txtfield.getText(), email_txt.getText(), phone_txtfield.getText(),
 					datepicker_txtfield.getValue().toString(), address_txtfield.getText(), password_textfield.getText(),
 					citizenshipno_txtfield.getText(), passportphoto_img.getText(), employee_id_img.getText(),

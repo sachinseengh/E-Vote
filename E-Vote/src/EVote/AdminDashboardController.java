@@ -321,7 +321,7 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private Label voter_total_txt;
-	
+
 	@FXML
 	private Label wish;
 
@@ -335,7 +335,7 @@ public class AdminDashboardController implements Initializable {
 	private Label candidateone_error;
 	@FXML
 	private Label candidatetwo_error;
-	
+
 	@FXML
 	private Label election_date;
 
@@ -346,6 +346,9 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private Label imageone_name;
+
+	@FXML
+	private Label unverified_citizenship_err;
 
 	@FXML
 	private Label unverified_error;
@@ -419,7 +422,7 @@ public class AdminDashboardController implements Initializable {
 			nav_changepassword_btn.setStyle("-fx-background-color:transparent;");
 
 		} else if (e.getSource() == nav_publishresult_btn) {
-			 showResult() ;
+			showResult();
 			admin_strtvoting_form.setVisible(false);
 			admin_changepassword_form.setVisible(false);
 			voter_form.setVisible(false);
@@ -651,7 +654,21 @@ public class AdminDashboardController implements Initializable {
 			if (option.get().equals(ButtonType.OK)) {
 				Adminsql election = new Adminsql();
 				election.startElection(position_name.getText(), admin_candidate_one_name.getText(),
+
 						imageone_name.getText(), admin_candidate_two_name.getText(), imagetwo_name.getText());
+
+				// setting all the field null
+				position_name.setText("");
+				admin_candidate_one_name.setText("");
+				admin_candidate_two_name.setText("");
+				candidate_one_image.setImage(null);
+				candidate_two_image.setImage(null);
+				imageone_name.setText("No image Selected");
+				imagetwo_name.setText("No image Selected");
+
+				// change Scene
+				admin_strtvoting_form.setVisible(false);
+				admin_election_details_form.setVisible(true);
 
 			}
 
@@ -793,6 +810,19 @@ public class AdminDashboardController implements Initializable {
 		} catch (Exception e) {
 
 		}
+		Votersql vs = new Votersql();
+
+		if (vs.checkNumber(data.getPhone())) {
+			unverified_error.setText("Phone number already exists");
+		} else {
+			unverified_error.setText("");
+		}
+
+		if (vs.checkCitizenshipno(data.getCitizenshipno())) {
+			unverified_citizenship_err.setText("Citizenshipno already exists");
+		} else {
+			unverified_citizenship_err.setText("");
+		}
 
 	}
 
@@ -821,74 +851,84 @@ public class AdminDashboardController implements Initializable {
 	/*----------------Approve or reject unverified--------------*/
 
 	public void approve() {
-		if (unverified_id.getText().equals("")
-				|| unverified_id.getText() == null && unverified_id.getText().isEmpty()) {
+		if (unverified_citizenship_err.getText().equals("") && unverified_error.getText().equals("")) {
+			
 
-			unverified_error.setText("Select a row from the table");
-		} else {
+			if (unverified_id.getText().equals("")
+					|| unverified_id.getText() == null && unverified_id.getText().isEmpty()) {
 
-			Conn c = new Conn();
+				unverified_error.setText("Select a row from the table");
+			} else {
 
-			String sql = "insert into status (id,phone,citizenshipno,dob,remarks,status) values ('"
-					+ Integer.parseInt(unverified_id.getText()) + "','" + verification_phone_txt.getText() + "','"
-					+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
-					+ verification_reason_txt.getText() + "','Approved')";
+				Conn c = new Conn();
 
-			String sql2 = "insert into voters values('" + Integer.parseInt(unverified_id.getText()) + "','"
-					+ verification_name_txt.getText() + "','" + unverified_email.getText() + "','"
-					+ verification_phone_txt.getText() + "','" + verification_dob_txt.getText() + "','"
-					+ verification_address_txt.getText() + "','" + verification_citizenshpno_txt.getText() + "','"
-					+ photo_name.getText() + "','" + employeeid_name.getText() + "','" + citizenshipfront_name.getText()
-					+ "','" + citizenshipback_name.getText() + "')";
+				String sql = "insert into status (id,phone,citizenshipno,dob,remarks,status) values ('"
+						+ Integer.parseInt(unverified_id.getText()) + "','" + verification_phone_txt.getText() + "','"
+						+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
+						+ verification_reason_txt.getText() + "','Approved')";
 
-			String password = null;
-			try {
+				String sql2 = "insert into voters values('" + Integer.parseInt(unverified_id.getText()) + "','"
+						+ verification_name_txt.getText() + "','" + unverified_email.getText() + "','"
+						+ verification_phone_txt.getText() + "','" + verification_dob_txt.getText() + "','"
+						+ verification_address_txt.getText() + "','" + verification_citizenshpno_txt.getText() + "','"
+						+ photo_name.getText() + "','" + employeeid_name.getText() + "','"
+						+ citizenshipfront_name.getText() + "','" + citizenshipback_name.getText() + "')";
 
-				String sql3 = "select password from unverified_voters where id ='"
-						+ Integer.parseInt(unverified_id.getText()) + "'";
-				ResultSet rs = c.s.executeQuery(sql3);
-				if (rs.next()) {
-					password = rs.getString("password");
+				String password = null;
+				try {
+
+					String sql3 = "select password from unverified_voters where id ='"
+							+ Integer.parseInt(unverified_id.getText()) + "'";
+					ResultSet rs = c.s.executeQuery(sql3);
+					if (rs.next()) {
+						password = rs.getString("password");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
-			String sql4 = " insert into voter_login values ('" + Integer.parseInt(unverified_id.getText()) + "','"
-					+ verification_phone_txt.getText() + "','" + password + "')";
+				String sql4 = " insert into voter_login values ('" + Integer.parseInt(unverified_id.getText()) + "','"
+						+ verification_phone_txt.getText() + "','" + password + "')";
 
-			try {
-				int affectedrow1 = c.s.executeUpdate(sql);
-				int affectedrow2 = c.s.executeUpdate(sql2);
-				int affectedrow4 = c.s.executeUpdate(sql4);
+				try {
+					int affectedrow1 = c.s.executeUpdate(sql);
+					int affectedrow2 = c.s.executeUpdate(sql2);
+					int affectedrow4 = c.s.executeUpdate(sql4);
 
-				if (affectedrow1 > 0 && affectedrow2 > 0 && affectedrow4 > 0) {
-					String sql5 = "delete from unverified_voters where id='" + Integer.parseInt(unverified_id.getText())
-							+ "'";
-					int affectedrow5 = c.s.executeUpdate(sql5);
+					if (affectedrow1 > 0 && affectedrow2 > 0 && affectedrow4 > 0) {
+						String sql5 = "delete from unverified_voters where id='"
+								+ Integer.parseInt(unverified_id.getText()) + "'";
+						int affectedrow5 = c.s.executeUpdate(sql5);
 
-					if (affectedrow5 > 0) {
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("Approved");
+						if (affectedrow5 > 0) {
+							Alert alert = new Alert(AlertType.INFORMATION);
+							alert.setTitle("Approved");
+							alert.setHeaderText(null);
+							alert.setContentText("Voter Approved successfully");
+							alert.show();
+							showUnverified();
+							showVoters();
+						}
+
+					} else {
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Error");
 						alert.setHeaderText(null);
-						alert.setContentText("Voter Approved successfully");
+						alert.setContentText("Something went Wrong");
 						alert.show();
-						showUnverified();
-						showVoters();
 					}
 
-				} else {
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error");
-					alert.setHeaderText(null);
-					alert.setContentText("Something went Wrong");
-					alert.show();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Duplicate");
+			alert.setHeaderText(null);
+			alert.setContentText("Duplicate phone or citizenshipno");
+			alert.show();
 		}
 	}
 
@@ -964,6 +1004,7 @@ public class AdminDashboardController implements Initializable {
 	public void showVoters() {
 		ObservableList<GetVoters> showList = voterdataList();
 
+		voter_tablecol_id.setCellValueFactory(new PropertyValueFactory<>("Id"));
 		voter_tablecol_phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 		voter_tablecol_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		voter_tablecol_dob.setCellValueFactory(new PropertyValueFactory<>("Dob"));
@@ -1173,7 +1214,7 @@ public class AdminDashboardController implements Initializable {
 		String sql = "select count(id) from votes";
 
 		try {
-			
+
 			ResultSet rs = c.s.executeQuery(sql);
 			if (rs.next()) {
 				votes = rs.getInt("count(id)");
@@ -1198,14 +1239,14 @@ public class AdminDashboardController implements Initializable {
 				String can1_img = "";
 				String can2_img = "";
 				String post = "";
-				Date date=null;
+				Date date = null;
 
 				ResultSet rs;
 
 				String candidate = "select *from election";
 
 				try {
-					
+
 					rs = c.s.executeQuery(candidate);
 					if (rs.next()) {
 						can1_name = rs.getString("candidate_one_name");
@@ -1225,9 +1266,9 @@ public class AdminDashboardController implements Initializable {
 
 				int candidate_one_vote = 0;
 				int candidate_two_vote = 0;
-				
+
 				try {
-					
+
 					ResultSet result = c.s.executeQuery(count);
 
 					if (result.next()) {
@@ -1237,51 +1278,83 @@ public class AdminDashboardController implements Initializable {
 				} catch (Exception e) {
 
 				}
-				
-			
-				int winner_vote=0;
-				int win_by=0;
-                String winner="";
-                String winner_img="";
-                String wish="Congratulations!!!";;
-				
+
+				int winner_vote = 0;
+				int win_by = 0;
+				String winner = "";
+				String winner_img = "";
+				String wish = "Congratulations!!!";
+				;
+
 				if (candidate_one_vote == candidate_two_vote) {
-                       winner="";
-                       winner_img="";
-                       wish ="Draw!!!";
-					   
+					winner = "";
+					winner_img = "";
+					wish = "Draw!!!";
+
 				} else if (candidate_one_vote > candidate_two_vote) {
-					
-					winner=can1_name;
-					winner_img=can1_img;
-					winner_vote=candidate_one_vote;
-					win_by = candidate_one_vote-candidate_two_vote;
-					
-					
+
+					winner = can1_name;
+					winner_img = can1_img;
+					winner_vote = candidate_one_vote;
+					win_by = candidate_one_vote - candidate_two_vote;
+
 				} else if (candidate_one_vote < candidate_two_vote) {
-					winner=can2_name;
-					winner_img=can2_img;
-					winner_vote=candidate_two_vote;
-					win_by = candidate_two_vote-candidate_one_vote;
+					winner = can2_name;
+					winner_img = can2_img;
+					winner_vote = candidate_two_vote;
+					win_by = candidate_two_vote - candidate_one_vote;
 				}
-				
-				
-				
-				
-				String result = "insert into result(post,winner,winner_img,total_vote,winby,election_date,wish)values ('"
-						+ post + "','" + winner + "','" + winner_img + "','" + winner_vote + "','"
-						+ win_by + "','"+date+"','"+wish+"')";
+
+				// Delete old result
+				String del_old_res = "delete from result";
 				try {
-					int affected_row=c.s.executeUpdate(result);
-					if(affected_row>0) {
-						Alert alert = new Alert(AlertType.INFORMATION);
-						alert.setTitle("Published");
-						alert.setHeaderText(null);
-						alert.setContentText("Result published");
-						alert.show();
+					c.s.executeUpdate(del_old_res);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				String result = "insert into result(post,winner,winner_img,total_vote,winby,election_date,wish)values ('"
+						+ post + "','" + winner + "','" + winner_img + "','" + winner_vote + "','" + win_by + "','"
+						+ date + "','" + wish + "')";
+				try {
+					Alert alert = new Alert(AlertType.CONFIRMATION);
+					alert.setTitle("Published Result Confirmation");
+					alert.setHeaderText(null);
+					alert.setContentText(" Are you sure want to End Voting and publish Result?");
+					Optional<ButtonType> option = alert.showAndWait();
+
+					if (option.get().equals(ButtonType.OK)) {
+
+						int affected_row = c.s.executeUpdate(result);
+
+						if (affected_row > 0) {
+
+							// if it is updated in result table then only delete the election and votes date
+							String del_election = "delete  from election";
+							String del_votes = "delete  from votes";
+							try {
+								c.s.executeUpdate(del_votes);
+								c.s.executeUpdate(del_election);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+
+						// change the scene to start voting
+						admin_strtvoting_form.setVisible(true);
+						admin_election_details_form.setVisible(false);
+
+//						result published alert
+						Alert alert2 = new Alert(AlertType.INFORMATION);
+						alert2.setTitle("Result Published");
+						alert2.setHeaderText(null);
+						alert2.setContentText(" Result published");
+						alert2.show();
+
+						startelectionorshowdetails();
+
 					}
-					
-				}catch(Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
@@ -1296,31 +1369,30 @@ public class AdminDashboardController implements Initializable {
 
 	}
 
-	
-	
 	public void showResult() {
-		
-		String sql ="Select * from result";
+
+		String sql = "Select * from result";
 		try {
 			Conn c = new Conn();
 			ResultSet rs = c.s.executeQuery(sql);
-			if(rs.next()) {
+			if (rs.next()) {
 				election_date.setText(String.valueOf(rs.getDate("election_date")));
 				published_result_post.setText(rs.getString("post"));
-				
-				Image image = new Image("file:"+"candidateimage/"+rs.getString("winner_img"));
-				
+
+				Image image = new Image("file:" + "candidateimage/" + rs.getString("winner_img"));
+
 				published_result_img.setImage(image);
-				
+
 				published_result_name.setText(rs.getString("winner"));
 				published_result_vote.setText(String.valueOf(rs.getInt("total_vote")));
 				published_result_wonby.setText(String.valueOf(rs.getInt("winby")));
 				wish.setText(rs.getString("wish"));
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -1343,10 +1415,8 @@ public class AdminDashboardController implements Initializable {
 		showNoOfVotes();
 		// total number of voter
 		showTotalVoter();
-		
-		
-		
-		//show result
+
+		// show result
 		showResult();
 	}
 

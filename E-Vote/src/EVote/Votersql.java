@@ -19,9 +19,9 @@ class Votersql {
 		String sql = "insert into unverified_voters(fullname,email,phone,dob,address,citizenshipno,photo,employee_id,citizenship_front,citizenship_back,password) values ('"
 				+ fullname + "','" + email + "'," + "'" + phone + "','" + localDate + "','" + address + "','"
 				+ citizenshipno + "','" + passportsize_photo + "','" + employee_id + "','" + citizenship_front + "','"
-				+ citizenship_back + "','"+voter_password+"')";
-		
+				+ citizenship_back + "','" + voter_password + "')";
 
+		
 		try {
 			Conn c = new Conn();
 			int affectedrow = c.s.executeUpdate(sql);
@@ -144,4 +144,53 @@ class Votersql {
 			e.printStackTrace();
 		}
 	}
-}
+
+     //	for registration
+
+	public boolean checkNumber(String number) {
+		String sql = "Select phone from voters where phone='" + number + "'";
+		int count = 0;
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if (rs.next()) {
+				count++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+
+
+	}
+	public boolean checkCitizenshipno(String citizenshipno) {
+		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "'";
+		int count = 0;
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if (rs.next()) {
+				count++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+
+
+	}
+	
+	
+	}
+
+	
