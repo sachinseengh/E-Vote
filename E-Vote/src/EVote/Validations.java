@@ -52,6 +52,12 @@ class Validations{
 		Matcher matcher = pattern.matcher(txt);
 		return matcher.matches();
 	}
+	public Boolean digitsonly(String txt) {
+		String regex = "^\\d+$";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(txt);
+		return matcher.matches();
+	}
 		
 	
 	public Boolean emailvalidation(String txt) {

@@ -1,7 +1,12 @@
 package EVote;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
@@ -25,6 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -138,6 +144,53 @@ public class MainController implements Initializable {
 	@FXML
 	private DatePicker date_datepicker;
 
+	
+	    @FXML
+	    private Button admin_add_imagebtn;
+
+	    @FXML
+	    private TextField admin_election_code;
+
+	    @FXML
+	    private Label admin_image_name;
+	    
+	    @FXML
+	    private ImageView admin_register_imageview;
+
+	    @FXML
+	    private PasswordField admin_register_password;
+
+	    @FXML
+	    private TextField admin_register_phone;
+
+	    @FXML
+	    private Button admin_registerbtn;
+	    
+	    @FXML
+	    private Button admin_register_voterloginbtn;
+	    
+	    @FXML
+	    private TextField organization_name;
+	    @FXML
+	    private AnchorPane admin_registration;
+	    
+	    @FXML
+	    private Button admin_register_form;
+	    
+	    @FXML
+	    private Label org_name_error;
+	    @FXML
+	    private Label phone_error;
+	    @FXML
+	    private Label password_error;
+	    @FXML
+	    private Label election_code_error;
+	    @FXML
+	    private Label org_logo_error;
+	  
+
+
+
 	Parent root;
 
 	// ---------------utility functions---------------------
@@ -162,6 +215,7 @@ public class MainController implements Initializable {
 			voter_working_area.setVisible(false);
 			voter_checkstatus_form.setVisible(false);
 			published_result_form.setVisible(false);
+			
 
 		} else if (e.getSource() == admin_voter_login) {
 			admin_working_area.setVisible(false);
@@ -189,9 +243,179 @@ public class MainController implements Initializable {
 			
 			voter_registernow.getScene().getWindow().hide();
 			registrationOpen();
+		}else if(e.getSource()==admin_register_form) {
+			
+			admin_registration.setVisible(true);
+			admin_working_area.setVisible(false);
+			voter_working_area.setVisible(false);
+			voter_checkstatus_form.setVisible(false);
+			published_result_form.setVisible(false);
 		}
 	}
 
+	
+	public void setregisterAdminerrornull() {
+		org_name_error.setText("");
+		phone_error.setText("");
+		password_error.setText("");
+		election_code_error.setText("");
+		org_logo_error.setText("");
+	}
+	
+	
+	
+	File orgLogo;
+
+	// ---------------passportsizephot-------------------------//
+	public void insertorgLogo() {
+		FileChooser can1chooser = new FileChooser();
+		Stage stage = (Stage) admin_registration.getScene().getWindow();
+
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg",
+				"*.png");
+		can1chooser.getExtensionFilters().add(extFilter);
+
+		orgLogo = can1chooser.showOpenDialog(stage);
+
+		if (orgLogo != null) {
+			try {
+				Image image = new Image(orgLogo.toURI().toString(), 135, 99, false, true);
+				admin_register_imageview.setImage(image);
+				admin_image_name.setText(orgLogo.getName());
+
+				// make all error null
+				setregisterAdminerrornull();
+
+			} catch (Exception e) {
+			}
+		}
+	}
+   
+
+	public void adminimgintofolder(File file) throws IOException {
+		Path imagePath = Paths.get("adminsimages");
+		if (!Files.exists(imagePath)) {
+			Files.createDirectories(imagePath);
+
+		}
+
+		// Copy the selected file to the "image" folder
+		Path destinationPath = Paths.get("adminsimages", file.getName());
+
+		Files.copy(file.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+	}
+	
+	public void registerAdmin() {
+		Validations validation = new Validations();
+	   
+	   if(organization_name.getText().equals("")||organization_name.getText().trim().isEmpty()||
+			   organization_name.getText()== null) {
+		   org_name_error.setText("Organization name is Required");
+	   }else {
+		   if(!validation.letteronlyregex(organization_name.getText())) {
+			   org_name_error.setText("Invalid name");
+		   }
+	   }
+	   
+	   
+	   if (admin_register_phone.getText().equals("") || admin_register_phone.getText().trim().isEmpty()
+				|| admin_register_phone.getText() == null) {
+			phone_error.setText("Phone is required");
+		} else {
+
+			if (!validation.numberonly(admin_register_phone.getText())) {
+				phone_error.setText("Invalid phone number");
+			}
+//			}else if(vs.checkNumber(phone_txtfield.getText())) {
+//				phone_error.setText("Phone number already exists");
+//			}
+
+		}
+	   
+	   if (admin_register_password.getText().equals("") || admin_register_password.getText().trim().isEmpty()
+				|| admin_register_password.getText() == null) {
+			password_error.setText("Password is required");
+		} else {
+			String password = admin_register_password.getText();
+
+			if (password.length() < 6) {
+				password_error.setText("Minimum password length is 6");
+
+			} else if (!validation.hasAlphabet(password)) {
+				password_error.setText("At least an alphabet is required");
+			} else if (!validation.hasDigit(password)) {
+				password_error.setText("At least one digit is required");
+			} else if (!validation.hasSpecialCharacter(password)) {
+				password_error.setText("At least one special character(_,@,#) is required");
+			} else if (!validation.PasswordValidation(password)) {
+				password_error.setText("Invalid password");
+			}
+
+		}
+	   
+	   
+	   if (admin_election_code.getText().equals("") || admin_election_code.getText().trim().isEmpty()
+				|| admin_election_code.getText() == null) {
+		   election_code_error.setText("Election code  is required");
+		} else {
+
+			if (!validation.digitsonly(admin_election_code.getText())) {
+				election_code_error.setText("Invalid Election code");
+				
+			}else {
+			if(admin_election_code.getText().length()!=4) {
+				election_code_error.setText("Only 4 digit is allowed");
+			}}
+		}
+	   
+	   
+	   if(admin_image_name.getText().equals("No file selected")) {
+		   org_logo_error.setText("Organization logo Required");
+	   }
+	   
+	   
+	   
+	   
+	   org_name_error.setText("");
+		phone_error.setText("");
+		password_error.setText("");
+		election_code_error.setText("");
+		org_logo_error.setText("");
+	   
+	   
+	   
+	   if(org_name_error.getText().equals("") && phone_error.getText().equals("") &&
+			   password_error.getText().equals("") && election_code_error.getText().equals("") &&
+			   org_logo_error.getText().equals("") ) {
+		   
+		   try {
+			   adminimgintofolder(orgLogo);
+		   }catch(Exception e) {
+			   e.getStackTrace();
+		   }
+		   
+	   }
+	   
+	   
+	   
+	   
+   }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void registrationOpen() throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
 
@@ -331,6 +555,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		setregisterAdminerrornull();
 		// show result
 		showResult();
 	}

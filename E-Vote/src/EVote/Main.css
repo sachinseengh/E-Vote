@@ -17,6 +17,15 @@
     -fx-prompt-text-fill: rgba(0, 0, 0, 0.5);
     
 }
+.textfieldsadminregister{
+	-fx-background-color: transparent;
+    -fx-border-color:#4993a9;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-padding: 5px 5px -1px 5px;
+    -fx-prompt-text-fill:#000;
+    -fx-font-size:15px;
+    -fx-prompt-text-fill: rgba(0, 0, 0, 0.5);
+}
 .textfields:focused{
     -fx-border-width: 0px 0px 2px 0px;
 }

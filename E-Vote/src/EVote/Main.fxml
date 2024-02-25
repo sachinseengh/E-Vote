@@ -74,7 +74,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="admin_working_area" layoutX="479.0" layoutY="40.0" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-1.6000000000000227" AnchorPane.leftAnchor="479.2" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.8">
+            <AnchorPane fx:id="admin_working_area" layoutX="479.0" layoutY="40.0" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="-1.6000000000000227" AnchorPane.leftAnchor="479.2" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.8">
                <children>
                   <FontAwesomeIcon glyphName="USER" layoutX="133.0" layoutY="96.0" size="6em" />
                   <Label layoutX="87.0" layoutY="120.0" text="Admin Login" textFill="#59866e" AnchorPane.leftAnchor="87.0">
@@ -85,10 +85,12 @@
                   <TextField fx:id="admin_username" layoutX="71.0" layoutY="188.0" prefHeight="30.0" prefWidth="200.0" promptText="Username" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
                   <PasswordField fx:id="admin_password" layoutX="71.0" layoutY="239.0" prefHeight="30.0" prefWidth="180.0" promptText="Password" styleClass="textfields" stylesheets="@Main.css" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="72.19999999999999" />
                   <Button fx:id="admin_loginbtn" layoutX="113.0" layoutY="296.0" mnemonicParsing="false" onAction="#adminLogin" prefHeight="26.0" prefWidth="89.0" styleClass="loginbtn" stylesheets="@Main.css" text="Login" AnchorPane.leftAnchor="113.0" />
-                  <Button fx:id="admin_viewresult" layoutX="68.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="View Result" AnchorPane.leftAnchor="68.0" />
+                  <Button fx:id="admin_viewresult" layoutX="68.0" layoutY="403.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="View Result" AnchorPane.leftAnchor="68.0" />
                   <FontAwesomeIcon glyphName="USER" layoutX="76.0" layoutY="210.0" size="1.8em" />
                   <FontAwesomeIcon glyphName="LOCK" layoutX="77.0" layoutY="262.0" size="1.8em" />
-                  <Button fx:id="admin_voter_login" layoutX="68.0" layoutY="399.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="Voter Login" AnchorPane.leftAnchor="68.0" />
+                  <Button fx:id="admin_voter_login" layoutX="68.0" layoutY="448.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="180.0" styleClass="viewResultbtn" stylesheets="@Main.css" text="Voter Login" AnchorPane.leftAnchor="68.0" />
+                  <Label layoutX="57.0" layoutY="348.0" text="Register as Admin?" />
+                  <Button fx:id="admin_register_form" layoutX="156.0" layoutY="344.0" mnemonicParsing="false" onAction="#switchUser" styleClass="registerbtn" stylesheets="@Main.css" text="Register" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="voter_checkstatus_form" layoutY="39.2" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="477.6" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
@@ -213,6 +215,64 @@
                         <Font name="Times New Roman" size="24.0" />
                      </font>
                   </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="admin_registration" layoutX="480.0" layoutY="41.0" prefHeight="511.0" prefWidth="321.0" styleClass="working_area" stylesheets="@Main.css">
+               <children>
+                  <Label layoutX="67.0" layoutY="35.0" text="Admin Registration">
+                     <font>
+                        <Font name="Times New Roman Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="admin_registerbtn" layoutX="99.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerAdmin" prefHeight="33.0" prefWidth="144.0" styleClass="votebtn" stylesheets="@Main.css" text="Register" />
+                  <Label alignment="TOP_LEFT" layoutX="16.0" layoutY="95.0" prefHeight="22.0" prefWidth="114.0" text="Org. name :">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="organization_name" layoutX="105.0" layoutY="88.0" prefHeight="26.0" prefWidth="202.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <TextField fx:id="admin_register_phone" layoutX="109.0" layoutY="132.0" prefHeight="26.0" prefWidth="178.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <TextField fx:id="admin_election_code" layoutX="113.0" layoutY="215.0" prefHeight="26.0" prefWidth="166.0" promptText="4 Digit Election Code" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <Label alignment="TOP_LEFT" layoutX="48.0" layoutY="139.0" text="Phone :">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="26.0" layoutY="177.0" text="Password  :">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="2.0" layoutY="221.0" text=" Election code :">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="296.0" text="Org. logo:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="99.0" layoutX="113.0" layoutY="257.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
+                  <Label layoutX="62.0" layoutY="365.0" text="Image Name :">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="admin_image_name" layoutX="146.0" layoutY="365.0" text="No file selected">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="admin_register_imageview" fitHeight="99.0" fitWidth="135.0" layoutX="113.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="admin_add_imagebtn" layoutX="113.0" layoutY="257.0" mnemonicParsing="false" onAction="#insertorgLogo" prefHeight="99.0" prefWidth="135.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
+                  <PasswordField fx:id="admin_register_password" layoutX="113.0" layoutY="171.0" prefHeight="26.0" prefWidth="166.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <Button layoutX="65.0" layoutY="466.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="202.0" styleClass="loginbtn" stylesheets="@Main.css" text="Voter login" />
+                  <Label fx:id="org_name_error" layoutX="105.0" layoutY="115.0" prefHeight="18.0" prefWidth="186.0" textFill="#c11818" />
+                  <Label fx:id="phone_error" layoutX="119.0" layoutY="162.0" prefHeight="18.0" prefWidth="166.0" textFill="#c11818" />
+                  <Label fx:id="password_error" layoutX="115.0" layoutY="197.0" prefHeight="18.0" prefWidth="166.0" textFill="#c11818" />
+                  <Label fx:id="election_code_error" layoutX="113.0" layoutY="241.0" prefHeight="18.0" prefWidth="166.0" textFill="#c11818" />
+                  <Label fx:id="org_logo_error" layoutX="90.0" layoutY="382.0" prefHeight="18.0" prefWidth="158.0" textFill="#c11818" />
                </children>
             </AnchorPane>
          </children>
