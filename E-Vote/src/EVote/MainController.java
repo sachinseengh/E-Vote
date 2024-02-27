@@ -126,15 +126,13 @@ public class MainController implements Initializable {
 	private TextField citizenshipno_txtfield;
 	@FXML
 	private Button check_btn;
-	
+
 	@FXML
 	private Button retvoterregistration;
-	
+
 	@FXML
 	private Button retloginpage;
-	
-	
-	
+
 	@FXML
 	private Button returnfrom_result;
 	@FXML
@@ -144,52 +142,48 @@ public class MainController implements Initializable {
 	@FXML
 	private DatePicker date_datepicker;
 
-	
-	    @FXML
-	    private Button admin_add_imagebtn;
+	@FXML
+	private Button admin_add_imagebtn;
 
-	    @FXML
-	    private TextField admin_election_code;
+	@FXML
+	private TextField admin_election_code;
 
-	    @FXML
-	    private Label admin_image_name;
-	    
-	    @FXML
-	    private ImageView admin_register_imageview;
+	@FXML
+	private Label admin_image_name;
 
-	    @FXML
-	    private PasswordField admin_register_password;
+	@FXML
+	private ImageView admin_register_imageview;
 
-	    @FXML
-	    private TextField admin_register_phone;
+	@FXML
+	private PasswordField admin_register_password;
 
-	    @FXML
-	    private Button admin_registerbtn;
-	    
-	    @FXML
-	    private Button admin_register_voterloginbtn;
-	    
-	    @FXML
-	    private TextField organization_name;
-	    @FXML
-	    private AnchorPane admin_registration;
-	    
-	    @FXML
-	    private Button admin_register_form;
-	    
-	    @FXML
-	    private Label org_name_error;
-	    @FXML
-	    private Label phone_error;
-	    @FXML
-	    private Label password_error;
-	    @FXML
-	    private Label election_code_error;
-	    @FXML
-	    private Label org_logo_error;
-	  
+	@FXML
+	private TextField admin_register_phone;
 
+	@FXML
+	private Button admin_registerbtn;
 
+	@FXML
+	private Button admin_register_voterloginbtn;
+
+	@FXML
+	private TextField organization_name;
+	@FXML
+	private AnchorPane admin_registration;
+
+	@FXML
+	private Button admin_register_form;
+
+	@FXML
+	private Label org_name_error;
+	@FXML
+	private Label phone_error;
+	@FXML
+	private Label password_error;
+	@FXML
+	private Label election_code_error;
+	@FXML
+	private Label org_logo_error;
 
 	Parent root;
 
@@ -211,13 +205,14 @@ public class MainController implements Initializable {
 	// switch user
 	public void switchUser(ActionEvent e) throws IOException {
 		if (e.getSource() == admin_btn) {
+			admin_registration.setVisible(false);
 			admin_working_area.setVisible(true);
 			voter_working_area.setVisible(false);
 			voter_checkstatus_form.setVisible(false);
 			published_result_form.setVisible(false);
-			
 
 		} else if (e.getSource() == admin_voter_login) {
+			admin_registration.setVisible(false);
 			admin_working_area.setVisible(false);
 			voter_working_area.setVisible(true);
 
@@ -229,22 +224,21 @@ public class MainController implements Initializable {
 			voter_working_area.setVisible(false);
 			voter_checkstatus_form.setVisible(true);
 
-		} else if (e.getSource() == voter_viewresult || e.getSource()==admin_viewresult) {
-             
+		} else if (e.getSource() == voter_viewresult || e.getSource() == admin_viewresult) {
+
 			admin_working_area.setVisible(false);
 			published_result_form.setVisible(true);
 			voter_working_area.setVisible(false);
-		}else if(e.getSource()== retloginpage || e.getSource()== returnfrom_result) {
-			
+		} else if (e.getSource() == retloginpage || e.getSource() == returnfrom_result) {
+
 			voter_checkstatus_form.setVisible(false);
 			voter_working_area.setVisible(true);
 			published_result_form.setVisible(false);
-		}else if(e.getSource() == retvoterregistration) {
-			
+		} else if (e.getSource() == retvoterregistration) {
 			voter_registernow.getScene().getWindow().hide();
 			registrationOpen();
-		}else if(e.getSource()==admin_register_form) {
-			
+		} else if (e.getSource() == admin_register_form) {
+
 			admin_registration.setVisible(true);
 			admin_working_area.setVisible(false);
 			voter_working_area.setVisible(false);
@@ -253,7 +247,6 @@ public class MainController implements Initializable {
 		}
 	}
 
-	
 	public void setregisterAdminerrornull() {
 		org_name_error.setText("");
 		phone_error.setText("");
@@ -262,8 +255,23 @@ public class MainController implements Initializable {
 		org_logo_error.setText("");
 	}
 	
-	
-	
+	public void clearallfield() {
+		organization_name.setText("");
+		admin_register_phone.setText("");
+		admin_register_imageview.setImage(null);
+		admin_election_code.setText("");
+		admin_register_password.setText("");
+		admin_image_name.setText("No file selected");
+		
+	}
+	public void openLogin() {
+		admin_registration.setVisible(false);
+		admin_working_area.setVisible(true);
+		voter_working_area.setVisible(false);
+		voter_checkstatus_form.setVisible(false);
+		published_result_form.setVisible(false);
+	}
+
 	File orgLogo;
 
 	// ---------------passportsizephot-------------------------//
@@ -290,7 +298,6 @@ public class MainController implements Initializable {
 			}
 		}
 	}
-   
 
 	public void adminimgintofolder(File file) throws IOException {
 		Path imagePath = Paths.get("adminsimages");
@@ -305,35 +312,36 @@ public class MainController implements Initializable {
 		Files.copy(file.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
 	}
-	
+
 	public void registerAdmin() {
+		Adminsql as = new Adminsql();
 		Validations validation = new Validations();
-	   
-	   if(organization_name.getText().equals("")||organization_name.getText().trim().isEmpty()||
-			   organization_name.getText()== null) {
-		   org_name_error.setText("Organization name is Required");
-	   }else {
-		   if(!validation.letteronlyregex(organization_name.getText())) {
-			   org_name_error.setText("Invalid name");
-		   }
-	   }
-	   
-	   
-	   if (admin_register_phone.getText().equals("") || admin_register_phone.getText().trim().isEmpty()
+
+		if (organization_name.getText().equals("") || organization_name.getText().trim().isEmpty()
+				|| organization_name.getText() == null) {
+			org_name_error.setText("Organization name is Required");
+		} else {
+			if (!validation.letteronlyregex(organization_name.getText())) {
+				org_name_error.setText("Invalid name");
+			}
+		}
+
+		if (admin_register_phone.getText().equals("") || admin_register_phone.getText().trim().isEmpty()
 				|| admin_register_phone.getText() == null) {
 			phone_error.setText("Phone is required");
 		} else {
 
 			if (!validation.numberonly(admin_register_phone.getText())) {
 				phone_error.setText("Invalid phone number");
-			}
-//			}else if(vs.checkNumber(phone_txtfield.getText())) {
-//				phone_error.setText("Phone number already exists");
-//			}
+			
+			}else if(as.checkNumber(admin_register_phone.getText())) {
+				phone_error.setText("Phone number already exists");
+
 
 		}
-	   
-	   if (admin_register_password.getText().equals("") || admin_register_password.getText().trim().isEmpty()
+		}
+
+		if (admin_register_password.getText().equals("") || admin_register_password.getText().trim().isEmpty()
 				|| admin_register_password.getText() == null) {
 			password_error.setText("Password is required");
 		} else {
@@ -353,69 +361,51 @@ public class MainController implements Initializable {
 			}
 
 		}
-	   
-	   
-	   if (admin_election_code.getText().equals("") || admin_election_code.getText().trim().isEmpty()
+
+		if (admin_election_code.getText().equals("") || admin_election_code.getText().trim().isEmpty()
 				|| admin_election_code.getText() == null) {
-		   election_code_error.setText("Election code  is required");
+			election_code_error.setText("Election code  is required");
 		} else {
 
 			if (!validation.digitsonly(admin_election_code.getText())) {
 				election_code_error.setText("Invalid Election code");
-				
-			}else {
-			if(admin_election_code.getText().length()!=4) {
-				election_code_error.setText("Only 4 digit is allowed");
-			}}
+
+			} else {
+				if (admin_election_code.getText().length() != 4) {
+					election_code_error.setText("Only 4 digit is allowed");
+				}else if(admin_election_code.getText().equals("0000")) {
+					election_code_error.setText("Invalid election code");
+				}else if(as.electionCode(admin_election_code.getText())) {
+					election_code_error.setText("Election code already used");
+				}
+			}
 		}
-	   
-	   
-	   if(admin_image_name.getText().equals("No file selected")) {
-		   org_logo_error.setText("Organization logo Required");
-	   }
-	   
-	   
-	   
-	   
-	   org_name_error.setText("");
-		phone_error.setText("");
-		password_error.setText("");
-		election_code_error.setText("");
-		org_logo_error.setText("");
-	   
-	   
-	   
-	   if(org_name_error.getText().equals("") && phone_error.getText().equals("") &&
-			   password_error.getText().equals("") && election_code_error.getText().equals("") &&
-			   org_logo_error.getText().equals("") ) {
-		   
-		   try {
-			   adminimgintofolder(orgLogo);
-		   }catch(Exception e) {
-			   e.getStackTrace();
-		   }
-		   
-	   }
-	   
-	   
-	   
-	   
-   }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+		if (admin_image_name.getText().equals("No file selected")) {
+			org_logo_error.setText("Organization logo Required");
+		}
+
+		if (org_name_error.getText().equals("") && phone_error.getText().equals("")
+				&& password_error.getText().equals("") && election_code_error.getText().equals("")
+				&& org_logo_error.getText().equals("")) {
+
+			try {
+
+				as.adminRegister(organization_name.getText(), admin_register_phone.getText(),
+						admin_register_password.getText(), admin_election_code.getText(), admin_image_name.getText());
+
+				adminimgintofolder(orgLogo);
+				
+				clearallfield() ;
+				openLogin();
+			} catch (Exception e) {
+				e.getStackTrace();
+			}
+
+		}
+
+	}
+
 	public void registrationOpen() throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("Registration.fxml"));
 
@@ -439,8 +429,9 @@ public class MainController implements Initializable {
 			try {
 				Conn c = new Conn();
 
-				String sql = "select * from admin where username='" + admin_username.getText() + "'" + " and password='"
-						+ admin_password.getText() + "'";
+				String sql = "select * from admin where phone='" + admin_username.getText() + "'" + "and password='"
+						+ admin_password.getText()+"'";
+				System.out.print(sql);
 
 				ResultSet rs = c.s.executeQuery(sql);
 
@@ -540,10 +531,10 @@ public class MainController implements Initializable {
 		try {
 			Conn c = new Conn();
 			ResultSet rs = c.s.executeQuery(sql);
-			if(rs.next()) {
+			if (rs.next()) {
 				status.setText(rs.getString("status"));
 				reason_txt.setText(rs.getString("remarks"));
-			}else {
+			} else {
 				status.setText("Details didn't match");
 				reason_txt.setText("");
 			}

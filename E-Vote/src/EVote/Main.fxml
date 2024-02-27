@@ -230,9 +230,9 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="organization_name" layoutX="105.0" layoutY="88.0" prefHeight="26.0" prefWidth="202.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
-                  <TextField fx:id="admin_register_phone" layoutX="109.0" layoutY="132.0" prefHeight="26.0" prefWidth="178.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
-                  <TextField fx:id="admin_election_code" layoutX="113.0" layoutY="215.0" prefHeight="26.0" prefWidth="166.0" promptText="4 Digit Election Code" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <TextField fx:id="organization_name" layoutX="105.0" layoutY="88.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="202.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <TextField fx:id="admin_register_phone" layoutX="109.0" layoutY="132.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="178.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <TextField fx:id="admin_election_code" layoutX="113.0" layoutY="215.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="166.0" promptText="4 Digit Election Code" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
                   <Label alignment="TOP_LEFT" layoutX="48.0" layoutY="139.0" text="Phone :">
                      <font>
                         <Font size="15.0" />
@@ -266,7 +266,7 @@
                   </Label>
                   <ImageView fx:id="admin_register_imageview" fitHeight="99.0" fitWidth="135.0" layoutX="113.0" layoutY="257.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="admin_add_imagebtn" layoutX="113.0" layoutY="257.0" mnemonicParsing="false" onAction="#insertorgLogo" prefHeight="99.0" prefWidth="135.0" styleClass="insert-image" stylesheets="@Main.css" text="Add image" />
-                  <PasswordField fx:id="admin_register_password" layoutX="113.0" layoutY="171.0" prefHeight="26.0" prefWidth="166.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <PasswordField fx:id="admin_register_password" layoutX="113.0" layoutY="171.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="166.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
                   <Button layoutX="65.0" layoutY="466.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="202.0" styleClass="loginbtn" stylesheets="@Main.css" text="Voter login" />
                   <Label fx:id="org_name_error" layoutX="105.0" layoutY="115.0" prefHeight="18.0" prefWidth="186.0" textFill="#c11818" />
                   <Label fx:id="phone_error" layoutX="119.0" layoutY="162.0" prefHeight="18.0" prefWidth="166.0" textFill="#c11818" />
