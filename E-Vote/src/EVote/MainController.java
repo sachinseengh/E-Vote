@@ -371,12 +371,18 @@ public class MainController implements Initializable {
 				election_code_error.setText("Invalid Election code");
 
 			} else {
-				if (admin_election_code.getText().length() != 4) {
+				try {
+				
+				 if (admin_election_code.getText().length() != 4) {
 					election_code_error.setText("Only 4 digit is allowed");
 				}else if(admin_election_code.getText().equals("0000")) {
 					election_code_error.setText("Invalid election code");
 				}else if(as.electionCode(admin_election_code.getText())) {
 					election_code_error.setText("Election code already used");
+				}
+				 
+				}catch(Exception e) {
+					System.out.print(e);
 				}
 			}
 		}
@@ -431,11 +437,12 @@ public class MainController implements Initializable {
 
 				String sql = "select * from admin where phone='" + admin_username.getText() + "'" + "and password='"
 						+ admin_password.getText()+"'";
-				System.out.print(sql);
+			
 
 				ResultSet rs = c.s.executeQuery(sql);
 
 				if (rs.next()) {
+					getAdminDetails.phone=admin_username.getText();
 
 					admin_loginbtn.getScene().getWindow().hide();
 					root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));

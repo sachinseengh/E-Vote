@@ -12,16 +12,15 @@ import javafx.scene.image.ImageView;
 
 class Votersql {
 
-	public void RegisterVoter(String fullname, String email, String phone, String localDate, String address,
-			String voter_password, String citizenshipno, String passportsize_photo, String employee_id,
+	public void RegisterVoter(String org_code, String fullname, String email, String phone, String localDate,
+			String address, String voter_password, String citizenshipno, String passportsize_photo, String employee_id,
 			String citizenship_front, String citizenship_back) {
 
-		String sql = "insert into unverified_voters(fullname,email,phone,dob,address,citizenshipno,photo,employee_id,citizenship_front,citizenship_back,password) values ('"
-				+ fullname + "','" + email + "'," + "'" + phone + "','" + localDate + "','" + address + "','"
+		String sql = "insert into unverified_voters(org_code,fullname,email,phone,dob,address,citizenshipno,photo,employee_id,citizenship_front,citizenship_back,password) values ("
+				+ "'"+org_code+"','" + fullname + "','" + email + "'," + "'" + phone + "','" + localDate + "','" + address + "','"
 				+ citizenshipno + "','" + passportsize_photo + "','" + employee_id + "','" + citizenship_front + "','"
 				+ citizenship_back + "','" + voter_password + "')";
 
-		
 		try {
 			Conn c = new Conn();
 			int affectedrow = c.s.executeUpdate(sql);
@@ -45,6 +44,26 @@ class Votersql {
 
 		}
 
+	}
+	
+	
+	
+	public String setOrganizationName(String code) {
+		Conn c= new Conn();
+		String name =null;
+		try {
+			
+			String sql ="select org_name from admins_details where election_code ='"+code+"'";
+			ResultSet rs= c.s.executeQuery(sql);
+			
+			if(rs.next()) {
+			  name= rs.getString("org_name");
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return name;
 	}
 
 	public void changePassword(String newpassword) {
@@ -145,7 +164,7 @@ class Votersql {
 		}
 	}
 
-     //	for registration
+	// for registration
 
 	public boolean checkNumber(String number) {
 		String sql = "Select phone from voters where phone='" + number + "'";
@@ -166,8 +185,8 @@ class Votersql {
 			return true;
 		}
 
-
 	}
+
 	public boolean checkCitizenshipno(String citizenshipno) {
 		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "'";
 		int count = 0;
@@ -187,10 +206,28 @@ class Votersql {
 			return true;
 		}
 
-
-	}
-	
-	
 	}
 
+	public boolean checkOrgCode(String code) {
+		String sql = "Select election_code from admin where election_code='" + code + "'";
+		int count = 0;
+		try {
+			Conn c = new Conn();
+			ResultSet rs = c.s.executeQuery(sql);
+			if (rs.next()) {
+				count++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 	
+
+}

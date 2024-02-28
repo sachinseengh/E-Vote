@@ -388,6 +388,14 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private TextField search_txtfield;
+	
+	@FXML
+	private Label election_code;
+	
+	@FXML
+	private Label org_name;
+	@FXML
+	private ImageView admin_logo;
 
 	/*----------------------switch user-----------------------------------------*/
 	public void switchscene(ActionEvent e) {
@@ -496,6 +504,47 @@ public class AdminDashboardController implements Initializable {
 
 	public void logout() {
 		uf.logout(nav_logout_btn);
+	}
+	
+	
+	
+	
+	
+	public void adminDetailsatLeftCorner() {
+		String sql = "select * from admins_details where phone ='" + getAdminDetails.phone + "'";
+		try {
+			Conn c = new Conn();
+
+			ResultSet rs = c.s.executeQuery(sql);
+			if (rs.next()) {
+				
+
+				// FETCHING ALL THE DETAILS AND SETTING IN THE getDetails file
+				getAdminDetails.id = rs.getInt("id");
+				getAdminDetails.phone = rs.getString("phone");
+				getAdminDetails.org_name = rs.getString("org_name");
+				getAdminDetails.logo=rs.getString("logo");
+				getAdminDetails.election_code=rs.getString("election_code");
+				
+
+				try {
+
+					Image profilepic = new Image("file:" + "adminsimages/" + rs.getString("logo"));
+					admin_logo.setImage(profilepic);
+					
+					
+					election_code.setText(getAdminDetails.election_code);
+					org_name.setText(getAdminDetails.org_name);
+
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	File selectedFile_one;
@@ -1395,6 +1444,10 @@ public class AdminDashboardController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
+		
+		adminDetailsatLeftCorner();
 
 		errorset();
 		startelectionorshowdetails();

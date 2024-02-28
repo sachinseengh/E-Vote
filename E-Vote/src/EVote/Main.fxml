@@ -232,7 +232,7 @@
                   </Label>
                   <TextField fx:id="organization_name" layoutX="105.0" layoutY="88.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="202.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
                   <TextField fx:id="admin_register_phone" layoutX="109.0" layoutY="132.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="178.0" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
-                  <TextField fx:id="admin_election_code" layoutX="113.0" layoutY="215.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="166.0" promptText="4 Digit Election Code" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
+                  <TextField fx:id="admin_election_code" layoutX="113.0" layoutY="215.0" onMouseClicked="#setregisterAdminerrornull" prefHeight="26.0" prefWidth="166.0" promptText="Eg : 0001,1451" styleClass="textfieldsadminregister" stylesheets="@Main.css" />
                   <Label alignment="TOP_LEFT" layoutX="48.0" layoutY="139.0" text="Phone :">
                      <font>
                         <Font size="15.0" />

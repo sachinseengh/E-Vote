@@ -149,6 +149,14 @@ public class RegistrationController implements Initializable {
 
 	@FXML
 	private Button submit_btn;
+	
+	@FXML
+	private TextField org_code;
+	@FXML
+	private Label orgcode_error;
+	
+	@FXML 
+	private Label organization_name;
 
 	// ----------------utility function------------------------//
 	Utility_Functions uf = new Utility_Functions();
@@ -281,6 +289,7 @@ public class RegistrationController implements Initializable {
 	// -----------set-Register's-error--------------------------//
 
 	public void seterrornull() {
+		orgcode_error.setText("");
 		fullname_error.setText("");
 		citizenshipback_error.setText("");
 		citizenshipfront_error.setText("");
@@ -292,9 +301,11 @@ public class RegistrationController implements Initializable {
 		phone_error.setText("");
 		dateofbirth_error.setText("");
 		address_error.setText("");
+		
 	}
 
 	public void clearallfield() {
+		org_code.setText("");
 		fullname_txtfield.setText("");
 		email_txt.setText("");
 		phone_txtfield.setText("");
@@ -312,10 +323,40 @@ public class RegistrationController implements Initializable {
 		citizenshipback_name.setText("No file selected");
 	}
 	
+	public void setOrganization() {
+		Votersql vs = new Votersql();
+		String name =vs.setOrganizationName(org_code.getText());
+		organization_name.setText(name);
+		
+	}
 
 	public void register() {
 		Votersql vs = new Votersql();
 		Validations validation = new Validations();
+		
+		if (org_code.getText().equals("") || org_code.getText().trim().isEmpty()
+				|| org_code.getText() == null) {
+			orgcode_error.setText("Organization code  is required");
+		} else {
+
+			if (!validation.digitsonly(org_code.getText())) {
+				orgcode_error.setText("Invalid Election code");
+
+			} else {
+				try {
+					if(!vs.checkOrgCode(org_code.getText())) {
+						orgcode_error.setText("Incorrect Election code");
+					}
+				
+				
+				 
+				}catch(Exception e) {
+					System.out.print(e);
+				}
+			}
+		}
+		
+		
 		
 		if (fullname_txtfield.getText().equals("") || fullname_txtfield.getText().trim().isEmpty()
 				|| fullname_txtfield.getText() == null) {
@@ -413,7 +454,7 @@ public class RegistrationController implements Initializable {
 			citizenshipback_error.setText("Passport size image Required");
 		}
 
-		if (fullname_error.getText().equals("") && citizenshipback_error.getText().equals("")
+		if (orgcode_error.getText().equals("")&& fullname_error.getText().equals("") && citizenshipback_error.getText().equals("")
 				&& citizenshipfront_error.getText().equals("") && employee_id_error.getText().equals("")
 				&& employee_id_error.getText().equals("") && citizenshipno_error.getText().equals("")
 				&& password_error.getText().equals("") && email_error.getText().equals("")
@@ -432,7 +473,7 @@ public class RegistrationController implements Initializable {
 			}
 
 		
-			vs.RegisterVoter(fullname_txtfield.getText(), email_txt.getText(), phone_txtfield.getText(),
+			vs.RegisterVoter(org_code.getText(),fullname_txtfield.getText(), email_txt.getText(), phone_txtfield.getText(),
 					datepicker_txtfield.getValue().toString(), address_txtfield.getText(), password_textfield.getText(),
 					citizenshipno_txtfield.getText(), passportphoto_img.getText(), employee_id_img.getText(),
 					citizenshipfront_img.getText(), citizenshipback_name.getText());
