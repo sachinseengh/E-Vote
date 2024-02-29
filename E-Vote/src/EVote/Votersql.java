@@ -167,7 +167,7 @@ class Votersql {
 	// for registration
 
 	public boolean checkNumber(String number) {
-		String sql = "Select phone from voters where phone='" + number + "'";
+		String sql = "Select phone from voters where phone='" + number + "' and  org_code='"+getAdminDetails.election_code+"'";
 		int count = 0;
 		try {
 			Conn c = new Conn();
@@ -188,7 +188,7 @@ class Votersql {
 	}
 
 	public boolean checkCitizenshipno(String citizenshipno) {
-		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "'";
+		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "' and org_code='"+getAdminDetails.election_code+"'";
 		int count = 0;
 		try {
 			Conn c = new Conn();

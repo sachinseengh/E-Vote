@@ -388,10 +388,10 @@ public class AdminDashboardController implements Initializable {
 
 	@FXML
 	private TextField search_txtfield;
-	
+
 	@FXML
 	private Label election_code;
-	
+
 	@FXML
 	private Label org_name;
 	@FXML
@@ -505,11 +505,7 @@ public class AdminDashboardController implements Initializable {
 	public void logout() {
 		uf.logout(nav_logout_btn);
 	}
-	
-	
-	
-	
-	
+
 	public void adminDetailsatLeftCorner() {
 		String sql = "select * from admins_details where phone ='" + getAdminDetails.phone + "'";
 		try {
@@ -517,22 +513,19 @@ public class AdminDashboardController implements Initializable {
 
 			ResultSet rs = c.s.executeQuery(sql);
 			if (rs.next()) {
-				
 
 				// FETCHING ALL THE DETAILS AND SETTING IN THE getDetails file
 				getAdminDetails.id = rs.getInt("id");
 				getAdminDetails.phone = rs.getString("phone");
 				getAdminDetails.org_name = rs.getString("org_name");
-				getAdminDetails.logo=rs.getString("logo");
-				getAdminDetails.election_code=rs.getString("election_code");
-				
+				getAdminDetails.logo = rs.getString("logo");
+				getAdminDetails.election_code = rs.getString("election_code");
 
 				try {
 
 					Image profilepic = new Image("file:" + "adminsimages/" + rs.getString("logo"));
 					admin_logo.setImage(profilepic);
-					
-					
+
 					election_code.setText(getAdminDetails.election_code);
 					org_name.setText(getAdminDetails.org_name);
 
@@ -782,7 +775,7 @@ public class AdminDashboardController implements Initializable {
 	public ObservableList<GetUnVerified> dataList() {
 		Conn c = new Conn();
 		listdata = FXCollections.observableArrayList();
-		String sql = "select * from unverified_voters";
+		String sql = "select * from unverified_voters where org_code='" + getAdminDetails.election_code + "'";
 
 		try {
 			ResultSet result = c.s.executeQuery(sql);
@@ -901,7 +894,6 @@ public class AdminDashboardController implements Initializable {
 
 	public void approve() {
 		if (unverified_citizenship_err.getText().equals("") && unverified_error.getText().equals("")) {
-			
 
 			if (unverified_id.getText().equals("")
 					|| unverified_id.getText() == null && unverified_id.getText().isEmpty()) {
@@ -911,17 +903,18 @@ public class AdminDashboardController implements Initializable {
 
 				Conn c = new Conn();
 
-				String sql = "insert into status (id,phone,citizenshipno,dob,remarks,status) values ('"
-						+ Integer.parseInt(unverified_id.getText()) + "','" + verification_phone_txt.getText() + "','"
-						+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
-						+ verification_reason_txt.getText() + "','Approved')";
+				String sql = "insert into status (id,org_code,phone,citizenshipno,dob,remarks,status) values ('"
+						+ Integer.parseInt(unverified_id.getText()) + "','" + getAdminDetails.election_code + "','"
+						+ verification_phone_txt.getText() + "','" + verification_citizenshpno_txt.getText() + "','"
+						+ verification_dob_txt.getText() + "','" + verification_reason_txt.getText() + "','Approved')";
 
 				String sql2 = "insert into voters values('" + Integer.parseInt(unverified_id.getText()) + "','"
-						+ verification_name_txt.getText() + "','" + unverified_email.getText() + "','"
-						+ verification_phone_txt.getText() + "','" + verification_dob_txt.getText() + "','"
-						+ verification_address_txt.getText() + "','" + verification_citizenshpno_txt.getText() + "','"
-						+ photo_name.getText() + "','" + employeeid_name.getText() + "','"
-						+ citizenshipfront_name.getText() + "','" + citizenshipback_name.getText() + "')";
+						+ getAdminDetails.election_code + "','" + verification_name_txt.getText() + "','"
+						+ unverified_email.getText() + "','" + verification_phone_txt.getText() + "','"
+						+ verification_dob_txt.getText() + "','" + verification_address_txt.getText() + "','"
+						+ verification_citizenshpno_txt.getText() + "','" + photo_name.getText() + "','"
+						+ employeeid_name.getText() + "','" + citizenshipfront_name.getText() + "','"
+						+ citizenshipback_name.getText() + "')";
 
 				String password = null;
 				try {
@@ -937,7 +930,8 @@ public class AdminDashboardController implements Initializable {
 				}
 
 				String sql4 = " insert into voter_login values ('" + Integer.parseInt(unverified_id.getText()) + "','"
-						+ verification_phone_txt.getText() + "','" + password + "')";
+						+ getAdminDetails.election_code + "','" + verification_phone_txt.getText() + "','" + password
+						+ "')";
 
 				try {
 					int affectedrow1 = c.s.executeUpdate(sql);
@@ -972,7 +966,7 @@ public class AdminDashboardController implements Initializable {
 				}
 
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Duplicate");
 			alert.setHeaderText(null);
@@ -993,8 +987,8 @@ public class AdminDashboardController implements Initializable {
 			} else {
 				Conn c = new Conn();
 
-				String sql = "insert into status (id,phone,citizenshipno,dob,remarks,status) values ('"
-						+ Integer.parseInt(unverified_id.getText()) + "','" + verification_phone_txt.getText() + "','"
+				String sql = "insert into status (id,org_code,phone,citizenshipno,dob,remarks,status) values ('"
+						+ Integer.parseInt(unverified_id.getText()) + "','"+getAdminDetails.election_code+"','" + verification_phone_txt.getText() + "','"
 						+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
 						+ verification_reason_txt.getText() + "','Rejected')";
 
@@ -1010,7 +1004,7 @@ public class AdminDashboardController implements Initializable {
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Rejected");
 						alert.setHeaderText(null);
-						alert.setContentText("Voter Approved Rejected");
+						alert.setContentText("Voter Rejected Successfully");
 						alert.show();
 						showUnverified();
 					}
@@ -1030,7 +1024,7 @@ public class AdminDashboardController implements Initializable {
 	public ObservableList<GetVoters> voterdataList() {
 		Conn c = new Conn();
 		voterlistdata = FXCollections.observableArrayList();
-		String sql = "select * from  voters";
+		String sql = "select * from  voters where org_code='"+getAdminDetails.election_code+"'";
 
 		try {
 			ResultSet result = c.s.executeQuery(sql);
@@ -1444,9 +1438,7 @@ public class AdminDashboardController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
-		
+
 		adminDetailsatLeftCorner();
 
 		errorset();

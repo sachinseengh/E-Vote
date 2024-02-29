@@ -321,6 +321,7 @@ public class RegistrationController implements Initializable {
 		employee_id_img.setText("No file selected");
 		citizenshipfront_img.setText("No file selected");
 		citizenshipback_name.setText("No file selected");
+		organization_name.setText("");
 	}
 	
 	public void setOrganization() {
