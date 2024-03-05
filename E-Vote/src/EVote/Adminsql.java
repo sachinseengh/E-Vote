@@ -12,28 +12,23 @@ class Adminsql {
 
 		String sql = "insert into admins_details(org_name,phone,password,election_code,logo) " + "values('" + org_name
 				+ "','" + phone + "','" + password + "','" + election_code + "','" + logo + "')";
-		
-		
+
 		String sql2 = "insert into admin(phone,password,election_code) values('" + phone + "','" + password + "','"
 				+ election_code + "')";
-		
-		
-		
-		
-		
+
 		try {
-			
-			Conn c= new Conn();
+
+			Conn c = new Conn();
 			int affected_row = c.s.executeUpdate(sql);
-			
-			if(affected_row>0) {
+
+			if (affected_row > 0) {
 				c.s.executeUpdate(sql2);
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Success");
 				alert.setHeaderText(null);
 				alert.setContentText("Registered successfully ! You can Login with you phone and password");
 				alert.show();
-			}else {
+			} else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Failed");
 				alert.setHeaderText(null);
@@ -41,12 +36,12 @@ class Adminsql {
 				alert.show();
 				return;
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean checkNumber(String number) {
 		String sql = "Select phone from admin where phone='" + number + "'";
 		int count = 0;
@@ -66,8 +61,8 @@ class Adminsql {
 			return true;
 		}
 
-
 	}
+
 	public boolean electionCode(String code) {
 		String sql = "Select election_code from admin where election_code='" + code + "'";
 		int count = 0;
@@ -87,7 +82,6 @@ class Adminsql {
 			return true;
 		}
 
-
 	}
 
 	public void startElection(String position, String candidate_one_name, String candidate_one_img,
@@ -99,9 +93,13 @@ class Adminsql {
 		try {
 			Conn c = new Conn();
 
-			String sql = "insert into election values(1,'" + position + "','" + candidate_one_name + "','"
-					+ candidate_one_img + "'," + "'" + candidate_two_name + "','" + candidate_two_img + "','"
-					+ votingdate + "')";
+			
+
+			String sql = "INSERT INTO election (org_code, position, candidate_one_name, candidate_one_img, candidate_two_name, candidate_two_img, Election_date) VALUES ('"
+					+ getAdminDetails.election_code + "','" + position + "','" + candidate_one_name + "','"
+					+ candidate_one_img + "','" + candidate_two_name + "','" + candidate_two_img + "','" + votingdate
+					+ "')";
+			
 
 			c.s.executeUpdate(sql);
 
@@ -115,7 +113,8 @@ class Adminsql {
 		String password = null;
 		try {
 			Conn c = new Conn();
-			String sql = "select password from admin where username='admin'";
+			String sql = "select password from admin where phone='"+getAdminDetails.phone+"'";
+		
 			ResultSet rs = c.s.executeQuery(sql);
 
 			if (rs.next()) {
@@ -132,7 +131,7 @@ class Adminsql {
 	public void changePassword(String newpassword) {
 		try {
 			Conn c = new Conn();
-			String sql = "update admin set password = '" + newpassword + "' where username = 'admin'";
+			String sql = "update admin set password = '" + newpassword + "' where phone = '"+getAdminDetails.phone+"'";
 
 			int affectedrow = c.s.executeUpdate(sql);
 

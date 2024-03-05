@@ -695,6 +695,7 @@ public class AdminDashboardController implements Initializable {
 
 			if (option.get().equals(ButtonType.OK)) {
 				Adminsql election = new Adminsql();
+				
 				election.startElection(position_name.getText(), admin_candidate_one_name.getText(),
 
 						imageone_name.getText(), admin_candidate_two_name.getText(), imagetwo_name.getText());
@@ -721,7 +722,7 @@ public class AdminDashboardController implements Initializable {
 	public void startelectionorshowdetails() {
 		try {
 			Conn c = new Conn();
-			String sql = "select count(*) as row_count from election";
+			String sql = "select count(*) as row_count from election where org_code ='"+getAdminDetails.election_code+"'";
 
 			ResultSet rs = c.s.executeQuery(sql);
 			Integer row = null;
