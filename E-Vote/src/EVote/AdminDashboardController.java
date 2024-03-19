@@ -519,14 +519,14 @@ public class AdminDashboardController implements Initializable {
 				getAdminDetails.phone = rs.getString("phone");
 				getAdminDetails.org_name = rs.getString("org_name");
 				getAdminDetails.logo = rs.getString("logo");
-				getAdminDetails.election_code = rs.getString("election_code");
+				getAdminDetails.org_code = rs.getString("org_code");
 
 				try {
 
 					Image profilepic = new Image("file:" + "adminsimages/" + rs.getString("logo"));
 					admin_logo.setImage(profilepic);
 
-					election_code.setText(getAdminDetails.election_code);
+					election_code.setText(getAdminDetails.org_code);
 					org_name.setText(getAdminDetails.org_name);
 
 				} catch (Exception e) {
@@ -722,7 +722,7 @@ public class AdminDashboardController implements Initializable {
 	public void startelectionorshowdetails() {
 		try {
 			Conn c = new Conn();
-			String sql = "select count(*) as row_count from election where org_code ='"+getAdminDetails.election_code+"'";
+			String sql = "select count(*) as row_count from election where org_code ='"+getAdminDetails.org_code+"'";
 
 			ResultSet rs = c.s.executeQuery(sql);
 			Integer row = null;
@@ -776,7 +776,7 @@ public class AdminDashboardController implements Initializable {
 	public ObservableList<GetUnVerified> dataList() {
 		Conn c = new Conn();
 		listdata = FXCollections.observableArrayList();
-		String sql = "select * from unverified_voters where org_code='" + getAdminDetails.election_code + "'";
+		String sql = "select * from unverified_voters where org_code='" + getAdminDetails.org_code + "'";
 
 		try {
 			ResultSet result = c.s.executeQuery(sql);
@@ -905,12 +905,12 @@ public class AdminDashboardController implements Initializable {
 				Conn c = new Conn();
 
 				String sql = "insert into status (id,org_code,phone,citizenshipno,dob,remarks,status) values ('"
-						+ Integer.parseInt(unverified_id.getText()) + "','" + getAdminDetails.election_code + "','"
+						+ Integer.parseInt(unverified_id.getText()) + "','" + getAdminDetails.org_code + "','"
 						+ verification_phone_txt.getText() + "','" + verification_citizenshpno_txt.getText() + "','"
 						+ verification_dob_txt.getText() + "','" + verification_reason_txt.getText() + "','Approved')";
 
 				String sql2 = "insert into voters values('" + Integer.parseInt(unverified_id.getText()) + "','"
-						+ getAdminDetails.election_code + "','" + verification_name_txt.getText() + "','"
+						+ getAdminDetails.org_code + "','" + verification_name_txt.getText() + "','"
 						+ unverified_email.getText() + "','" + verification_phone_txt.getText() + "','"
 						+ verification_dob_txt.getText() + "','" + verification_address_txt.getText() + "','"
 						+ verification_citizenshpno_txt.getText() + "','" + photo_name.getText() + "','"
@@ -931,7 +931,7 @@ public class AdminDashboardController implements Initializable {
 				}
 
 				String sql4 = " insert into voter_login values ('" + Integer.parseInt(unverified_id.getText()) + "','"
-						+ getAdminDetails.election_code + "','" + verification_phone_txt.getText() + "','" + password
+						+ getAdminDetails.org_code + "','" + verification_phone_txt.getText() + "','" + password
 						+ "')";
 
 				try {
@@ -989,7 +989,7 @@ public class AdminDashboardController implements Initializable {
 				Conn c = new Conn();
 
 				String sql = "insert into status (id,org_code,phone,citizenshipno,dob,remarks,status) values ('"
-						+ Integer.parseInt(unverified_id.getText()) + "','"+getAdminDetails.election_code+"','" + verification_phone_txt.getText() + "','"
+						+ Integer.parseInt(unverified_id.getText()) + "','"+getAdminDetails.org_code+"','" + verification_phone_txt.getText() + "','"
 						+ verification_citizenshpno_txt.getText() + "','" + verification_dob_txt.getText() + "','"
 						+ verification_reason_txt.getText() + "','Rejected')";
 
@@ -1025,7 +1025,7 @@ public class AdminDashboardController implements Initializable {
 	public ObservableList<GetVoters> voterdataList() {
 		Conn c = new Conn();
 		voterlistdata = FXCollections.observableArrayList();
-		String sql = "select * from  voters where org_code='"+getAdminDetails.election_code+"'";
+		String sql = "select * from  voters where org_code='"+getAdminDetails.org_code+"'";
 
 		try {
 			ResultSet result = c.s.executeQuery(sql);

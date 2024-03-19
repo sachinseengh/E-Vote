@@ -9,5 +9,5 @@ public class getAdminDetails{
 
 	public static String org_name;
 
-	public static String election_code;
+	public static String org_code;
 }

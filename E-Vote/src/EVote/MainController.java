@@ -185,6 +185,9 @@ public class MainController implements Initializable {
 	@FXML
 	private Label org_logo_error;
 
+	@FXML
+	private TextField login_organization_code;
+
 	Parent root;
 
 	// ---------------utility functions---------------------
@@ -254,7 +257,7 @@ public class MainController implements Initializable {
 		election_code_error.setText("");
 		org_logo_error.setText("");
 	}
-	
+
 	public void clearallfield() {
 		organization_name.setText("");
 		admin_register_phone.setText("");
@@ -262,8 +265,9 @@ public class MainController implements Initializable {
 		admin_election_code.setText("");
 		admin_register_password.setText("");
 		admin_image_name.setText("No file selected");
-		
+
 	}
+
 	public void openLogin() {
 		admin_registration.setVisible(false);
 		admin_working_area.setVisible(true);
@@ -333,12 +337,11 @@ public class MainController implements Initializable {
 
 			if (!validation.numberonly(admin_register_phone.getText())) {
 				phone_error.setText("Invalid phone number");
-			
-			}else if(as.checkNumber(admin_register_phone.getText())) {
+
+			} else if (as.checkNumber(admin_register_phone.getText())) {
 				phone_error.setText("Phone number already exists");
 
-
-		}
+			}
 		}
 
 		if (admin_register_password.getText().equals("") || admin_register_password.getText().trim().isEmpty()
@@ -372,16 +375,16 @@ public class MainController implements Initializable {
 
 			} else {
 				try {
-				
-				 if (admin_election_code.getText().length() != 4) {
-					election_code_error.setText("Only 4 digit is allowed");
-				}else if(admin_election_code.getText().equals("0000")) {
-					election_code_error.setText("Invalid election code");
-				}else if(as.electionCode(admin_election_code.getText())) {
-					election_code_error.setText("Election code already used");
-				}
-				 
-				}catch(Exception e) {
+
+					if (admin_election_code.getText().length() != 4) {
+						election_code_error.setText("Only 4 digit is allowed");
+					} else if (admin_election_code.getText().equals("0000")) {
+						election_code_error.setText("Invalid election code");
+					} else if (as.electionCode(admin_election_code.getText())) {
+						election_code_error.setText("Election code already used");
+					}
+
+				} catch (Exception e) {
 					System.out.print(e);
 				}
 			}
@@ -401,8 +404,8 @@ public class MainController implements Initializable {
 						admin_register_password.getText(), admin_election_code.getText(), admin_image_name.getText());
 
 				adminimgintofolder(orgLogo);
-				
-				clearallfield() ;
+
+				clearallfield();
 				openLogin();
 			} catch (Exception e) {
 				e.getStackTrace();
@@ -436,13 +439,12 @@ public class MainController implements Initializable {
 				Conn c = new Conn();
 
 				String sql = "select * from admin where phone='" + admin_username.getText() + "'" + "and password='"
-						+ admin_password.getText()+"'";
-			
+						+ admin_password.getText() + "'";
 
 				ResultSet rs = c.s.executeQuery(sql);
 
 				if (rs.next()) {
-					getAdminDetails.phone=admin_username.getText();
+					getAdminDetails.phone = admin_username.getText();
 
 					admin_loginbtn.getScene().getWindow().hide();
 					root = FXMLLoader.load(getClass().getResource("AdminDashboard.fxml"));
@@ -464,9 +466,24 @@ public class MainController implements Initializable {
 	}
 
 	public void VoterLogin() {
+		Validations validation = new Validations();
+		
+		if (!validation.digitsonly(login_organization_code.getText())) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Invalid Organization code");
+			alert.showAndWait();
+			return;
+
+		} 
+		
+
 		if (voter_phoneno.getText().isEmpty() || voter_password.getText().isEmpty()
 				|| voter_phoneno.getText().equals("") || voter_password.getText().equals("")
-				|| voter_phoneno.getText().trim().isEmpty() || voter_password.getText().trim().isEmpty()) {
+				|| voter_phoneno.getText().trim().isEmpty() || voter_password.getText().trim().isEmpty()
+				|| login_organization_code.getText().equals("") || login_organization_code.getText().trim().isEmpty()
+				|| login_organization_code.getText().isEmpty()) {
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Login ");
@@ -479,13 +496,15 @@ public class MainController implements Initializable {
 				Conn c = new Conn();
 
 				String sql = "select * from voter_login where phone='" + voter_phoneno.getText() + "'"
-						+ " and password='" + voter_password.getText() + "'";
+						+ " and password='" + voter_password.getText() + "' and org_code='"
+						+ login_organization_code.getText() + "'";
 
 				ResultSet rs = c.s.executeQuery(sql);
 
 				if (rs.next()) {
 
 					// it can be used to show the name of voter in voter dashboard
+					getDetails.org_code = login_organization_code.getText();
 					getDetails.phone = voter_phoneno.getText();
 
 					admin_loginbtn.getScene().getWindow().hide();

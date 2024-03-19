@@ -53,7 +53,7 @@ class Votersql {
 		String name =null;
 		try {
 			
-			String sql ="select org_name from admins_details where election_code ='"+code+"'";
+			String sql ="select org_name from admins_details where org_code ='"+code+"'";
 			ResultSet rs= c.s.executeQuery(sql);
 			
 			if(rs.next()) {
@@ -167,7 +167,7 @@ class Votersql {
 	// for registration
 
 	public boolean checkNumber(String number) {
-		String sql = "Select phone from voters where phone='" + number + "' and  org_code='"+getAdminDetails.election_code+"'";
+		String sql = "Select phone from voters where phone='" + number + "' and  org_code='"+getAdminDetails.org_code+"'";
 		int count = 0;
 		try {
 			Conn c = new Conn();
@@ -188,7 +188,7 @@ class Votersql {
 	}
 
 	public boolean checkCitizenshipno(String citizenshipno) {
-		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "' and org_code='"+getAdminDetails.election_code+"'";
+		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "' and org_code='"+getAdminDetails.org_code+"'";
 		int count = 0;
 		try {
 			Conn c = new Conn();
@@ -209,7 +209,7 @@ class Votersql {
 	}
 
 	public boolean checkOrgCode(String code) {
-		String sql = "Select election_code from admin where election_code='" + code + "'";
+		String sql = "Select org_code from admin where org_code='" + code + "'";
 		int count = 0;
 		try {
 			Conn c = new Conn();

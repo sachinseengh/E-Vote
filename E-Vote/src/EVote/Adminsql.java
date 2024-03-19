@@ -8,13 +8,13 @@ import javafx.scene.control.Alert.AlertType;
 
 class Adminsql {
 
-	public void adminRegister(String org_name, String phone, String password, String election_code, String logo) {
+	public void adminRegister(String org_name, String phone, String password, String org_code, String logo) {
 
-		String sql = "insert into admins_details(org_name,phone,password,election_code,logo) " + "values('" + org_name
-				+ "','" + phone + "','" + password + "','" + election_code + "','" + logo + "')";
+		String sql = "insert into admins_details(org_name,phone,password,org_code,logo) " + "values('" + org_name
+				+ "','" + phone + "','" + password + "','" + org_code + "','" + logo + "')";
 
-		String sql2 = "insert into admin(phone,password,election_code) values('" + phone + "','" + password + "','"
-				+ election_code + "')";
+		String sql2 = "insert into admin(phone,password,org_code) values('" + phone + "','" + password + "','"
+				+ org_code + "')";
 
 		try {
 
@@ -64,7 +64,7 @@ class Adminsql {
 	}
 
 	public boolean electionCode(String code) {
-		String sql = "Select election_code from admin where election_code='" + code + "'";
+		String sql = "Select org_code from admin where org_code='" + code + "'";
 		int count = 0;
 		try {
 			Conn c = new Conn();
@@ -96,7 +96,7 @@ class Adminsql {
 			
 
 			String sql = "INSERT INTO election (org_code, position, candidate_one_name, candidate_one_img, candidate_two_name, candidate_two_img, Election_date) VALUES ('"
-					+ getAdminDetails.election_code + "','" + position + "','" + candidate_one_name + "','"
+					+ getAdminDetails.org_code + "','" + position + "','" + candidate_one_name + "','"
 					+ candidate_one_img + "','" + candidate_two_name + "','" + candidate_two_img + "','" + votingdate
 					+ "')";
 			
