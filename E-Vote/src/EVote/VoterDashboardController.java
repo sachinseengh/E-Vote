@@ -144,6 +144,12 @@ public class VoterDashboardController implements Initializable {
 	private ImageView voter_image;
 	@FXML
 	private Label election_date;
+	
+	@FXML
+	private Label organization_name;
+	
+	@FXML
+	private Label election_org_name;
 
 	// -----------------utility functions--------------
 
@@ -287,13 +293,32 @@ public class VoterDashboardController implements Initializable {
 		}
 
 	}
+	
+/*------------------------------organization name------------------------*/
+	public void setOrgName() {
+		Conn c = new Conn();
+		String sql ="select * from admins_details where org_code='"+getDetails.org_code+"' ";
+	
+		
+		try {
+		ResultSet rs = c.s.executeQuery(sql);
+		
+		if(rs.next()) {
+			getDetails.org_name=rs.getString("org_name");
+	
+			organization_name.setText(getDetails.org_name);
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	/*------------------------voting area--------------------------------*/
 
 	public void showcandidates() {
 		Votersql vs = new Votersql();
 		vs.showcandidate(candidate_one_img, candidate_one_radio, candidate_two_img, candidate_two_radio,
-				election_post_name, election_date);
+				election_post_name, election_date,election_org_name);
 	}
 	public void select_can_one() {
 		candidate_one_radio.setSelected(true);
@@ -374,6 +399,7 @@ public class VoterDashboardController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		voterDetailsatLeftCorner();
+		setOrgName();
 
 		
 		

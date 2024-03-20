@@ -12,4 +12,5 @@ public class getDetails{
 	public static String citizenship_back;
 	public static String citizenship_front;
 	public static String org_code;
+	public static String org_name;
 }

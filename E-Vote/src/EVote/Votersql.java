@@ -113,8 +113,8 @@ class Votersql {
 	}
 
 	public void showcandidate(ImageView candidate_one, RadioButton candidate_one_radio, ImageView candidate_two,
-			RadioButton candidate_two_radio, Label position, Label electiondate) {
-		String sql = "select * from election";
+			RadioButton candidate_two_radio, Label position, Label electiondate,Label org_name) {
+		String sql = "select * from election where org_code='"+getDetails.org_code+"'";
 
 		try {
 			Conn c = new Conn();
@@ -131,6 +131,7 @@ class Votersql {
 				candidate_two_radio.setText(rs.getString("candidate_two_name"));
 				position.setText(rs.getString("position"));
 				electiondate.setText(String.valueOf(rs.getDate("Election_date")));
+				org_name.setText(rs.getString("org_name"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

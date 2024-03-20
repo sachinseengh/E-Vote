@@ -468,6 +468,18 @@ public class MainController implements Initializable {
 	public void VoterLogin() {
 		Validations validation = new Validations();
 		
+		
+		if (login_organization_code.getText().isEmpty()||login_organization_code.getText().trim().isEmpty()
+				|| login_organization_code.getText().equals("")) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Empty organization code");
+			alert.showAndWait();
+			return;
+
+		} 
+		
 		if (!validation.digitsonly(login_organization_code.getText())) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Error");
@@ -498,6 +510,7 @@ public class MainController implements Initializable {
 				String sql = "select * from voter_login where phone='" + voter_phoneno.getText() + "'"
 						+ " and password='" + voter_password.getText() + "' and org_code='"
 						+ login_organization_code.getText() + "'";
+				System.out.println(sql);
 
 				ResultSet rs = c.s.executeQuery(sql);
 
