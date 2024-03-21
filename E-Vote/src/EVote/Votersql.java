@@ -70,7 +70,7 @@ class Votersql {
 		try {
 			Conn c = new Conn();
 			String sql = "update voter_login set password = '" + newpassword + "' where phone = '" + getDetails.phone
-					+ "' and id='" + getDetails.id + "'";
+					+ "'  and org_code='"+getDetails.org_code+"'";
 
 			int affectedrow = c.s.executeUpdate(sql);
 
@@ -98,8 +98,8 @@ class Votersql {
 		String password = null;
 		try {
 			Conn c = new Conn();
-			String sql = "select password from voter_login where phone='" + getDetails.phone + "' and id ='"
-					+ getDetails.id + "'";
+			String sql = "select password from voter_login where phone='" + getDetails.phone + "' and org_code='"+getDetails.org_code+"'";
+			System.out.println(sql);
 			ResultSet rs = c.s.executeQuery(sql);
 
 			if (rs.next()) {
@@ -131,7 +131,7 @@ class Votersql {
 				candidate_two_radio.setText(rs.getString("candidate_two_name"));
 				position.setText(rs.getString("position"));
 				electiondate.setText(String.valueOf(rs.getDate("Election_date")));
-				org_name.setText(rs.getString("org_name"));
+				org_name.setText(getDetails.org_name);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,7 +189,7 @@ class Votersql {
 	}
 
 	public boolean checkCitizenshipno(String citizenshipno) {
-		String sql = "Select phone from voters where citizenshipno='" + citizenshipno + "' and org_code='"+getAdminDetails.org_code+"'";
+		String sql = "Select citizenshipno from voters where citizenshipno='" + citizenshipno + "' and org_code='"+getAdminDetails.org_code+"'";
 		int count = 0;
 		try {
 			Conn c = new Conn();

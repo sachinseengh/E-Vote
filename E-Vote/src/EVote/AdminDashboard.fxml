@@ -169,7 +169,7 @@
                               <Button fx:id="candidatetwo_imgbtn" layoutX="513.0" layoutY="250.0" mnemonicParsing="false" onAction="#insertImagetwo" onMouseClicked="#removeerrorwhiletyping" prefHeight="139.0" prefWidth="138.0" styleClass="insert-image" stylesheets="@Main.css" text="Insert Image" />
                          
                            </children></AnchorPane>
-                        <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#selectUnverified" prefHeight="764.0" prefWidth="919.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="36.0">
+                        <AnchorPane fx:id="verifyvoter_form" layoutX="-1.0" layoutY="36.0" onMouseClicked="#selectUnverified" prefHeight="764.0" prefWidth="919.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="36.0">
                            <children>
                               <Label layoutX="25.0" layoutY="453.0" prefHeight="22.0" prefWidth="62.0" text="Phone :">
                                  <font>

@@ -440,6 +440,7 @@ public class MainController implements Initializable {
 
 				String sql = "select * from admin where phone='" + admin_username.getText() + "'" + "and password='"
 						+ admin_password.getText() + "'";
+				System.out.println(sql);
 
 				ResultSet rs = c.s.executeQuery(sql);
 
@@ -517,6 +518,7 @@ public class MainController implements Initializable {
 				if (rs.next()) {
 
 					// it can be used to show the name of voter in voter dashboard
+					
 					getDetails.org_code = login_organization_code.getText();
 					getDetails.phone = voter_phoneno.getText();
 
