@@ -36,7 +36,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="voter_working_area" layoutX="479.0" layoutY="40.8" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="479.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="41.0">
+            <AnchorPane fx:id="voter_working_area" layoutX="479.0" layoutY="40.8" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="479.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="41.0">
                <children>
                   <FontAwesomeIcon glyphName="USERS" layoutX="121.0" layoutY="105.0" size="6em" />
                   <Label layoutX="93.0" layoutY="126.0" text="Voter Login" textFill="#59866e" AnchorPane.leftAnchor="93.0">
@@ -95,27 +95,27 @@
                   <Button fx:id="admin_register_form" layoutX="156.0" layoutY="344.0" mnemonicParsing="false" onAction="#switchUser" styleClass="registerbtn" stylesheets="@Main.css" text="Register" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="voter_checkstatus_form" layoutY="39.2" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="477.6" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+            <AnchorPane fx:id="voter_checkstatus_form" layoutX="478.0" layoutY="39.0" prefHeight="511.0" prefWidth="322.0" styleClass="working_area" stylesheets="@Main.css" AnchorPane.bottomAnchor="0.20000000000004547" AnchorPane.leftAnchor="478.0" AnchorPane.rightAnchor="-0.39999999999997726" AnchorPane.topAnchor="39.0">
                <children>
-                  <Label layoutX="21.0" layoutY="118.0" text="Citizenship no :">
+                  <Label layoutX="25.0" layoutY="139.0" text="Citizenship no :">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="citizenshipno_txtfield" layoutX="136.0" layoutY="115.0" prefHeight="26.0" prefWidth="151.0" />
-                  <Label layoutX="94.0" layoutY="157.0" text="Dob :">
+                  <TextField fx:id="citizenshipno_txtfield" layoutX="140.0" layoutY="136.0" prefHeight="26.0" prefWidth="151.0" />
+                  <Label layoutX="98.0" layoutY="178.0" text="Dob :">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="date_datepicker" layoutX="136.0" layoutY="155.0" prefHeight="26.0" prefWidth="151.0" promptText="DD/MM/YYYY" />
-                  <Button fx:id="check_btn" layoutX="75.0" layoutY="220.0" mnemonicParsing="false" onAction="#checkStatus" prefHeight="20.0" prefWidth="180.0" text="Check" />
-                  <Label layoutX="29.0" layoutY="324.0" text="Remarks :">
+                  <DatePicker fx:id="date_datepicker" layoutX="140.0" layoutY="176.0" prefHeight="26.0" prefWidth="151.0" promptText="DD/MM/YYYY" />
+                  <Button fx:id="check_btn" layoutX="71.0" layoutY="229.0" mnemonicParsing="false" onAction="#checkStatus" prefHeight="20.0" prefWidth="180.0" text="Check" />
+                  <Label layoutX="28.0" layoutY="349.0" text="Remarks :">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="reason_txt" alignment="CENTER" layoutX="113.0" layoutY="298.0" prefHeight="82.0" prefWidth="190.0" text="rejected due to incorrect database" wrapText="true">
+                  <Label fx:id="reason_txt" alignment="CENTER" layoutX="112.0" layoutY="323.0" prefHeight="82.0" prefWidth="190.0" text="rejected due to incorrect database" wrapText="true">
                      <font>
                         <Font name="Times New Roman" size="18.0" />
                      </font>
@@ -127,9 +127,20 @@
                   </Label>
                   <Button fx:id="retloginpage" layoutX="84.0" layoutY="406.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="30.0" prefWidth="151.0" text="Login Page" />
                   <Button fx:id="retvoterregistration" layoutX="83.0" layoutY="446.0" mnemonicParsing="false" onAction="#switchUser" prefHeight="26.0" prefWidth="151.0" text="Voter Registration" />
-                  <Label fx:id="status" alignment="CENTER" layoutX="1.0" layoutY="264.0" prefHeight="39.0" prefWidth="322.0" text="Label">
+                  <Label fx:id="status" alignment="CENTER" layoutX="4.0" layoutY="303.0" prefHeight="39.0" prefWidth="322.0" text="Label">
                      <font>
                         <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="44.0" layoutY="98.0" text="Org Code :">
+                     <font>
+                        <Font name="Times New Roman" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="org_code_txtfield" layoutX="140.0" layoutY="95.0" prefHeight="26.0" prefWidth="151.0" />
+                  <Label fx:id="status_org_name" alignment="CENTER" layoutX="25.0" layoutY="269.0" prefHeight="18.0" prefWidth="271.0">
+                     <font>
+                        <Font name="Arial" size="27.0" />
                      </font>
                   </Label>
                </children>

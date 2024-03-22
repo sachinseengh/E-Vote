@@ -188,6 +188,11 @@ public class MainController implements Initializable {
 	@FXML
 	private TextField login_organization_code;
 
+	@FXML
+	private TextField org_code_txtfield;
+	
+	@FXML
+	private Label status_org_name;
 	Parent root;
 
 	// ---------------utility functions---------------------
@@ -468,9 +473,8 @@ public class MainController implements Initializable {
 
 	public void VoterLogin() {
 		Validations validation = new Validations();
-		
-		
-		if (login_organization_code.getText().isEmpty()||login_organization_code.getText().trim().isEmpty()
+
+		if (login_organization_code.getText().isEmpty() || login_organization_code.getText().trim().isEmpty()
 				|| login_organization_code.getText().equals("")) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Error");
@@ -479,8 +483,8 @@ public class MainController implements Initializable {
 			alert.showAndWait();
 			return;
 
-		} 
-		
+		}
+
 		if (!validation.digitsonly(login_organization_code.getText())) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Error");
@@ -489,8 +493,7 @@ public class MainController implements Initializable {
 			alert.showAndWait();
 			return;
 
-		} 
-		
+		}
 
 		if (voter_phoneno.getText().isEmpty() || voter_password.getText().isEmpty()
 				|| voter_phoneno.getText().equals("") || voter_password.getText().equals("")
@@ -518,7 +521,7 @@ public class MainController implements Initializable {
 				if (rs.next()) {
 
 					// it can be used to show the name of voter in voter dashboard
-					
+
 					getDetails.org_code = login_organization_code.getText();
 					getDetails.phone = voter_phoneno.getText();
 
@@ -565,21 +568,76 @@ public class MainController implements Initializable {
 	}
 
 	public void checkStatus() {
-		String sql = "select * from status where citizenshipno='" + citizenshipno_txtfield.getText() + "'and dob='"
-				+ date_datepicker.getValue().toString() + "'";
-		System.out.print(sql);
+		
+		
+		Validations validation = new Validations();
+		
+		
+		
+		
 
-		try {
-			Conn c = new Conn();
-			ResultSet rs = c.s.executeQuery(sql);
-			if (rs.next()) {
-				status.setText(rs.getString("status"));
-				reason_txt.setText(rs.getString("remarks"));
-			} else {
-				status.setText("Details didn't match");
-				reason_txt.setText("");
+		if (org_code_txtfield.getText().isEmpty() || org_code_txtfield.getText().trim().isEmpty()
+				|| org_code_txtfield.getText().equals("") || date_datepicker.getValue() == null
+				|| citizenshipno_txtfield.getText().isEmpty() || citizenshipno_txtfield.getText().trim().isEmpty()
+				|| citizenshipno_txtfield.getText().equals("")) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText("Fill all the TextFields");
+			alert.showAndWait();
+		}else{
+			
+			if (!validation.citizenshipnovalidator(citizenshipno_txtfield.getText())) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setContentText("Invalid Citizenship no");
+				alert.showAndWait();
+				return;
 			}
-		} catch (Exception e) {
+			if (!validation.digitsonly(org_code_txtfield.getText())) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText(null);
+				alert.setContentText("Invalid Organization Code");
+				alert.showAndWait();
+				return;
+
+			}
+			
+
+			String sql = "select * from status where citizenshipno='" + citizenshipno_txtfield.getText() + "'and dob='"
+					+ date_datepicker.getValue().toString() + "' and org_code='" + org_code_txtfield.getText() + "'";
+
+			try {
+				Conn c = new Conn();
+				ResultSet rs = c.s.executeQuery(sql);
+				if (rs.next()) {
+					status.setText(rs.getString("status"));
+					reason_txt.setText(rs.getString("remarks"));
+					setOrgnameStatus();
+					
+					citizenshipno_txtfield.setText("");
+					date_datepicker.setValue(null);
+					org_code_txtfield.setText("");
+					
+					
+				} else {
+					status.setText("No Data Found");
+					reason_txt.setText("");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public void setOrgnameStatus() {
+		Conn c= new Conn();
+		try {
+			String sql="select org_name from admins_details where org_code ='"+org_code_txtfield.getText()+"'";
+			ResultSet rs=c.s.executeQuery(sql);
+			if(rs.next()) {
+				status_org_name.setText(rs.getString("org_name"));
+			}
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
